@@ -7,4 +7,27 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="blue_main_2">#0066ff</color>
+    <color name="blue_main_1">#0085ff</color>
+    <color name="blue_disable">#81acff</color>
+    <color name="black_default">#000000</color>
+    <color name="gray_gray_1">#767676</color>
+    <color name="gray_gray_2">#8c8c8c</color>
+    <color name="gray_gray_3">#c4c4c4</color>
+    <color name="gray_gray_4">#adadad</color>
+    <color name="green_green_1">#42b42f</color>
+    <color name="red_red_1">#ff0000</color>
+    <color name="orange_orange">#ff6b00</color>
+    <color name="g_board_e_8_eaed">#e8eaed</color>
+    <color name="g_board_ffffff">#ffffff</color>
+    <color name="g_board_666666">#666666</color>
+    <color name="g_board_5_d_5_e_5_f">#5d5e5f</color>
+    <color name="g_board_ccced_5">#ccced5</color>
+    <color name="g_board_454647">#454647</color>
+    <color name="aos_light_background">#e6e6e6</color>
+    <color name="aos_light_on_primary">#000000</color>
+    <color name="aos_light_secondary">#d1d1d1</color>
+    <color name="aos_light_primary">#ffffff</color>
 </resources>
