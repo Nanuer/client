@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <TextView
+        android:id="@+id/logo_nanuer_tv"
+        android:layout_width="132dp"
+        android:layout_height="47dp"
+        android:text="나누어"
+        android:textSize="35sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="165dp"
+        android:layout_marginStart="48dp"
+        />
+
+    <TextView
+        android:id="@+id/login_message_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="먼저 로그인이 필요해요"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/logo_nanuer_tv"
+        app:layout_constraintStart_toStartOf="@id/logo_nanuer_tv"
+        android:layout_marginTop="46dp"
+        />
+
+    <EditText
+        android:id="@+id/login_id_et"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="37dp"
+        android:background="@null"
+        android:hint="아이디"
+        android:inputType="text"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/login_message_tv"
+        app:layout_constraintStart_toStartOf="@id/logo_nanuer_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <View
+        android:id="@+id/login_id_underscore_view"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="#adadad"
+        app:layout_constraintEnd_toEndOf="@+id/login_id_et"
+        app:layout_constraintStart_toStartOf="@+id/login_id_et"
+        app:layout_constraintTop_toBottomOf="@+id/login_id_et"/>
+
+    <EditText
+        android:id="@+id/login_pw_et"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="37dp"
+        android:background="@null"
+        android:hint="비밀번호"
+        android:inputType="text"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/login_id_et"
+        app:layout_constraintStart_toStartOf="@id/logo_nanuer_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <View
+        android:id="@+id/login_pw_underscore_view"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="#adadad"
+        app:layout_constraintEnd_toEndOf="@+id/login_pw_et"
+        app:layout_constraintStart_toStartOf="@+id/login_pw_et"
+        app:layout_constraintTop_toBottomOf="@+id/login_pw_et"/>
+
+    <ImageView
+        android:id="@+id/login_hide_pw_iv"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:src="@drawable/hide"
+        app:layout_constraintTop_toTopOf="@id/login_pw_et"
+        app:layout_constraintBottom_toBottomOf="@id/login_pw_et"
+        app:layout_constraintEnd_toEndOf="@id/login_pw_et"
+        android:layout_marginEnd="15dp"
+        />
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_sing_in_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="로그인"
+        android:textColor="#c4c4c4"
+        app:layout_constraintTop_toBottomOf="@id/login_pw_et"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginHorizontal="30dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_sing_up_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="회원가입"
+        android:textColor="@color/white"
+        android:background="#0085ff"
+        app:layout_constraintTop_toBottomOf="@id/login_sing_in_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="30dp"
+        />
+
+    <TextView
+        android:id="@+id/login_forget_message_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디 혹은 비밀번호를\n잊어버렸나요?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/login_sing_up_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
