@@ -87,29 +87,30 @@
         android:background="@drawable/gray_line"
         app:layout_constraintTop_toBottomOf="@id/message_tv"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="45dp"/>
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="32dp"/>
 
     <TextView
         android:id="@+id/send_number_tv"
         android:layout_width="78dp"
         android:layout_height="32dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:textStyle="normal"
-        android:textSize="11.3sp"
-        android:textColor="#0066ff"
-        android:letterSpacing="-0.03"
-        android:gravity="center_horizontal"
-        tools:text="인증번호 전송"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/blue_rectangle"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.03"
+        android:textColor="#0066ff"
+        android:textSize="11.3sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@id/message_number"
         app:layout_constraintTop_toBottomOf="@id/message_tv"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="6dp"/>
+        tools:text="인증번호 전송" />
 
     <TextView
         android:id="@+id/ct_number_tv"
         style="@style/MinPont"
-        android:layout_width="260dp"
+        android:layout_width="228dp"
         android:layout_height="37dp"
         tools:text="인증번호 6자리 입력"
         android:background="@drawable/gray_line"
@@ -122,18 +123,18 @@
         android:id="@+id/okay_tv"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:textStyle="normal"
-        android:textSize="11.3sp"
-        android:textColor="@color/gray_gray_1"
-        android:letterSpacing="-0.03"
-        android:gravity="center_horizontal"
-        tools:text="확인"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/gray_round"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.03"
+        android:textColor="@color/gray_gray_1"
+        android:textSize="11.3sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@id/ct_number_tv"
         app:layout_constraintTop_toBottomOf="@id/send_number_tv"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="27dp"/>
+        tools:text="확인" />
 
     <TextView
         android:id="@+id/find_id_button_tv"
