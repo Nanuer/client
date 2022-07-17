@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/signup_step1_tv"
+        style="@style/MainPont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디를 입력해주세요"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="68dp"
+        android:layout_marginStart="55dp"
+        />
+
+    <EditText
+        android:id="@+id/signup_id_et"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
+        android:background="@null"
+        android:inputType="text"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_step1_tv"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="34dp"
+        />
+
+    <View
+        android:id="@+id/signup_id_underscore_view"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@color/gray_gray_4"
+        app:layout_constraintEnd_toEndOf="@+id/signup_id_et"
+        app:layout_constraintStart_toStartOf="@+id/signup_id_et"
+        app:layout_constraintTop_toBottomOf="@+id/signup_id_et"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup_identify_btn"
+        android:layout_width="78dp"
+        android:layout_height="32dp"
+        android:text="중복확인"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textSize="11.3sp"
+        android:textColor="@color/blue_main_2"
+        android:background="@drawable/btn_round2"
+        app:layout_constraintStart_toEndOf="@id/signup_id_et"
+        app:layout_constraintBottom_toBottomOf="@id/signup_id_et"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/signup_info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6글자 이상이어야해요"
+        android:textColor="@color/gray_gray_2"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/signup_id_et"
+        app:layout_constraintEnd_toStartOf="@id/singup_info_icon_iv"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="7dp"
+        />
+
+    <ImageView
+        android:id="@+id/singup_info_icon_iv"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/wrong_gray"
+        app:layout_constraintTop_toBottomOf="@id/signup_id_et"
+        app:layout_constraintEnd_toEndOf="@id/signup_identify_btn"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup_step1_next_btn"
+        style="@style/BtnPont"
+        android:layout_width="290dp"
+        android:layout_height="43dp"
+        android:text="다음"
+        android:textColor="@color/g_board_ffffff"
+        android:background="@drawable/btn_round1_off"
+        app:layout_constraintTop_toBottomOf="@+id/signup_info_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
