@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/signup_step2_tv"
@@ -84,19 +85,6 @@
         app:layout_constraintEnd_toEndOf="@+id/signup_direct_input_et"
         app:layout_constraintTop_toTopOf="@+id/signup_direct_input_et" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signup_step2_next_btn"
-        style="@style/BtnPont"
-        android:layout_width="290dp"
-        android:layout_height="43dp"
-        android:text="다음"
-        android:textColor="@color/g_board_ffffff"
-        android:background="@drawable/btn_round1_off"
-        app:layout_constraintTop_toBottomOf="@+id/signup_email_et"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="90dp"
-        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
