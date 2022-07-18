@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/signup_step2_tv"
+        style="@style/MainPont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email주소를 입력해주세요"
+        android:textColor="@color/black_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="68dp"
+        android:layout_marginStart="55dp"
+        />
+
+    <EditText
+        android:id="@+id/signup_email_et"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:background="@null"
+        android:inputType="text"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_step2_tv"
+        app:layout_constraintEnd_toStartOf="@id/signup_at_sign_tv"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="5dp"
+        />
+
+    <View
+        android:id="@+id/signup_email_underscore_view"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@color/gray_gray_4"
+        app:layout_constraintEnd_toEndOf="@+id/signup_email_et"
+        app:layout_constraintStart_toStartOf="@+id/signup_email_et"
+        app:layout_constraintTop_toBottomOf="@+id/signup_email_et"/>
+
+    <TextView
+    android:id="@+id/signup_at_sign_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:textColor="@color/black"
+    android:textStyle="bold"
+    android:text="\@"
+    app:layout_constraintBottom_toBottomOf="@id/signup_email_et"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@id/signup_email_et"
+    />
+
+    <EditText
+        android:id="@+id/signup_direct_input_et"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/address_round"
+        android:hint="직접입력"
+        android:inputType="textWebEmailAddress"
+        android:textSize="13.5sp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textStyle="normal"
+        android:textColor="@color/gray_gray_1"
+        app:layout_constraintBottom_toBottomOf="@id/signup_email_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/signup_at_sign_tv"
+        app:layout_constraintTop_toTopOf="@id/signup_email_et"
+        android:paddingStart="10dp"/>
+
+    <ImageView
+        android:id="@+id/login_email_list_iv"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="17dp"
+        android:src="@drawable/down"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_direct_input_et"
+        app:layout_constraintEnd_toEndOf="@+id/signup_direct_input_et"
+        app:layout_constraintTop_toTopOf="@+id/signup_direct_input_et" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
