@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingBottom="50dp">
+        <TextView
+            android:id="@+id/signup_step4_tv"
+            style="@style/MainPont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로필 설정하기"
+            android:textColor="@color/black_default"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            />
+
+        <ImageView
+            android:id="@+id/signup_profile_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            app:layout_constraintTop_toBottomOf="@id/signup_step4_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="25dp"
+            />
+
+        <ImageView
+            android:id="@+id/singup_camera_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera"
+            app:layout_constraintEnd_toEndOf="@id/signup_profile_iv"
+            app:layout_constraintBottom_toBottomOf="@id/signup_profile_iv"
+            />
+
+        <TextView
+            android:id="@+id/signup_basic_data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본정보"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textSize="17sp"
+            android:textColor="#393939"
+            app:layout_constraintTop_toBottomOf="@id/signup_profile_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="36dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/signup_basic_data_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/signup_basic_data_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="vertical"
+            android:background="@drawable/layout_round"
+            >
+            <EditText
+                android:id="@+id/signup_data_name_et"
+                style="@style/BtnPont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/gray_gray_1"
+                android:background="@drawable/textline_bottom"
+                android:hint="이름"
+                android:paddingStart="15dp"
+                />
+
+            <TextView
+                android:id="@+id/signup_data_sex_tv"
+                style="@style/BtnPont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textline_bottom"
+                android:text="성별"
+                android:textColor="@color/gray_gray_2"
+                android:paddingStart="15dp"
+                />
+
+            <EditText
+                android:id="@+id/signup_data_nickname_et"
+                style="@style/BtnPont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/gray_gray_2"
+                android:hint="닉네임"
+                android:background="@null"
+                android:paddingStart="15dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/signup_extra_data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가정보"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textSize="17sp"
+            android:textColor="#393939"
+            app:layout_constraintTop_toBottomOf="@id/signup_basic_data_ll"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="24dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/signup_extra_data_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/signup_extra_data_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="vertical"
+            android:background="@drawable/layout_round"
+            >
+            <EditText
+                android:id="@+id/signup_extra_data1_et"
+                style="@style/BtnPont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/gray_gray_1"
+                android:background="@drawable/textline_bottom"
+                android:hint="정보 미정1"
+                android:paddingStart="15dp"
+                />
+
+            <EditText
+                android:id="@+id/signup_extra_data2_et"
+                style="@style/BtnPont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/gray_gray_1"
+                android:background="@drawable/textline_bottom"
+                android:hint="정보 미정2"
+                android:paddingStart="15dp"
+                />
+
+            <EditText
+                android:id="@+id/signup_extra_data3_et"
+                style="@style/BtnPont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/gray_gray_2"
+                android:hint="정보 미정3"
+                android:background="@null"
+                android:paddingStart="15dp"
+                />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signup_step4_save_btn"
+            style="@style/BtnPont"
+            android:layout_width="300dp"
+            android:layout_height="43dp"
+            android:text="저장하기"
+            android:textColor="@color/g_board_ffffff"
+            android:background="@drawable/btn_round1_off"
+            app:layout_constraintTop_toBottomOf="@+id/signup_extra_data_ll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="60dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
