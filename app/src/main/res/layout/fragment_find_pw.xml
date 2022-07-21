@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/message_tv"
+        android:layout_width="291dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:textStyle="normal"
+        android:textSize="13sp"
+        android:textColor="@color/gray_gray_1"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="아이디를 잊으셨나요?\n
+    회원가입시 입력한 아래의 정보를 입력해 주세요"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="32dp"
+        />
+    
+    <EditText
+        android:id="@+id/input_id_tv"
+        style="@style/MinPont"
+        android:layout_width="290dp"
+        android:layout_height="37dp"
+        android:hint="아이디 입력"
+        android:inputType="text"
+        android:background="@drawable/gray_line"
+        app:layout_constraintTop_toBottomOf="@id/message_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete_logo_2_iv"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:background="@drawable/delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/message_tv"
+        android:layout_marginTop="41dp"
+        android:layout_marginStart="291dp"/>
+
+
+    <EditText
+        android:id="@+id/message_number_tv"
+        style="@style/MinPont"
+        android:layout_width="210dp"
+        android:layout_height="37dp"
+        android:hint="휴대폰 번호 입력 ( ‘ - ’ 제외 )"
+        android:inputType="text"
+        android:background="@drawable/gray_line"
+        app:layout_constraintTop_toBottomOf="@id/input_id_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_number_tv"
+        android:layout_width="78dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/blue_rectangle"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.03"
+        android:textColor="#0066ff"
+        android:textSize="11.3sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_id_tv"
+        android:text="인증번호 전송" />
+
+    <TextView
+        android:id="@+id/ct_number_tv"
+        style="@style/MinPont"
+        android:layout_width="228dp"
+        android:layout_height="37dp"
+        android:text="인증번호 6자리 입력"
+        android:background="@drawable/gray_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/message_number_tv"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="35dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/okay_tv"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/gray_round"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.03"
+        android:textColor="@color/gray_gray_1"
+        android:textSize="11.3sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@id/ct_number_tv"
+        app:layout_constraintTop_toBottomOf="@id/send_number_tv"
+        android:hint="확인"
+        android:inputType="text"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/find_id_button_tv"
+        style="@style/BtnPont"
+        android:layout_width="290dp"
+        android:layout_height="43dp"
+        android:text="비밀번호 찾기"
+        android:includeFontPadding="false"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/ct_number_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:background="@drawable/blue_button"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

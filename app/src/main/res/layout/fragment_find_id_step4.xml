@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/name_tv"
+        style="@style/MidPont"
+        android:layout_width="74dp"
+        android:layout_height="27dp"
+        android:text="김 * 영 님 "
+        android:textColor="#000000"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="71dp"
+        android:layout_marginStart="144dp"/>
+
+    <ImageView
+        android:id="@+id/user_check_iv"
+        android:layout_width="18.7dp"
+        android:layout_height="20dp"
+        android:src="@drawable/person_check"
+        app:layout_constraintStart_toEndOf="@id/name_tv"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="71dp"/>
+
+    <TextView
+        android:id="@+id/user_id_tv"
+        style="@style/MidPont"
+        android:layout_width="258dp"
+        android:layout_height="27dp"
+        android:text="회원님의 아이디는 abcd1234 입니다"
+        android:textColor="#000000"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/name_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="56dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/BtnPont"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:text="로그인하러 가기"
+        android:textColor="#ffffff"
+        android:background="@drawable/blue_button_on"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/user_id_tv"
+        android:layout_marginTop="47dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
