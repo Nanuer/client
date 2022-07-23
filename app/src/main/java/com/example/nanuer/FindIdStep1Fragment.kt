@@ -5,18 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.nanuer.databinding.FragmentFindIdBinding
+import com.example.nanuer.databinding.FragmentFindIdStep1Binding
 
-class FindIDFragment : Fragment() {
+class FindIdStep1Fragment : Fragment() {
 
-    lateinit var binding: FragmentFindIdBinding
+    lateinit var binding: FragmentFindIdStep1Binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFindIdBinding.inflate(inflater,container,false)
+        binding = FragmentFindIdStep1Binding.inflate(inflater,container,false)
+
         return binding.root
     }
+
 }
