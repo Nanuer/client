@@ -12,10 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.test.setOnClickListener {
-            startActivity(Intent(this,FindActivity::class.java))
-        }
     }
 
 }

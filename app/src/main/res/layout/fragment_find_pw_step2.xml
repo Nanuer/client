@@ -4,21 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/find_id_step2_name_tv"
-        style="@style/MidPont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="abx1234@naver.com 로"
-        android:textColor="@color/black"
-        android:includeFontPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/find_id_step2_icon_iv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        android:layout_marginTop="46.2dp"
-        />
-
     <ImageView
         android:id="@+id/find_id_step2_icon_iv"
         android:layout_width="wrap_content"
@@ -32,8 +17,23 @@
         />
 
     <TextView
+        android:id="@+id/find_id_step2_name_tv"
+        style="@style/TitleMid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="abx1234@naver.com 로"
+        android:textColor="@color/black"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/find_id_step2_icon_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="46.2dp"
+        />
+
+    <TextView
         android:id="@+id/find_id_step2_user_id_tv"
-        style="@style/MidPont"
+        style="@style/TitleMid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="임시 비밀번호를 전송하였습니다."
@@ -47,7 +47,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/find_id_step2_login_btn"
-        style="@style/BtnPont"
+        style="@style/BtnMid"
         android:layout_width="270dp"
         android:layout_height="45.3dp"
         android:text="로그인 하기"

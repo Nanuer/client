@@ -13,6 +13,10 @@ class LoginActivity : AppCompatActivity(){
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.loginForgetMessageTv.setOnClickListener {
+            startActivity(Intent(this, FindActivity::class.java))
+        }
+
         binding.loginSingUpBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }

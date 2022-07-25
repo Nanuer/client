@@ -2,7 +2,6 @@ package com.example.nanuer
 
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.nanuer.databinding.ActivityFindBinding
@@ -19,6 +18,10 @@ class FindActivity : AppCompatActivity(){
         binding = ActivityFindBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.findDeleteLogoIv.setOnClickListener{
+            finish()
+        }
+
         val findAdapter = FindVPAdapter(this)
 
         binding.findVp.adapter = findAdapter
@@ -28,9 +31,6 @@ class FindActivity : AppCompatActivity(){
             tab.text = tabTextList[position]
         }.attach()
 
-
-
-        
     }
 
 
