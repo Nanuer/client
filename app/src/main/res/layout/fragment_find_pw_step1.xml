@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/find_pw_step1_message_tv"
+        style="@style/Tip"
+        android:layout_width="291dp"
+        android:layout_height="39dp"
+        android:textColor="@color/gray_gray_1"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="비밀번호를 잊으셨나요?\n회원가입시 입력한 아래의 정보를 입력해 주세요"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        />
+
+    <EditText
+        android:id="@+id/find_pw_step1_id_et"
+        style="@style/MidPont"
+        android:layout_width="271.4dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="7dp"
+        android:hint="아이디(이메일) 입력"
+        android:inputType="text"
+        android:includeFontPadding="false"
+        android:background="@drawable/gray_line"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_message_tv" />
+
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/find_id_step1_resend_btn"-->
+<!--        style="@style/BtnPontSmall"-->
+<!--        android:layout_width="78dp"-->
+<!--        android:layout_height="32dp"-->
+<!--        android:background="@drawable/orange_round"-->
+<!--        android:gravity="center"-->
+<!--        android:textColor="#ff6b00"-->
+<!--        app:layout_constraintStart_toEndOf="@id/find_id_step1_name_et"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/find_id_step1_name_et"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/find_pw_step1_id_et"-->
+<!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--        android:visibility="gone"-->
+<!--        android:text="재전송" />-->
+
+    <EditText
+        android:id="@+id/find_pw_step1_phone_number_et"
+        style="@style/MinPont"
+        android:layout_width="210dp"
+        android:layout_height="37dp"
+        android:hint="휴대폰 번호 입력 (숫자만 입력)"
+        android:inputType="text"
+        android:background="@drawable/gray_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/find_pw_step1_send_number_et"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_id_et"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/find_pw_step1_send_number_et"
+        style="@style/BtnPontSmall"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:background="@drawable/gray_round"
+        android:gravity="center"
+        android:textColor="#adadad"
+        app:layout_constraintStart_toEndOf="@id/find_pw_step1_phone_number_et"
+        app:layout_constraintTop_toTopOf="@id/find_pw_step1_phone_number_et"
+        app:layout_constraintBottom_toBottomOf="@id/find_pw_step1_phone_number_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:text="인증번호" />
+
+
+    <ImageView
+        android:id="@+id/find_id_step1_warning_iv"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:src="@drawable/btn_small_red"
+        app:layout_constraintStart_toEndOf="@id/find_id_step1_send_number_et"
+        app:layout_constraintTop_toTopOf="@id/find_id_step1_send_number_et"
+        app:layout_constraintBottom_toBottomOf="@id/find_id_step1_send_number_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:visibility="gone"
+        />
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/find_id_step1_check_iv"-->
+    <!--            android:layout_width="60dp"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:layout_marginStart="7dp"-->
+    <!--            android:src="@drawable/btn_small_check"-->
+    <!--            app:layout_constraintStart_toEndOf="@id/find_id_step1_identify_number_et"-->
+    <!--            app:layout_constraintTop_toTopOf="@id/find_id_step1_identify_number_et"-->
+    <!--            app:layout_constraintBottom_toBottomOf="@id/find_id_step1_identify_number_et"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintHorizontal_chainStyle="packed"-->
+    <!--            android:visibility="gone"-->
+    <!--            />-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/find_pw_step1_find_btn"
+        style="@style/BtnPont"
+        android:layout_width="290dp"
+        android:layout_height="43dp"
+        android:text="비밀번호 찾기"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_send_number_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:background="@drawable/blue_button"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

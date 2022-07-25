@@ -25,5 +25,9 @@
             android:name=".MainActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".FindActivity"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>
