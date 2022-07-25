@@ -10,7 +10,7 @@ class FindVPAdapter(fa:FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 -> FindIdStep1Fragment()
-            else->FindPWFragment()
+            else->FindPwStep1Fragment()
         }
     }
 }

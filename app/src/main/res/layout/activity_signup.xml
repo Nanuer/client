@@ -59,7 +59,7 @@
             android:layout_width="290dp"
             android:layout_height="43dp"
             android:text="다음"
-            android:textColor="@color/g_board_ffffff"
+            android:textColor="@color/blue_light_1"
             android:background="@drawable/btn_round1_off"
             app:layout_constraintTop_toBottomOf="@id/singup_fragment_container"
             app:layout_constraintStart_toStartOf="parent"

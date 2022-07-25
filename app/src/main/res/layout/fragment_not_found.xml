@@ -5,14 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/find_id_step2_name_tv"
+        android:id="@+id/not_found_user_info_tv"
         style="@style/MidPont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abx1234@naver.com 로"
+        android:text="헤당 정보로 등록된 회원정보가\n 없습니다."
         android:textColor="@color/black"
+        android:gravity="center"
         android:includeFontPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/find_id_step2_icon_iv"
+        app:layout_constraintTop_toBottomOf="@id/not_found__icon_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -20,43 +21,31 @@
         />
 
     <ImageView
-        android:id="@+id/find_id_step2_icon_iv"
+        android:id="@+id/not_found__icon_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/person_check"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/find_id_step2_name_tv"
+        app:layout_constraintBottom_toBottomOf="@id/not_found_user_info_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         />
 
-    <TextView
-        android:id="@+id/find_id_step2_user_id_tv"
-        style="@style/MidPont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="임시 비밀번호를 전송하였습니다."
-        android:textColor="@color/black"
-        android:includeFontPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/find_id_step2_name_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="13dp"
-        />
+
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/find_id_step2_login_btn"
+        android:id="@+id/not_found_signup_btn"
         style="@style/BtnPont"
         android:layout_width="270dp"
         android:layout_height="45.3dp"
-        android:text="로그인 하기"
+        android:text="회원가입하러 하기"
         android:textColor="@color/blue_dark_1"
         android:background="@drawable/blue_rectangle"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/find_id_step2_user_id_tv"
+        app:layout_constraintTop_toBottomOf="@id/not_found_user_info_tv"
         android:layout_marginTop="47dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

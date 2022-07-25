@@ -2,12 +2,13 @@ package com.example.nanuer
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.nanuer.databinding.ActivityFindBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class FindActivity : AppCompatActivity() {
+class FindActivity : AppCompatActivity(){
     lateinit var binding: ActivityFindBinding
 
     private lateinit var viewPager: ViewPager2
@@ -26,5 +27,13 @@ class FindActivity : AppCompatActivity() {
         TabLayoutMediator(binding.findTb, binding.findVp) { tab, position ->
             tab.text = tabTextList[position]
         }.attach()
+
+
+
+        
     }
+
+
+
 }
+

@@ -5,18 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.nanuer.databinding.FragmentFindPwBinding
+import com.example.nanuer.databinding.FragmentFindPwStep2Binding
 
-class FindPWFragment : Fragment() {
-
-    lateinit var binding: FragmentFindPwBinding
+class FindPwStep2Fragment : Fragment(){
+    lateinit var binding: FragmentFindPwStep2Binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFindPwBinding.inflate(inflater,container,false)
+        binding = FragmentFindPwStep2Binding.inflate(inflater,container,false)
         return binding.root
     }
 }
