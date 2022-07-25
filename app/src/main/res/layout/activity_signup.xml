@@ -7,12 +7,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="50dp">
+        android:paddingBottom="32dp">
 
         <RelativeLayout
             android:id="@+id/singup_header_rl"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -21,51 +21,279 @@
                 android:layout_height="23dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="23dp"
                 android:src="@drawable/back" />
-            <TextView
-                android:id="@+id/singup_back_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/singup_back_iv"
-                android:text="이전"
-                android:textSize="16sp"
-                android:layout_marginStart="15dp"
-                />
 
-            <ImageView
+            <TextView
                 android:id="@+id/singup_step_iv"
+                style="@style/TitleBig"
+                android:textColor="@color/main_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/step_first" />
+                android:text="회원가입" />
 
         </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/singup_fragment_container"
+
+        <TextView
+            android:id="@+id/signup_info_tv"
+            style="@style/TitleSmall"
+            android:textColor="@color/main_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정보를 모두 입력한 후\n아래 가입하기 버튼을 눌러주세요"
+            app:layout_constraintStart_toStartOf="@id/signup_email_et"
+            app:layout_constraintTop_toBottomOf="@id/singup_header_rl"
+            android:layout_marginTop="19dp"
+            android:layout_marginStart="6dp"
+            />
+
+        <EditText
+            android:id="@+id/signup_email_et"
+            style="@style/InputMid"
+            android:textColor="@color/gray_light_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/singup_header_rl"
+            android:background="@drawable/textline_bottom_gray"
+            android:inputType="text"
+            android:hint="이메일 입력"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
+            app:layout_constraintTop_toBottomOf="@id/signup_info_tv"
+            android:paddingHorizontal="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="25dp"
             />
+
+        <EditText
+            android:id="@+id/signup_pw_et"
+            style="@style/InputMid"
+            android:textColor="@color/gray_light_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textline_bottom_gray"
+            android:inputType="text"
+            android:hint="비밀번호 입력"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_email_et"
+            android:paddingHorizontal="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="33dp"
+            />
+
+        <EditText
+            android:id="@+id/signup_pw_check_et"
+            style="@style/InputMid"
+            android:textColor="@color/gray_light_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textline_bottom_gray"
+            android:inputType="text"
+            android:hint="비밀번호 확인"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_pw_et"
+            android:paddingHorizontal="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="33dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/signup_phone_number_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_pw_check_et"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="33dp"
+            >
+
+            <EditText
+                android:id="@+id/signup_phone_number_et"
+                style="@style/InputMid"
+                android:textColor="@color/gray_light_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toStartOf="@id/signup_identify_number_btn"
+                android:background="@drawable/textline_bottom_gray"
+                android:hint="휴대폰 번호 (숫자만 입력)"
+                android:inputType="text"
+                android:paddingHorizontal="20dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_identify_number_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/gray_round"
+                android:text="인증번호"
+                android:textColor="@color/gray_light_2" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/signup_terms_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/signup_phone_number_rl"
+            android:layout_marginTop="64dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/signup_terms_cb"
+                style="@style/Regular"
+                android:textColor="@color/main_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="약관 전체동의"
+                android:buttonTint="@color/blue_dark_1"
+            />
+            <RelativeLayout
+                android:id="@+id/signup_term1_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <CheckBox
+                    android:id="@+id/signup_term1_cb"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이용약관 동의"
+                    android:textColor="@color/main_black"
+                    android:buttonTint="@color/blue_dark_1"
+                    android:layout_marginEnd="15dp"/>
+                <TextView
+                    android:id="@+id/signup_term1_necessary_tv"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(필수)"
+                    android:textColor="@color/blue_dark_1"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/signup_term1_cb"
+                    />
+                <ImageView
+                    android:id="@+id/signup_term1_more_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/next"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/signup_term2_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <CheckBox
+                    android:id="@+id/signup_term2_cb"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:buttonTint="@color/blue_dark_1"
+                    android:text="개인정보 수집 및 이용동의"
+                    android:textColor="@color/main_black"/>
+                <TextView
+                    android:id="@+id/signup_term2_necessary_tv"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(필수)"
+                    android:textColor="@color/blue_dark_1"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/signup_term2_cb"
+                    />
+                <ImageView
+                    android:id="@+id/signup_term2_more_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/next"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/signup_term3_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <CheckBox
+                    android:id="@+id/signup_term3_cb"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:buttonTint="@color/blue_dark_1"
+                    android:text="E-mail 및 SMS 광고성 정보 수신 동의"
+                    android:textColor="@color/main_black"/>
+                <TextView
+                    android:id="@+id/signup_term3_selective_tv"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(선택)"
+                    android:textColor="@color/blue_dark_1"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/signup_term3_cb"
+                    />
+                <ImageView
+                    android:id="@+id/signup_term3_more_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/next"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signup_next_btn"
-            style="@style/BtnPont"
+            android:id="@+id/signup_btn"
+            style="@style/BtnLarge"
             android:layout_width="290dp"
             android:layout_height="43dp"
-            android:text="다음"
-            android:textColor="@color/g_board_ffffff"
-            android:background="@drawable/btn_round1_off"
-            app:layout_constraintTop_toBottomOf="@id/singup_fragment_container"
+            android:text="가입하기"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_button"
+            app:layout_constraintTop_toBottomOf="@id/signup_terms_ll"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="73dp"
             />
+
+
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/singup_fragment_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/singup_header_rl"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+
+<!--            />-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/signup_next_btn"-->
+<!--            style="@style/BtnPont"-->
+<!--            android:layout_width="290dp"-->
+<!--            android:layout_height="43dp"-->
+<!--            android:text="다음"-->
+<!--            android:textColor="@color/g_board_ffffff"-->
+<!--            android:background="@drawable/btn_round1_off"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/singup_fragment_container"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

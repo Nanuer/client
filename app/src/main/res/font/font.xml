@@ -12,16 +12,6 @@
 
     <font
         android:fontStyle="normal"
-        android:fontWeight="500"
-        android:font="@font/noto_sans_display_medium" />
-
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="500"
-        android:font="@font/noto_sans_medium" />
-
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/noto_sans_regular" />
+        android:fontWeight="700"
+        android:font="@font/noto_sans_kr_bold" />
 </font-family>
