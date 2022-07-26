@@ -51,6 +51,24 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         />
 
+    <EditText
+        android:id="@+id/find_pw_step1_certification_number_et"
+        style="@style/InputMid"
+        android:layout_width="210dp"
+        android:layout_height="37dp"
+        android:hint="인증번호 입력"
+        android:inputType="text"
+        android:background="@drawable/gray_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/find_pw_step1_btns_rl2"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_phone_number_et"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="7dp"
+        android:paddingHorizontal="9dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:visibility="gone"
+        />
+
     <RelativeLayout
         android:id="@+id/find_pw_ste1_btns_rl"
         android:layout_width="60dp"
@@ -81,6 +99,31 @@
             android:textColor="#ff6b00"
             android:visibility="gone"
             android:text="재전송" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/find_pw_step1_btns_rl2"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toTopOf="@id/find_pw_step1_certification_number_et"
+        app:layout_constraintBottom_toBottomOf="@id/find_pw_step1_certification_number_et"
+        app:layout_constraintStart_toEndOf="@id/find_pw_step1_certification_number_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/find_pw_step1_okay_btn"
+            style="@style/BtnSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="확인"
+            android:background="@drawable/gray_round"
+            android:textColor="@color/gray_light_2"
+            android:visibility="gone"
+            />
 
     </RelativeLayout>
 
@@ -121,7 +164,7 @@
         android:text="비밀번호 찾기"
         android:includeFontPadding="false"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/find_pw_ste1_btns_rl"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_btns_rl2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"
