@@ -22,11 +22,15 @@ class FindActivity : AppCompatActivity() {
     private val tabTextList = arrayListOf("아이디 찾기", "비밀번호 찾기")
 
 
-    var btn: Button? = null
-    var btn2: Button? = null
+    var id_num_btn: Button? = null
+    var id_okay_btn: Button? = null
+
+    var pw_num_btn: Button? = null
+    var pw_okay_btn: Button? = null
+
     var check = true
-    var check2 = true
-    var time = 3
+    var mCountDown = 2
+    var sCountDown = 59
     var timerTask: Timer? = null
 
 
@@ -35,8 +39,11 @@ class FindActivity : AppCompatActivity() {
         binding = ActivityFindBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        clickbtn()
-        clickbtn2()
+        id_clickbtn()
+        id_clickbtn2()
+
+        pw_clickbtn()
+        pw_clickbtn2()
 
         binding.findDeleteLogoIv.setOnClickListener {
             finish()
@@ -51,52 +58,91 @@ class FindActivity : AppCompatActivity() {
             tab.text = tabTextList[position]
         }.attach()
 
-        btn = findViewById<Button>(R.id.find_id_step1_send_number_btn)
-        btn2 = findViewById<Button>(R.id.find_id_step1_okay_btn)
+        id_num_btn = findViewById<Button>(R.id.find_id_step1_send_number_btn)
+        id_okay_btn = findViewById<Button>(R.id.find_id_step1_okay_btn)
+
+        pw_num_btn = findViewById<Button>(R.id.find_id_step1_send_number_btn)
+        pw_okay_btn = findViewById<Button>(R.id.find_id_step1_okay_btn)
+
 
     }
 
-    fun starttimer() {
+    fun id_starttimer() {
 
         val timecheck = findViewById<TextView>(R.id.find_id_step1_timer)
 
         timerTask = timer(period = 1000) {
-            time--
-            val min = time / 100
-            val sec = time
 
+
+            val sec = "%02d".format(sCountDown)
+
+            if(mCountDown==0&&sCountDown ==0){
+                timerTask?.cancel()
+            }
+
+            if(sCountDown == 0){
+                sCountDown = 60
+
+                if(mCountDown>=1){
+                    mCountDown--
+                }
+            }
+            sCountDown--
             runOnUiThread {
-                timecheck?.text= "${sec}"// TextView 세팅
+                timecheck?.text = "남은 시간 ${mCountDown} : ${sec}"
+
             }
         }
     }
 
-//    fun laptime() {
-//
-//        val lapTime = time
-//        val lap_layout = findViewById<TextView>(R.id.find_id_step1_timer)
-//
-//        val textView = findViewById<TextView>(R.id.find_id_step1_timer).apply {
-//            setTextSize(12f)
-//
-//        }
-//
-//        textView.text = "남은시간 ${lapTime / 100}.${lapTime % 100}"
-//
-//    }
+    fun pw_starttimer() {
+
+        val timecheck = findViewById<TextView>(R.id.find_pw_step1_timer)
+
+        timerTask = timer(period = 1000) {
 
 
+            val sec = "%02d".format(sCountDown)
 
-    fun clickbtn() {
-        btn?.setOnClickListener { onClick(btn) }
+            if(mCountDown==0&&sCountDown ==0){
+                timerTask?.cancel()
+            }
+
+            if(sCountDown == 0){
+                sCountDown = 60
+
+                if(mCountDown>=1){
+                    mCountDown--
+                }
+            }
+            sCountDown--
+            runOnUiThread {
+                timecheck?.text = "남은 시간 ${mCountDown} : ${sec}"
+
+            }
+        }
     }
 
-    fun clickbtn2() {
-        btn2?.setOnClickListener { onClick2(btn2) }
+
+
+    fun id_clickbtn() {
+        id_num_btn?.setOnClickListener { id_onClick(id_num_btn) }
+    }
+
+    fun id_clickbtn2() {
+        id_okay_btn?.setOnClickListener { id_onClick2(id_okay_btn) }
+    }
+
+    fun pw_clickbtn() {
+        pw_num_btn?.setOnClickListener { pw_onClick(pw_num_btn) }
+    }
+
+    fun pw_clickbtn2() {
+        pw_okay_btn?.setOnClickListener { pw_onClick2(pw_okay_btn) }
     }
 
 
-    fun onClick(v: View?) {
+    fun id_onClick(v: View?) {
         when (v?.id) {
             R.id.find_id_step1_send_number_btn -> {
                 var sendbtn = findViewById<TextView>(R.id.find_id_step1_send_number_btn)
@@ -120,7 +166,7 @@ class FindActivity : AppCompatActivity() {
                     timertv.visibility = View.VISIBLE
                     remessagetv.visibility = View.VISIBLE
 
-                    starttimer()
+                    id_starttimer()
 
 
                 }
@@ -128,27 +174,79 @@ class FindActivity : AppCompatActivity() {
         }
     }
 
-        fun onClick2(v2: View?) {
-            when (v2?.id) {
+        fun id_onClick2(v: View?) {
+            when (v?.id) {
                 R.id.find_id_step1_okay_btn -> {
                     var okaybtn = findViewById<Button>(R.id.find_id_step1_okay_btn)
                     var correctbtn = findViewById<Button>(R.id.find_id_step1_correct_btn)
 
-                    if (check2) {
+                    if (check) {
                         okaybtn.visibility = View.GONE
                         correctbtn.visibility = View.VISIBLE
-                        check2 = false
+                        check = false
                     } else {
                         okaybtn.visibility = View.VISIBLE
                         correctbtn.visibility = View.GONE
-                        check2 = true
-
+                        check = true
 
 
            }
                 }
             }
         }
+
+    fun pw_onClick(v: View?) {
+        when (v?.id) {
+            R.id.find_pw_step1_send_number_btn -> {
+                var sendbtn = findViewById<TextView>(R.id.find_pw_step1_send_number_btn)
+                var resendbtn = findViewById<Button>(R.id.find_pw_step1_resend_btn)
+                var okaybtn = findViewById<Button>(R.id.find_pw_step1_okay_btn)
+                var ctEt = findViewById<EditText>(R.id.find_pw_step1_certification_number_et)
+                var timertv = findViewById<TextView>(R.id.find_pw_step1_timer)
+                var remessagetv = findViewById<TextView>(R.id.find_pw_step1_resend_message_tv)
+
+
+                if (check) {
+                    sendbtn.visibility = View.VISIBLE
+                    check = false
+                } else {
+                    sendbtn.visibility = View.GONE
+                    resendbtn.visibility = View.VISIBLE
+                    check = true
+
+                    okaybtn.visibility = View.VISIBLE
+                    ctEt.visibility = View.VISIBLE
+                    timertv.visibility = View.VISIBLE
+                    remessagetv.visibility = View.VISIBLE
+
+                    pw_starttimer()
+
+
+                }
+            }
+        }
+    }
+
+    fun pw_onClick2(v: View?) {
+        when (v?.id) {
+            R.id.find_pw_step1_okay_btn -> {
+                var okaybtn = findViewById<Button>(R.id.find_pw_step1_okay_btn)
+                var correctbtn = findViewById<Button>(R.id.find_pw_step1_correct_btn)
+
+                if (check) {
+                    okaybtn.visibility = View.GONE
+                    correctbtn.visibility = View.VISIBLE
+                    check = false
+                } else {
+                    okaybtn.visibility = View.VISIBLE
+                    correctbtn.visibility = View.GONE
+                    check = true
+
+
+                }
+            }
+        }
+    }
 
 
     }

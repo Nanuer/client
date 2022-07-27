@@ -122,7 +122,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/gray_round"
                     android:gravity="center"
-                    android:onClick="onClick"
+                    android:onClick="id_onClick"
                     android:text="인증번호"
                     android:textColor="@color/gray_light_2" />
 
@@ -156,7 +156,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/gray_round"
                     android:gravity="center"
-                    android:onClick="onClick2"
+                    android:onClick="id_onClick2"
                     android:text="확인"
                     android:textColor="@color/gray_light_2"
                     android:visibility="gone"/>
