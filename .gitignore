@@ -137,3 +137,6 @@ fabric.properties
 
 # vscode
 .history
+
+#server url
+Url.kt
