@@ -12,6 +12,47 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initBottomNavigation()
+    }
+
+
+    private fun initBottomNavigation(){
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_fl, HomeFragment())
+            .commitAllowingStateLoss()
+
+        binding.mainBnv.setOnItemSelectedListener{ item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_fl, HomeFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.postFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_fl, PostFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.chatFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_fl, ChatFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.mypageFragment -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_fl, MypageFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+            }
+            false
+        }
     }
 
 }
