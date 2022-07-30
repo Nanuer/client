@@ -3,6 +3,8 @@
     package="com.example.nanuer">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,5 +33,6 @@
             android:name=".FindActivity"
             android:exported="true">
         </activity>
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="606613ee551a2c2c6e20f8c29f723208"/>
     </application>
 </manifest>
