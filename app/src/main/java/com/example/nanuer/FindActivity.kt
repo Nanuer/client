@@ -1,13 +1,16 @@
 package com.example.nanuer
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Layout
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.nanuer.databinding.ActivityFindBinding
@@ -28,10 +31,16 @@ class FindActivity : AppCompatActivity() {
     var pw_num_btn: Button? = null
     var pw_okay_btn: Button? = null
 
+    var id_next_btn: Button? =null
+
+    var id_login_btn: Button? =null
+
     var check = true
     var mCountDown = 2
     var sCountDown = 59
     var timerTask: Timer? = null
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,9 +54,16 @@ class FindActivity : AppCompatActivity() {
         pw_clickbtn()
         pw_clickbtn2()
 
+        id_next_step_btn()
+
+        id_login_clickbtn()
+
         binding.findDeleteLogoIv.setOnClickListener {
             finish()
         }
+
+
+
 
         val findAdapter = FindVPAdapter(this)
 
@@ -64,6 +80,10 @@ class FindActivity : AppCompatActivity() {
         pw_num_btn = findViewById<Button>(R.id.find_id_step1_send_number_btn)
         pw_okay_btn = findViewById<Button>(R.id.find_id_step1_okay_btn)
 
+        id_next_btn = findViewById<Button>(R.id.find_id_step1_find_btn)
+
+        id_login_btn = findViewById<Button>(R.id.find_id_step2_login_btn)
+
 
     }
 
@@ -76,14 +96,14 @@ class FindActivity : AppCompatActivity() {
 
             val sec = "%02d".format(sCountDown)
 
-            if(mCountDown==0&&sCountDown ==0){
+            if (mCountDown == 0 && sCountDown == 0) {
                 timerTask?.cancel()
             }
 
-            if(sCountDown == 0){
+            if (sCountDown == 0) {
                 sCountDown = 60
 
-                if(mCountDown>=1){
+                if (mCountDown >= 1) {
                     mCountDown--
                 }
             }
@@ -104,14 +124,14 @@ class FindActivity : AppCompatActivity() {
 
             val sec = "%02d".format(sCountDown)
 
-            if(mCountDown==0&&sCountDown ==0){
+            if (mCountDown == 0 && sCountDown == 0) {
                 timerTask?.cancel()
             }
 
-            if(sCountDown == 0){
+            if (sCountDown == 0) {
                 sCountDown = 60
 
-                if(mCountDown>=1){
+                if (mCountDown >= 1) {
                     mCountDown--
                 }
             }
@@ -122,7 +142,6 @@ class FindActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
     fun id_clickbtn() {
@@ -140,6 +159,15 @@ class FindActivity : AppCompatActivity() {
     fun pw_clickbtn2() {
         pw_okay_btn?.setOnClickListener { pw_onClick2(pw_okay_btn) }
     }
+
+    fun id_next_step_btn() {
+        id_next_btn?.setOnClickListener { id_next_onCLick(id_next_btn) }
+    }
+
+    fun id_login_clickbtn() {
+        id_login_btn?.setOnClickListener { id_login(id_login_btn) }
+    }
+
 
 
     fun id_onClick(v: View?) {
@@ -174,26 +202,26 @@ class FindActivity : AppCompatActivity() {
         }
     }
 
-        fun id_onClick2(v: View?) {
-            when (v?.id) {
-                R.id.find_id_step1_okay_btn -> {
-                    var okaybtn = findViewById<Button>(R.id.find_id_step1_okay_btn)
-                    var correctbtn = findViewById<Button>(R.id.find_id_step1_correct_btn)
+    fun id_onClick2(v: View?) {
+        when (v?.id) {
+            R.id.find_id_step1_okay_btn -> {
+                var okaybtn = findViewById<Button>(R.id.find_id_step1_okay_btn)
+                var correctbtn = findViewById<Button>(R.id.find_id_step1_correct_btn)
 
-                    if (check) {
-                        okaybtn.visibility = View.GONE
-                        correctbtn.visibility = View.VISIBLE
-                        check = false
-                    } else {
-                        okaybtn.visibility = View.VISIBLE
-                        correctbtn.visibility = View.GONE
-                        check = true
+                if (check) {
+                    okaybtn.visibility = View.GONE
+                    correctbtn.visibility = View.VISIBLE
+                    check = false
+                } else {
+                    okaybtn.visibility = View.VISIBLE
+                    correctbtn.visibility = View.GONE
+                    check = true
 
 
-           }
                 }
             }
         }
+    }
 
     fun pw_onClick(v: View?) {
         when (v?.id) {
@@ -247,6 +275,29 @@ class FindActivity : AppCompatActivity() {
             }
         }
     }
+
+//프래그먼트 교체가 잘 안되서 임의로 visivility 이용해서 안보이게 처리해놨습니다.
+
+    fun id_next_onCLick(v: View?) {
+        val transaction = supportFragmentManager.beginTransaction()
+        var id_layout = findViewById<View>(R.id.find_id_step1_main_layout)
+
+        when (v?.id) {
+            R.id.find_id_step1_find_btn -> {
+                    id_layout.visibility = View.GONE
+                    transaction.replace(R.id.find_fl, FindIdStep2Fragment()).commit()
+                }
+            }
+        }
+
+    fun id_login(v: View?){
+        when(v?.id){
+            R.id.find_id_step2_login_btn->{
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+        }
+    }
+
 
 
     }

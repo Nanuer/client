@@ -23,10 +23,15 @@ class FindIdStep1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFindIdStep1Binding.inflate(inflater, container, false)
-
         return binding.root
 
+
+
+
     }
+
+
+
 
 
 

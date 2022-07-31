@@ -1,5 +1,6 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,11 @@ class FindIdStep2Fragment : Fragment() {
     ): View? {
         binding = FragmentFindIdStep2Binding.inflate(inflater, container, false)
 
+
         return binding.root
+
     }
+
+
+
 }
