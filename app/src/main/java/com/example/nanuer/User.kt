@@ -7,7 +7,7 @@ data class User(
     @SerializedName(value="password")var password:String,
     @SerializedName(value="name")var name:String? = null,
     @SerializedName(value="nickName")var ninkName:String? = null,
-    @SerializedName(value="phone")var phone:String,
+    @SerializedName(value="phone")var phone:String? = null,
     @SerializedName(value="birth")var birth:String? = null,
     @SerializedName(value="profileImg")var profileImg:String? = null,
     @SerializedName(value="university")var university:String? = null
