@@ -144,15 +144,31 @@
             android:layout_marginTop="64dp"
             android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
-            <CheckBox
-                android:id="@+id/signup_terms_cb"
-                style="@style/Regular"
-                android:textColor="@color/main_black"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/signup_terms_rl"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="약관 전체동의"
-                android:buttonTint="@color/blue_dark_1"
-            />
+                >
+                <CheckBox
+                    android:id="@+id/signup_terms_cb"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:button="@null"
+                    android:background="@drawable/custom_check"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:id="@+id/signup_terms_info_tv"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/main_black"
+                    android:layout_centerVertical="true"
+                    android:text="약관 전체동의"
+                    android:layout_toRightOf="@id/signup_terms_cb"
+                    android:layout_marginEnd="15dp"/>
+            </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/signup_term1_rl"
                 android:layout_width="match_parent"
@@ -160,12 +176,21 @@
                 >
                 <CheckBox
                     android:id="@+id/signup_term1_cb"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:button="@null"
+                    android:background="@drawable/custom_check"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:id="@+id/signup_term1_info_tv"
                     style="@style/Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이용약관 동의"
                     android:textColor="@color/main_black"
-                    android:buttonTint="@color/blue_dark_1"
+                    android:layout_centerVertical="true"
+                    android:text="이용약관 동의"
+                    android:layout_toRightOf="@id/signup_term1_cb"
                     android:layout_marginEnd="15dp"/>
                 <TextView
                     android:id="@+id/signup_term1_necessary_tv"
@@ -175,7 +200,7 @@
                     android:text="(필수)"
                     android:textColor="@color/blue_dark_1"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/signup_term1_cb"
+                    android:layout_toRightOf="@id/signup_term1_info_tv"
                     />
                 <ImageView
                     android:id="@+id/signup_term1_more_iv"
@@ -193,13 +218,23 @@
                 >
                 <CheckBox
                     android:id="@+id/signup_term2_cb"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:button="@null"
+                    android:background="@drawable/custom_check"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/signup_term2_info_tv"
                     style="@style/Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
-                    android:buttonTint="@color/blue_dark_1"
+                    android:layout_toRightOf="@id/signup_term2_cb"
                     android:text="개인정보 수집 및 이용동의"
-                    android:textColor="@color/main_black"/>
+                    android:textColor="@color/main_black" />
                 <TextView
                     android:id="@+id/signup_term2_necessary_tv"
                     style="@style/Regular"
@@ -208,7 +243,7 @@
                     android:text="(필수)"
                     android:textColor="@color/blue_dark_1"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/signup_term2_cb"
+                    android:layout_toRightOf="@id/signup_term2_info_tv"
                     />
                 <ImageView
                     android:id="@+id/signup_term2_more_iv"
@@ -226,22 +261,32 @@
                 >
                 <CheckBox
                     android:id="@+id/signup_term3_cb"
-                    style="@style/Regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:buttonTint="@color/blue_dark_1"
-                    android:text="E-mail 및 SMS 광고성 정보 수신 동의"
-                    android:textColor="@color/main_black"/>
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:button="@null"
+                    android:background="@drawable/custom_check"
+                    android:layout_centerVertical="true"
+                    />
+
                 <TextView
-                    android:id="@+id/signup_term3_selective_tv"
+                    android:id="@+id/signup_term3_info_tv"
                     style="@style/Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(선택)"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_toRightOf="@id/signup_term3_cb"
+                    android:text="E-mail 및 SMS 광고성 접소 수신 동의"
+                    android:textColor="@color/main_black" />
+                <TextView
+                    android:id="@+id/signup_term3_necessary_tv"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(필수)"
                     android:textColor="@color/blue_dark_1"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/signup_term3_cb"
+                    android:layout_toRightOf="@id/signup_term3_info_tv"
                     />
                 <ImageView
                     android:id="@+id/signup_term3_more_iv"
