@@ -43,15 +43,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="6dp"/>
 
-    <FrameLayout
-        android:id="@+id/find_fl"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/find_tb"/>
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/find_vp"
         android:layout_width="match_parent"
