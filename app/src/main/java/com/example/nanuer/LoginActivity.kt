@@ -21,6 +21,10 @@ class LoginActivity : AppCompatActivity(){
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+        binding.loginTestBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
     }
 
 }
