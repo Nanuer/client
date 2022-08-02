@@ -2,5 +2,5 @@ package com.example.nanuer
 
 interface LoginView {
     fun onLoginSuccess(code:Int, jwt:String)
-    fun onLoginFailure()
+    fun onLoginFailure(code:Int, msg:String)
 }

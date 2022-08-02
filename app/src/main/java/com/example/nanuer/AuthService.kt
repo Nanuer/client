@@ -21,7 +21,6 @@ class AuthService {
         authService.signUp(user).enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("SIGNUP/SUCCESS", response.toString())
-                if(response.body()==null) Log.d("SIGNUP/SUCCESS", "This is NULL!!!")
                 val resp: AuthResponse = response.body()!!
                 Log.d("SIGNUP/SUCCESS", resp.toString())
                 when(resp.code){
@@ -34,7 +33,6 @@ class AuthService {
             }
 
         })
-        Log.d("SIGNUP", "HELLO")
     }
 
     fun login(user : User){
@@ -42,12 +40,11 @@ class AuthService {
         authService.login(user).enqueue(object: Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 Log.d("LOGIN/SUCCESS", response.toString())
-                if(response.body()==null) Log.d("LOGIN/SUCCESS", "This is NULL!!!")
                 val resp: LoginResponse = response.body()!!
                 Log.d("LOGIN/SUCCESS", resp.toString())
                 when(val code = resp.code){
                     1000-> loginView.onLoginSuccess(code, resp.result)
-                    else-> loginView.onLoginFailure()
+                    else-> loginView.onLoginFailure(code, resp.message)
                 }
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -55,6 +52,5 @@ class AuthService {
             }
 
         })
-        Log.d("LOGIN", "HELLO")
     }
 }

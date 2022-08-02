@@ -3,7 +3,7 @@ package com.example.nanuer
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nanuer.databinding.ActivityLoginBinding
 
@@ -16,10 +16,12 @@ class LoginActivity : AppCompatActivity(), LoginView{
         setContentView(binding.root)
 
         binding.loginForgetMessageTv.setOnClickListener {
+            init()
             startActivity(Intent(this, FindActivity::class.java))
         }
 
         binding.loginSingUpBtn.setOnClickListener {
+            init()
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
@@ -27,23 +29,17 @@ class LoginActivity : AppCompatActivity(), LoginView{
             login()
         }
 
-
         binding.loginTestBtn.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-
     }
 
     private fun login(){
-        if (binding.loginIdEt.text.toString().isEmpty()){
-            Toast.makeText(this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        if (binding.loginIdEt.text.toString().isEmpty() || binding.loginPwEt.text.toString().isEmpty()){
+            binding.loginWarningTv.visibility = View.VISIBLE
+            binding.loginWarningTv.text = "이메일 또는 비밀번호를 입력하지 않았습니다."
             Log.d("TEST","Please input email")
-            return
-        }
-        if(binding.loginPwEt.text.toString().isEmpty()){
-            Toast.makeText(this, "비빌번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
-            Log.d("TEST","Please input password")
             return
         }
 
@@ -63,17 +59,30 @@ class LoginActivity : AppCompatActivity(), LoginView{
         editor.apply()
     }
 
+    private fun init(){
+        binding.loginIdEt.setText(null)
+        binding.loginPwEt.setText(null)
+        binding.loginWarningTv.visibility = View.GONE
+    }
+
     override fun onLoginSuccess(code:Int, jwt:String) {
         when(code){
             1000 -> {
+                binding.loginWarningTv.visibility = View.GONE
                 saveJwt(jwt)
+                init()
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }
     }
 
-    override fun onLoginFailure() {
-
+    override fun onLoginFailure(code:Int, msg:String) {
+        when(code){
+            3014 -> {
+                binding.loginWarningTv.visibility = View.VISIBLE
+                binding.loginWarningTv.text = msg
+            }
+        }
     }
 
 }
