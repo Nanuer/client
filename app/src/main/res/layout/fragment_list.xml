@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/list_header_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp">
+
+            <ImageView
+                android:id="@+id/list_bachelor_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bachelor_cap"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/list_uni_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/list_bachelor_iv"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="9dp"
+                android:text="인하대"
+                android:textColor="@color/main_black" />
+
+            <ImageView
+                android:id="@+id/list_search_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/list_bell_iv"
+                android:src="@drawable/search"
+                android:layout_marginEnd="23dp"/>
+
+            <ImageView
+                android:id="@+id/list_bell_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+
+                android:layout_centerVertical="true"
+                android:src="@drawable/bell" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/list_header_rl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_header_rl"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp">
+
+            <TextView
+                android:id="@+id/list_number_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총 25건"
+                android:textColor="@color/main_black"/>
+
+            <TextView
+                style="@style/Regular"
+                android:id="@+id/list_class_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최신순"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/list_down_iv"/>
+
+            <ImageView
+                android:id="@+id/list_down_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/down_list"/>
+
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/list_header_rl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_header_rl2"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/gray_line">
+
+            <ImageView
+                android:id="@+id/list_filter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/filter"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/list_category_tv"
+                style="@style/TipSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_toRightOf="@id/list_filter"
+                android:text="카테고리" />
+
+            <ImageView
+                android:id="@+id/list_check_on_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/check_on"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/list_hide_tv"/>
+
+            <TextView
+                android:id="@+id/list_hide_tv"
+                style="@style/BtnSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="모집마감 안보기"
+                android:layout_centerVertical="true"/>
+                
+                
+
+
+        </RelativeLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/list_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_header_rl3"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/gray_line">
+
+            <RelativeLayout
+                android:id="@+id/list_post_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gray_line">
+
+                <TextView
+                    style="@style/TipSmall"
+                    android:id="@+id/list_post_category_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="브런치" />
+
+                <TextView
+                    style="@style/TipSmall"
+                    android:id="@+id/list_post_minute_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="5분전"/>
+
+
+                <TextView
+                    android:id="@+id/list_post_title_tv"
+                    style="@style/Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/list_post_category_tv"
+                    android:text="써브웨이 같이 배달 시키실분 구해요"
+                    android:textColor="@color/main_black" />
+
+                <TextView
+                    android:id="@+id/list_post_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/list_post_title_tv"
+                    android:text="오늘 오후 7시" />
+
+                <TextView
+                    android:id="@+id/list_post_distance_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/list_post_title_tv"
+                    android:layout_toLeftOf="@id/list_post_heart_off_tv"
+                    android:text="내 위치에서 50M"
+                    android:layout_marginEnd="8dp"/>
+
+                <ImageView
+                    android:id="@+id/list_post_heart_off_tv"
+                    android:layout_width="25dp"
+                    android:layout_height="21dp"
+                    android:src="@drawable/heart"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/list_post_title_tv"/>
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

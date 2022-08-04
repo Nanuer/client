@@ -16,6 +16,14 @@ class PostFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPostBinding.inflate(inflater,container,false)
+
+        binding.postBackIv.setOnClickListener {
+            parentFragmentManager.beginTransaction().apply {
+                replace(R.id.main_fl, ListFragment())
+                addToBackStack(null)
+                commit()
+            }
+        }
         return binding.root
     }
 }

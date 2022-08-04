@@ -21,7 +21,6 @@ import com.example.nanuer.databinding.FragmentHomeBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
-import java.util.*
 
 
 class HomeFragment : Fragment(){
