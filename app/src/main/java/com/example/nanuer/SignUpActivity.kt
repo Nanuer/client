@@ -3,16 +3,18 @@ package com.example.nanuer
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nanuer.databinding.ActivitySignupBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.util.*
+import kotlin.concurrent.timer
 
 class SignUpActivity : AppCompatActivity(), SignUpView {
     lateinit var binding: ActivitySignupBinding
+    var timerTask: Timer? = null
+    var check = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +26,39 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         }
 
         binding.signupBtn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            signUp()
         }
 
-        binding.signupBtn.setOnClickListener {
-            signUp()
+        binding.signupSendNumberBtn.setOnClickListener {
+            binding.signupSendNumberBtn.visibility = View.GONE
+            binding.signupResendBtn.visibility = View.VISIBLE
+            binding.signupCertificationCodeRl.visibility = View.VISIBLE
+            binding.signupResendMessageTv.visibility = View.VISIBLE
+            binding.signupTimer.visibility = View.VISIBLE
+            startTimer(2, 59)
+        }
+
+        binding.signupResendBtn.setOnClickListener {
+            // ~재전송 처리~
+
+            // visibility 처리
+            binding.signupCorrectBtn.visibility = View.GONE
+            binding.signupNotCorrectBtn.visibility = View.GONE
+            binding.signupOkayBtn.visibility = View.VISIBLE
+
+            // timer reset
+        }
+
+        binding.signupOkayBtn.setOnClickListener {
+            binding.signupOkayBtn.visibility = View.GONE
+            //인증 성공
+            if (check) {
+                binding.signupCorrectBtn.visibility = View.VISIBLE
+                binding.signupNotCorrectBtn.visibility = View.GONE
+            } else {// 인증 실패
+                binding.signupCorrectBtn.visibility = View.GONE
+                binding.signupNotCorrectBtn.visibility = View.VISIBLE
+            }
         }
 
         val listener = CompoundButton.OnCheckedChangeListener {buttonView, isChecked ->
@@ -81,6 +111,32 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         authService.setSignUpView(this)
 
         authService.signUp(getUser())
+    }
+
+    fun startTimer(m:Int, s:Int) {
+        var mCountDown = m
+        var sCountDown = s
+        timerTask = timer(period = 1000) {
+            val sec = "%02d".format(sCountDown)
+            if (mCountDown == 0 && sCountDown == 0) {
+                timerTask?.cancel()
+            }
+            if (sCountDown == 0) {
+                sCountDown = 60
+                if (mCountDown >= 1) {
+                    mCountDown--
+                }
+            }
+            sCountDown--
+            runOnUiThread {
+                binding.signupTimer.text = "남은 시간 ${mCountDown} : ${sec}"
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timerTask?.cancel()
     }
 
     override fun onSignUpSuccess() {
