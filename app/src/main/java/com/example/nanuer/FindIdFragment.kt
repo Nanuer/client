@@ -21,6 +21,5 @@ class FindIdFragment : Fragment() {
         childFragmentManager.beginTransaction().replace(R.id.find_id_fl, FindIdStep1Fragment()).commit()
 
         return binding.root
-
     }
 }

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentFindIdStep2Binding
 
 class FindIdStep2Fragment : Fragment() {
-
     lateinit var binding : FragmentFindIdStep2Binding
 
     override fun onCreateView(
@@ -19,13 +18,10 @@ class FindIdStep2Fragment : Fragment() {
     ): View? {
         binding = FragmentFindIdStep2Binding.inflate(inflater, container, false)
 
-
-        val intent = Intent(getActivity(), LoginActivity::class.java)
-
         binding.findIdStep2LoginBtn.setOnClickListener {
+            val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
         }
-
 
         return binding.root
 

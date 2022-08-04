@@ -18,9 +18,8 @@ class FindPwStep2Fragment : Fragment(){
     ): View? {
         binding = FragmentFindPwStep2Binding.inflate(inflater,container,false)
 
-        val intent = Intent(getActivity(), LoginActivity::class.java)
-
         binding.findIdStep2LoginBtn.setOnClickListener {
+            val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
         }
 
