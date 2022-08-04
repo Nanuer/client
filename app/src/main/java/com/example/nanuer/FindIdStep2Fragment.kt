@@ -20,6 +20,13 @@ class FindIdStep2Fragment : Fragment() {
         binding = FragmentFindIdStep2Binding.inflate(inflater, container, false)
 
 
+        val intent = Intent(getActivity(), LoginActivity::class.java)
+
+        binding.findIdStep2LoginBtn.setOnClickListener {
+            startActivity(intent)
+        }
+
+
         return binding.root
 
     }

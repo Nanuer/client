@@ -27,11 +27,11 @@
             <TextView
                 android:id="@+id/singup_step_iv"
                 style="@style/TitleBig"
-                android:textColor="@color/main_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="회원가입" />
+                android:text="회원가입"
+                android:textColor="@color/main_black" />
 
         </RelativeLayout>
 
@@ -49,24 +49,25 @@
             android:layout_marginStart="6dp"
             />
 
+        `
+
         <EditText
             android:id="@+id/signup_email_et"
             style="@style/InputMid"
-            android:textColor="@color/gray_light_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textline_bottom_gray"
-            android:inputType="text"
-            android:hint="이메일 입력"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/signup_info_tv"
-            android:paddingHorizontal="20dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="25dp"
-            />
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textline_bottom_gray"
+            android:hint="이메일 입력"
+            android:inputType="text"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/gray_light_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_info_tv" />
 
-        `<EditText
+        <EditText
             android:id="@+id/signup_pw_et"
             style="@style/InputMid"
             android:textColor="@color/gray_light_2"
@@ -157,16 +158,17 @@
                     android:background="@drawable/custom_check"
                     android:layout_centerVertical="true"
                     />
+
                 <TextView
                     android:id="@+id/signup_terms_info_tv"
                     style="@style/Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/main_black"
                     android:layout_centerVertical="true"
-                    android:text="약관 전체동의"
+                    android:layout_marginEnd="15dp"
                     android:layout_toRightOf="@id/signup_terms_cb"
-                    android:layout_marginEnd="15dp"/>
+                    android:text="약관 전체동의"
+                    android:textColor="@color/main_black" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -202,14 +204,14 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/signup_term1_info_tv"
                     />
+
                 <ImageView
                     android:id="@+id/signup_term1_more_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/next"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/next" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/signup_term2_rl"

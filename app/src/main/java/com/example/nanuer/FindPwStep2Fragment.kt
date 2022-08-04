@@ -1,5 +1,6 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,13 @@ class FindPwStep2Fragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFindPwStep2Binding.inflate(inflater,container,false)
+
+        val intent = Intent(getActivity(), LoginActivity::class.java)
+
+        binding.findIdStep2LoginBtn.setOnClickListener {
+            startActivity(intent)
+        }
+
         return binding.root
     }
 }
