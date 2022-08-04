@@ -175,13 +175,12 @@
             style="@style/TipSmall"
             android:freezesText="false"
             android:text="남은시간 3:00"
-            android:textAllCaps="false"
             android:textColor="@color/main_red"
             app:layout_constraintTop_toBottomOf="@id/find_id_step1_certification_code_rl"
             app:layout_constraintStart_toStartOf="@id/find_id_step1_certification_code_rl"
             android:layout_marginTop="6dp"
             android:visibility="gone"
-            android:orientation="vertical"
+            android:layout_marginStart="9dp"
             />
 
         <TextView

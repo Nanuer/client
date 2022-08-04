@@ -50,13 +50,12 @@
             style="@style/InputMid"
             android:layout_width="wrap_content"
             android:layout_height="37dp"
-            android:hint="휴대폰 번호 (숫자만 입력)"
-            android:inputType="text"
             android:layout_alignParentLeft="true"
             android:layout_toStartOf="@id/find_pw_step1_phone_number_void_btn"
             android:background="@drawable/textline_bottom_gray"
-            android:paddingHorizontal="9dp"
-            />
+            android:hint="휴대폰 번호 (숫자만 입력)"
+            android:inputType="text"
+            android:paddingHorizontal="9dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/find_pw_step1_phone_number_void_btn"
@@ -179,13 +178,12 @@
         style="@style/TipSmall"
         android:freezesText="false"
         android:text="남은시간 3:00"
-        android:textAllCaps="false"
         android:textColor="@color/main_red"
         app:layout_constraintTop_toBottomOf="@id/find_pw_step1_certification_code_rl"
         app:layout_constraintStart_toStartOf="@id/find_pw_step1_certification_code_rl"
         android:layout_marginTop="6dp"
         android:visibility="gone"
-        android:orientation="vertical"
+        android:layout_marginStart="9dp"
         />
 
     <TextView
