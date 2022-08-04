@@ -61,4 +61,8 @@ dependencies {
 
     // kakao api
     implementation files('libs/libDaumMapAndroid.jar')
+
+    // google map api & location
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
+    implementation 'com.google.android.gms:play-services-location:19.0.0'
 }
