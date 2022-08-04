@@ -24,6 +24,8 @@ import com.example.nanuer.databinding.FragmentHomeBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import java.io.IOException
+import java.util.*
 
 
 class HomeFragment : Fragment(){
@@ -80,6 +82,9 @@ class HomeFragment : Fragment(){
         gpsTracker = GpsTracker(requireContext())
         val latitude = gpsTracker.getLatitude()
         val longitude = gpsTracker.getLongitude()
+
+//        val address = getCurrentAddress(latitude, longitude)
+//        binding.homeUniversityNameTv.setText(address)
 
         val mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude)
         mapView.setMapCenterPoint(mapPoint, true)
@@ -184,6 +189,31 @@ class HomeFragment : Fragment(){
                 )
             }
         }
+    }
+
+    fun getCurrentAddress(latitude: Double, longitude: Double): String? {
+        //지오코더... GPS를 주소로 변환
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        val addresses: List<Address>?
+        addresses = try {
+            geocoder.getFromLocation(latitude, longitude, 7)
+        } catch (ioException: IOException) {
+            //네트워크 문제
+            Toast.makeText(requireContext(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
+            return "지오코더 서비스 사용불가"
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            Toast.makeText(requireContext(), "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
+            return "잘못된 GPS 좌표"
+        }
+        if (addresses == null || addresses.isEmpty()) {
+            Toast.makeText(requireContext(), "주소 미발견", Toast.LENGTH_LONG).show()
+            return "주소 미발견"
+        }
+        val address = addresses[0]
+        return """
+             ${address.getAddressLine(0)}
+
+             """.trimIndent()
     }
 
     //여기부터는 GPS 활성화를 위한 메소드들
