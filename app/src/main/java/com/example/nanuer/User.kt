@@ -3,8 +3,8 @@ package com.example.nanuer
 import com.google.gson.annotations.SerializedName;
 
 data class User(
-    @SerializedName(value="email")var email:String,
-    @SerializedName(value="password")var password:String,
+    @SerializedName(value="email")var email:String? = null,
+    @SerializedName(value="password")var password:String? = null,
     @SerializedName(value="name")var name:String? = null,
     @SerializedName(value="nickName")var ninkName:String? = null,
     @SerializedName(value="phone")var phone:String? = null,

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/find_id_step1_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
 
 
         <RelativeLayout
@@ -14,8 +13,8 @@
             android:layout_height="match_parent"
 
 
-            />
-
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/find_id_step1_message_tv"
@@ -32,22 +31,22 @@
             android:layout_marginTop="32dp"
             />
 
-        <EditText
-            android:id="@+id/find_id_step1_name_et"
-            style="@style/InputMid"
-            android:layout_width="271.4dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="7dp"
-            android:hint="이름"
-            android:inputType="text"
-            android:includeFontPadding="false"
-            android:paddingHorizontal="9dp"
-            android:background="@drawable/gray_line"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/find_id_step1_message_tv" />
+<!--        <EditText-->
+<!--            android:id="@+id/find_id_step1_name_et"-->
+<!--            style="@style/InputMid"-->
+<!--            android:layout_width="271.4dp"-->
+<!--            android:layout_height="37dp"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:layout_marginEnd="7dp"-->
+<!--            android:hint="이름"-->
+<!--            android:inputType="text"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:paddingHorizontal="9dp"-->
+<!--            android:background="@drawable/gray_line"-->
+<!--            app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/find_id_step1_message_tv" />-->
 
 
         <EditText
@@ -60,7 +59,7 @@
             android:background="@drawable/gray_line"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/find_id_step1_btns_rl"
-            app:layout_constraintTop_toBottomOf="@id/find_id_step1_name_et"
+            app:layout_constraintTop_toBottomOf="@id/find_id_step1_message_tv"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="7dp"
             android:paddingHorizontal="9dp"
@@ -189,11 +188,11 @@
                     android:id="@+id/find_id_step1_not_correct_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/gray_round"
                     android:gravity="center"
                     android:src="@drawable/btn_small_red"
-                    android:background="@drawable/gray_round"
                     android:textColor="@color/gray_light_2"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -213,7 +212,7 @@
             app:layout_constraintTop_toBottomOf="@id/find_id_step1_resend_message_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:background="@drawable/blue_button_on"/>
         />

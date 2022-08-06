@@ -1,5 +1,6 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class ListFragment : Fragment(){
                 commit()
             }
         }
+
 
 
         return binding.root

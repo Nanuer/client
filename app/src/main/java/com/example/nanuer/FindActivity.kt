@@ -2,6 +2,8 @@ package com.example.nanuer
 
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.nanuer.databinding.ActivityFindBinding
@@ -29,7 +31,25 @@ class FindActivity : AppCompatActivity() {
         TabLayoutMediator(binding.findTb, binding.findVp) { tab, position ->
             tab.text = tabTextList[position]
         }.attach()
+
+        val findbtn = findViewById<Button>(R.id.find_id_step1_find_btn)
+
+        findbtn.setOnClickListener {
+            findId()
+        }
     }
+
+
+    private fun findId(){
+
+        val phonenumber = findViewById<EditText>(R.id.find_id_step1_phone_number_et)
+        val phoneNumber : String = phonenumber.text.toString()
+
+        val authService = AuthService()
+        authService.setFindIdView(this)
+        authService.findId(User(phoneNumber))
+    }
+
 
 }
 
