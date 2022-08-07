@@ -37,12 +37,12 @@ class FindActivity : AppCompatActivity() {
 
         val findbtn = findViewById<Button>(R.id.find_id_step1_find_btn)
 
-//        findbtn.setOnClickListener {
-//            findId()
-//        }
-    }
+        findbtn.setOnClickListener {
+            findId()
+        }
 
 
+}
 
 
 
