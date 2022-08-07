@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
@@ -85,6 +86,26 @@ class FindIdStep1Fragment : Fragment() {
             }
         }
     }
+
+//    private fun findId(){
+//
+////        val phonenumber = findViewById<EditText>(R.id.find_id_step1_phone_number_et)
+//        val phoneNumber : String = binding.findIdStep1PhoneNumberEt.text.toString()
+//
+//        val authService = AuthService()
+//        authService.setFindIdView(this)
+//        authService.findId(User(phoneNumber))
+//    }
+//    override fun onFindIdSuccess(code:Int, result: FindIdResult) {
+//        when(code){
+//            1000 -> {
+//                startActivity(Intent(this, MainActivity::class.java))
+//            }
+//        }
+//    }
+//    override fun onFindIdFailure() {
+//        Log.d("onFindIdFailure", "!!!!!")
+//    }
 
 
 }

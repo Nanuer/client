@@ -2,6 +2,7 @@ package com.example.nanuer
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AuthRetrofitInterface {
@@ -11,8 +12,8 @@ interface AuthRetrofitInterface {
     @POST("/user/login")
     fun login(@Body user:User): Call<LoginResponse>
 
-    @POST("/user/getEmail")
-    fun find(@Body user: User): Call<FindIdResponse>
+    @GET("/user/getEmail")
+    fun findId(@Body user: User): Call<FindIdResponse>
 
 //    @POST("/post")
 //    fun write(@Body makePost: MakePost): Call<>

@@ -60,7 +60,7 @@ class AuthService {
 
     fun findId(user: User){
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.find(user).enqueue(object: Callback<FindIdResponse>{
+        authService.findId(user).enqueue(object: Callback<FindIdResponse>{
             override fun onResponse(call: Call<FindIdResponse>, response: Response<FindIdResponse>) {
                 Log.d("LOGIN/SUCCESS", response.toString())
                 val resp: FindIdResponse = response.body()!!
@@ -71,7 +71,7 @@ class AuthService {
                 }
             }
             override fun onFailure(call: Call<FindIdResponse>, t: Throwable) {
-                Log.d("LOGIN/FAILURE", t.message.toString())
+                Log.d("FindId/FAILURE", t.message.toString())
             }
 
         })
