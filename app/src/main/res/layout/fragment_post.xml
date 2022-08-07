@@ -76,8 +76,8 @@
                 android:text="2022-07-29 17:01"
                 android:textColor="@color/gray_light_3" />
 
-            <EditText
-                android:id="@+id/post_title_et"
+            <TextView
+                android:id="@+id/post_title_tv"
                 style="@style/TitleMid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -213,8 +213,8 @@
             android:background="@drawable/gray_line"
             >
 
-            <EditText
-                android:id="@+id/post_text_et"
+            <TextView
+                android:id="@+id/post_content_tv"
                 style="@style/Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
                 android:id="@+id/post_clock_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/post_text_et"
+                android:layout_below="@id/post_content_tv"
                 android:src="@drawable/clock" />
 
             <TextView
@@ -236,7 +236,7 @@
                 style="@style/TipSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/post_text_et"
+                android:layout_below="@id/post_content_tv"
                 android:layout_alignBaseline="@id/post_clock_iv"
                 android:layout_marginStart="15dp"
                 android:layout_toRightOf="@id/post_clock_iv"

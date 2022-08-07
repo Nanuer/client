@@ -1,16 +1,15 @@
 package com.example.nanuer
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nanuer.databinding.ListItemBinding
 
-class ListRVAdapter(private val postList: ArrayList<List> ): RecyclerView.Adapter<ListRVAdapter.ViewHolder>() {
+class ListRVAdapter(private val postList: ArrayList<Post> ): RecyclerView.Adapter<ListRVAdapter.ViewHolder>() {
 
     interface MyItemClickListener{
-        fun onItemClick(list: List)
-        fun onRemoveAlbum(position: Int)
+        fun onItemClick(post: Post)
+//        fun onRemoveAlbum(position: Int)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -18,19 +17,18 @@ class ListRVAdapter(private val postList: ArrayList<List> ): RecyclerView.Adapte
         mItemClickListener = itemClickListener
     }
 
-    fun addItem(list: List){
-        postList.add(list)
-        notifyDataSetChanged()
-    }
-
-    fun removeItem(position: Int){
-        postList.removeAt(position)
-        notifyDataSetChanged()
-    }
+//    fun addItem(list: List){
+//        postList.add(list)
+//        notifyDataSetChanged()
+//    }
+//
+//    fun removeItem(position: Int){
+//        postList.removeAt(position)
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListRVAdapter.ViewHolder {
         val binding: ListItemBinding = ListItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-
         return ViewHolder(binding)
     }
 
@@ -42,15 +40,13 @@ class ListRVAdapter(private val postList: ArrayList<List> ): RecyclerView.Adapte
     override fun getItemCount(): Int = postList.size
 
     inner class ViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
-
-        fun bind(list: List){
-            binding.listPostTitleTv.text = list.title
+        fun bind(post: Post){
+            binding.listPostTitleTv.text = post.title
+            binding.listPostMinuteTv.text = post.time
+            binding.listPostCategoryTv.text = post.menu
         }
 
-
     }
-
-
 }
 
 
