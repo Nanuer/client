@@ -8,12 +8,16 @@ import retrofit2.Response
 class AuthService {
     private lateinit var signUpView: SignUpView
     private lateinit var loginView: LoginView
+    private lateinit var findIdView: FindIdView
 
     fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
     }
     fun setLoginView(loginView: LoginView){
         this.loginView = loginView
+    }
+    fun setFindIdView(findIdView: FindIdView){
+        this.findIdView = findIdView
     }
 
     fun signUp(user : User){
@@ -52,5 +56,25 @@ class AuthService {
             }
 
         })
+    }
+
+    fun findId(user: User){
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.findId(user).enqueue(object: Callback<FindIdResponse>{
+            override fun onResponse(call: Call<FindIdResponse>, response: Response<FindIdResponse>) {
+                Log.d("LOGIN/SUCCESS", response.toString())
+                val resp: FindIdResponse = response.body()!!
+                Log.d("LOGIN/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> findIdView.onFindIdSuccess(code, resp.result)
+                    else-> findIdView.onFindIdFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<FindIdResponse>, t: Throwable) {
+                Log.d("FindId/FAILURE", t.message.toString())
+            }
+
+        })
+
     }
 }

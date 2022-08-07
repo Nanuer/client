@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
         <TextView
             android:id="@+id/find_id_step1_message_tv"
             style="@style/TipSmall"
@@ -19,21 +20,6 @@
             android:layout_marginTop="28dp"
             />
 
-        <EditText
-            android:id="@+id/find_id_step1_name_et"
-            style="@style/InputMid"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginHorizontal="35dp"
-            android:hint="이름"
-            android:inputType="text"
-            android:includeFontPadding="false"
-            android:paddingHorizontal="9dp"
-            android:background="@drawable/textline_bottom_gray"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/find_id_step1_message_tv" />
 
         <RelativeLayout
             android:id="@+id/find_id_step1_phone_number_rl"
@@ -42,20 +28,20 @@
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/find_id_step1_name_et"
+            app:layout_constraintTop_toBottomOf="@id/find_id_step1_message_tv"
             android:layout_marginHorizontal="35dp">
 
-                <EditText
-                    android:id="@+id/find_id_step1_phone_number_et"
-                    style="@style/InputMid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_toStartOf="@id/find_id_step1_phone_number_void_btn"
-                    android:background="@drawable/textline_bottom_gray"
-                    android:hint="휴대폰 번호 (숫자만 입력)"
-                    android:inputType="text"
-                    android:paddingHorizontal="9dp" />
+            <EditText
+                android:id="@+id/find_id_step1_phone_number_et"
+                style="@style/InputMid"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toStartOf="@id/find_id_step1_phone_number_void_btn"
+                android:background="@drawable/textline_bottom_gray"
+                android:hint="휴대폰 번호 (숫자만 입력)"
+                android:inputType="text"
+                android:paddingHorizontal="9dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/find_id_step1_phone_number_void_btn"
@@ -210,5 +196,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="66dp"
             android:background="@drawable/blue_button"/>
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

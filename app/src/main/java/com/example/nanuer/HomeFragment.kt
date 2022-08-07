@@ -47,34 +47,34 @@ class HomeFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        mapView = MapView(activity)
-        binding.mapView.addView(mapView)
+//        mapView = MapView(activity)
+//        binding.mapView.addView(mapView)
 
-        activityResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            {//Result 매개변수 콜백 메서드
-                //ActivityResultLauncher<T>에서 T를 intent로 설정했으므로
-                //intent자료형을 Result 매개변수(콜백)를 통해 받아온다
-                //엑티비티에서 데이터를 갖고왔을 때만 실행
-                if (it.resultCode == RESULT_OK) {
-                    if (checkLocationServicesStatus()) {
-                        if (checkLocationServicesStatus()) {
-                            Log.d("@@@", "onActivityResult : GPS 활성화 되있음")
-                            checkRunTimePermission()
-                        }
-                    }
-                }
-            }
-
-        if (!checkLocationServicesStatus()) {
-            showDialogForLocationServiceSetting()
-        } else {
-            checkRunTimePermission()
-        }
-
-        binding.homeCurrentLocIv.setOnClickListener{
-            setMyCurrentLoc()
-        }
+//        activityResultLauncher =
+//            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+//            {//Result 매개변수 콜백 메서드
+//                //ActivityResultLauncher<T>에서 T를 intent로 설정했으므로
+//                //intent자료형을 Result 매개변수(콜백)를 통해 받아온다
+//                //엑티비티에서 데이터를 갖고왔을 때만 실행
+//                if (it.resultCode == RESULT_OK) {
+//                    if (checkLocationServicesStatus()) {
+//                        if (checkLocationServicesStatus()) {
+//                            Log.d("@@@", "onActivityResult : GPS 활성화 되있음")
+//                            checkRunTimePermission()
+//                        }
+//                    }
+//                }
+//            }
+//
+//        if (!checkLocationServicesStatus()) {
+//            showDialogForLocationServiceSetting()
+//        } else {
+//            checkRunTimePermission()
+//        }
+//
+//        binding.homeCurrentLocIv.setOnClickListener{
+//            setMyCurrentLoc()
+//        }
         return binding.root
     }
 
@@ -191,30 +191,31 @@ class HomeFragment : Fragment(){
         }
     }
 
-    fun getCurrentAddress(latitude: Double, longitude: Double): String? {
-        //지오코더... GPS를 주소로 변환
-        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        val addresses: List<Address>?
-        addresses = try {
-            geocoder.getFromLocation(latitude, longitude, 7)
-        } catch (ioException: IOException) {
-            //네트워크 문제
-            Toast.makeText(requireContext(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
-            return "지오코더 서비스 사용불가"
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            Toast.makeText(requireContext(), "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
-            return "잘못된 GPS 좌표"
-        }
-        if (addresses == null || addresses.isEmpty()) {
-            Toast.makeText(requireContext(), "주소 미발견", Toast.LENGTH_LONG).show()
-            return "주소 미발견"
-        }
-        val address = addresses[0]
-        return """
-             ${address.getAddressLine(0)}
-
-             """.trimIndent()
-    }
+//    fun getCurrentAddress(latitude: Double, longitude: Double): String? {
+//        //지오코더... GPS를 주소로 변환
+//
+//        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+//        val addresses: List<Address>?
+//        addresses = try {
+//            geocoder.getFromLocation(latitude, longitude, 7)
+//        } catch (ioException: IOException) {
+//            //네트워크 문제
+//            Toast.makeText(requireContext(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
+//            return "지오코더 서비스 사용불가"
+//        } catch (illegalArgumentException: IllegalArgumentException) {
+//            Toast.makeText(requireContext(), "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
+//            return "잘못된 GPS 좌표"
+//        }
+//        if (addresses == null || addresses.isEmpty()) {
+//            Toast.makeText(requireContext(), "주소 미발견", Toast.LENGTH_LONG).show()
+//            return "주소 미발견"
+//        }
+//        val address = addresses[0]
+//        return """
+//             ${address.getAddressLine(0)}
+//
+//             """.trimIndent()
+//    }
 
     //여기부터는 GPS 활성화를 위한 메소드들
     private fun showDialogForLocationServiceSetting() {
@@ -240,5 +241,4 @@ class HomeFragment : Fragment(){
         return (locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
     }
-
 }

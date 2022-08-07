@@ -1,6 +1,7 @@
 package com.example.nanuer
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,7 +76,6 @@ class FindIdStep1Fragment : Fragment() {
     }
 
     private fun init(){
-        binding.findIdStep1NameEt.setText(null)
         binding.findIdStep1PhoneNumberEt.setText(null)
         binding.findIdStep1CertificationCodeEt.setText(null)
 
@@ -112,4 +112,26 @@ class FindIdStep1Fragment : Fragment() {
             }
         }
     }
+
+//    private fun findId(){
+//
+////        val phonenumber = findViewById<EditText>(R.id.find_id_step1_phone_number_et)
+//        val phoneNumber : String = binding.findIdStep1PhoneNumberEt.text.toString()
+//
+//        val authService = AuthService()
+//        authService.setFindIdView(this)
+//        authService.findId(User(phoneNumber))
+//    }
+//    override fun onFindIdSuccess(code:Int, result: FindIdResult) {
+//        when(code){
+//            1000 -> {
+//                startActivity(Intent(this, MainActivity::class.java))
+//            }
+//        }
+//    }
+//    override fun onFindIdFailure() {
+//        Log.d("onFindIdFailure", "!!!!!")
+//    }
+
+
 }

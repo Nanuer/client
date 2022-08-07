@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.chatFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_fl, ChatFragment())
@@ -48,6 +49,10 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_fl, MypageFragment())
                         .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.plus -> {
+                    startActivity(Intent(this,MakePostActivity::class.java))
                     return@setOnItemSelectedListener true
                 }
             }
