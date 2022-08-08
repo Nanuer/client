@@ -179,7 +179,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginBottom="7dp"
             android:layout_toEndOf="@id/make_post_report_tv"
-            android:src="@drawable/heart" />
+            android:src="@drawable/heart_off" />
 
         <ImageView
             android:id="@+id/make_post_heart_on_iv"
@@ -189,7 +189,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginBottom="7dp"
             android:layout_toEndOf="@id/make_post_report_tv"
-            android:src="@drawable/heart"
+            android:src="@drawable/heart_off"
             android:visibility="gone"/>
 
 

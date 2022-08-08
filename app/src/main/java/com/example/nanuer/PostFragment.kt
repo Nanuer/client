@@ -24,10 +24,9 @@ class PostFragment : Fragment(){
         setInit(post)
 
 
-        binding.postBackIv.setOnClickListener {
+        binding.postHeaderBackIv.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.main_fl, ListFragment())
-                addToBackStack(null)
                 commit()
             }
         }
