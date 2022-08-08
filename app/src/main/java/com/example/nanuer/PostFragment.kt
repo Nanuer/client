@@ -20,7 +20,7 @@ class PostFragment : Fragment(){
         binding = FragmentPostBinding.inflate(inflater,container,false)
 
         val postJson = arguments?.getString("post")
-        val post = gson.fromJson(postJson, Post::class.java)
+        val post = gson.fromJson(postJson, Post2::class.java)
         setInit(post)
 
 
@@ -33,10 +33,15 @@ class PostFragment : Fragment(){
         return binding.root
     }
 
-    private fun setInit(post:Post){
+    private fun setInit(post:Post2){
         binding.postCategoryTv.text = post.menu
         binding.postTitleTv.text = post.title
         binding.postContentTv.text = post.content
         binding.postTimeTv.text = post.time
+        binding.postLocationTv.text = post.location
+        binding.postCreateTimeTv.text = post.createdDate
+        binding.postUserNicknameTv.text = post.userEntity?.nickName
+//        binding.postProfileIv.setImageResource(post.userEntity.profileImg)
+        binding.postFooterDeliveryFeeTv.text = post.delivery_cost
     }
 }

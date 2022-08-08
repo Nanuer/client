@@ -6,10 +6,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PostService {
-    private lateinit var postView: PostView
+    private lateinit var makePostView: MakePostView
+    private lateinit var getPostsView: GetPostsView
 
-    fun setPostView(postView: PostView){
-        this.postView = postView
+    fun setPostView(makePostView: MakePostView){
+        this.makePostView = makePostView
+    }
+    fun setGetPostsView(getPostsView: GetPostsView){
+        this.getPostsView = getPostsView
     }
 
     fun makePost(post:Post){
@@ -20,12 +24,30 @@ class PostService {
                 val resp: NormalResponse = response.body()!!
                 Log.d("MAKEPOST/SUCCESS", resp.toString())
                 when(val code = resp.code){
-                    1000-> postView.onPostSuccess()
-                    else-> postView.onPostFailure(code, resp.message)
+                    1000-> makePostView.onMakePostSuccess()
+                    else-> makePostView.onMakePostFailure(code, resp.message)
                 }
             }
             override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
-                Log.d("LOGIN/FAILURE", t.message.toString())
+                Log.d("MAKEPOST/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+    fun getPosts(){
+        val postService = getRetrofit().create(PostRetrofitInterface::class.java)
+        postService.getPosts().enqueue(object: Callback<PostResponse> {
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                Log.d("GETPOSTS/SUCCESS", response.toString())
+                val resp: PostResponse = response.body()!!
+                Log.d("GETPOSTS/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> getPostsView.onGetPostsSuccess(resp.result)
+                    else-> getPostsView.onGetPostsFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<PostResponse>, t: Throwable) {
+                Log.d("GETPOST/FAILURE", t.message.toString())
             }
         })
     }

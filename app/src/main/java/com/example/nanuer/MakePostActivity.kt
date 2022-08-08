@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nanuer.databinding.ActivityMakePostBinding
-import java.text.SimpleDateFormat
 
-class MakePostActivity : AppCompatActivity(), PostView {
+class MakePostActivity : AppCompatActivity(), MakePostView {
     lateinit var binding: ActivityMakePostBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +35,11 @@ class MakePostActivity : AppCompatActivity(), PostView {
         postService.makePost(Post(title,content))
     }
 
-    override fun onPostSuccess() {
+    override fun onMakePostSuccess() {
         finish()
     }
 
-    override fun onPostFailure(code:Int, msg:String) {
+    override fun onMakePostFailure(code:Int, msg:String) {
         when(code){
             2018,2019 -> Toast.makeText(this,msg, Toast.LENGTH_SHORT).show()
         }
