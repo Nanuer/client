@@ -19,7 +19,7 @@ class GpsTracker(private val mContext: Context) : Service(),
     private var location: Location? = null
     private var latitude = 0.0
     private var longitude = 0.0
-    protected var locationManager: LocationManager? = null
+    private var locationManager: LocationManager? = null
     private fun getLocation(): Location? {
         try {
             locationManager = mContext.getSystemService(LOCATION_SERVICE) as LocationManager

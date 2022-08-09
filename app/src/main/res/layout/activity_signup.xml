@@ -114,18 +114,28 @@
             <EditText
                 android:id="@+id/signup_phone_number_et"
                 style="@style/InputMid"
-                android:textColor="@color/gray_light_2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_toStartOf="@id/signup_identify_number_btn"
+                android:layout_toStartOf="@id/signup_phone_number_void_btn"
                 android:background="@drawable/textline_bottom_gray"
                 android:hint="휴대폰 번호 (숫자만 입력)"
                 android:inputType="text"
-                android:paddingHorizontal="20dp" />
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/gray_light_2" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/signup_identify_number_btn"
+                android:id="@+id/signup_phone_number_void_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:visibility="invisible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_send_number_btn"
                 style="@style/BtnSmall"
                 android:layout_width="75dp"
                 android:layout_height="33dp"
@@ -135,13 +145,129 @@
                 android:background="@drawable/gray_round"
                 android:text="인증번호"
                 android:textColor="@color/gray_light_2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_resend_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/orange_round"
+                android:textColor="#ff6b00"
+                android:visibility="gone"
+                android:text="재전송" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/signup_certification_code_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_phone_number_rl"
+            android:layout_marginHorizontal="20dp"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/signup_certification_code_et"
+                style="@style/InputMid"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toStartOf="@id/signup_certification_code_void_btn"
+                android:background="@drawable/textline_bottom_gray"
+                android:hint="인증번호 입력"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_certification_code_void_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:visibility="invisible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_okay_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/gray_round"
+                android:text="확인"
+                android:textColor="@color/gray_light_2"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_correct_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/blue_rectangle"
+                android:text="인증완료"
+                android:textColor="@color/blue_dark_1"
+                android:visibility="gone"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_not_correct_btn"
+                style="@style/BtnSmall"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/red_round"
+                android:text="인증실패"
+                android:textColor="@color/main_red"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/signup_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TipSmall"
+            android:freezesText="false"
+            android:text="남은시간 3:00"
+            android:textColor="@color/main_red"
+            app:layout_constraintTop_toBottomOf="@id/signup_certification_code_rl"
+            app:layout_constraintStart_toStartOf="@id/signup_certification_code_rl"
+            android:layout_marginTop="6dp"
+            android:visibility="gone"
+            android:layout_marginStart="20dp"
+            />
+
+        <TextView
+            android:id="@+id/signup_resend_message_tv"
+            style="@style/TipSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인증번호를 받지 못하셨나요?\n휴대폰 번호 확인 후 '재전송' 버튼을 눌러주세요"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/signup_timer"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/signup_terms_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/signup_phone_number_rl"
+            app:layout_constraintTop_toBottomOf="@id/signup_resend_message_tv"
             android:layout_marginTop="64dp"
             android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
@@ -280,16 +406,16 @@
                     android:layout_toRightOf="@id/signup_term3_cb"
                     android:text="E-mail 및 SMS 광고성 접소 수신 동의"
                     android:textColor="@color/main_black" />
+
                 <TextView
                     android:id="@+id/signup_term3_necessary_tv"
                     style="@style/Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(필수)"
-                    android:textColor="@color/blue_dark_1"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/signup_term3_info_tv"
-                    />
+                    android:text="(선택)"
+                    android:textColor="@color/blue_dark_1" />
                 <ImageView
                     android:id="@+id/signup_term3_more_iv"
                     android:layout_width="wrap_content"

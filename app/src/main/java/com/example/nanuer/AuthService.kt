@@ -9,6 +9,7 @@ class AuthService {
     private lateinit var signUpView: SignUpView
     private lateinit var loginView: LoginView
     private lateinit var findIdView: FindIdView
+    var userEmail = ""
 
     fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
@@ -66,7 +67,10 @@ class AuthService {
                 val resp: FindIdResponse = response.body()!!
                 Log.d("LOGIN/SUCCESS", resp.toString())
                 when(val code = resp.code){
-                    1000-> findIdView.onFindIdSuccess(code, resp.result)
+                    1000-> {
+                        findIdView.onFindIdSuccess(code, resp.result)
+                        userEmail = resp.result
+                    }
                     else-> findIdView.onFindIdFailure(code, resp.message)
                 }
             }
