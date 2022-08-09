@@ -17,9 +17,11 @@ interface AuthRetrofitInterface {
     fun getCode(@Query("phone") phone:String) : Call<GetCodeResponse>
 
     @GET("/user/getEmail")
-    fun findId(@Body user: User): Call<FindIdResponse>
-    fun getEmail(@Query("email")email:String): Call<GetEmailResponse>
+    fun findId(@Query("phone") phone:String): Call<FindIdResponse>
+//<<<<<<< HEAD
+    //fun getEmail(@Query("email")email:String): Call<GetEmailResponse>
 
-//    @POST("/post")
-//    fun write(@Body makePost: MakePost): Call<>
+
+//=======
+//>>>>>>> fdeb5ef8847474e57abd33c9e0ee49ed75810bdc
 }

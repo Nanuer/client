@@ -1,13 +1,15 @@
 package com.example.nanuer
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentFindIdStep1Binding
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +19,7 @@ import kotlin.concurrent.timer
 class FindIdStep1Fragment : Fragment() ,FindIdView{
     var timerTask: Timer? = null
     var check = true
+    var certificationCode = ""
 
     lateinit var binding: FragmentFindIdStep1Binding
 
@@ -27,17 +30,7 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
     ): View? {
         binding = FragmentFindIdStep1Binding.inflate(inflater, container, false)
 
-//        binding.findIdStep1FindBtn.setOnClickListener {
-//            parentFragmentManager.beginTransaction().apply {
-//                replace(R.id.find_id_fl, FindIdStep2Fragment())
-//                addToBackStack(null)
-//                commit()
-//            }
-//        }
 
-        binding.findIdStep1FindBtn.setOnClickListener {
-            findId()
-        }
 
         binding.findIdStep1SendNumberBtn.setOnClickListener {
             binding.findIdStep1SendNumberBtn.visibility = View.GONE
@@ -46,10 +39,12 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
             binding.findIdStep1ResendMessageTv.visibility = View.VISIBLE
             binding.findIdStep1Timer.visibility = View.VISIBLE
             startTimer(2, 59)
+            getCode(binding.findIdStep1PhoneNumberEt.text.toString())
         }
 
         binding.findIdStep1ResendBtn.setOnClickListener {
             // ~재전송 처리~
+            getCode(binding.findIdStep1PhoneNumberEt.text.toString())
 
             // visibility 처리
             binding.findIdStep1CorrectBtn.visibility = View.GONE
@@ -62,7 +57,7 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
         binding.findIdStep1OkayBtn.setOnClickListener {
             binding.findIdStep1OkayBtn.visibility = View.GONE
             //인증 성공
-            if (check) {
+            if (certificationCode==binding.findIdStep1CertificationCodeEt.text.toString()) {
                 binding.findIdStep1CorrectBtn.visibility = View.VISIBLE
                 binding.findIdStep1NotCorrectBtn.visibility = View.GONE
             } else {// 인증 실패
@@ -70,8 +65,14 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
                 binding.findIdStep1NotCorrectBtn.visibility = View.VISIBLE
             }
         }
+
+        binding.findIdStep1OkayBtn.setOnClickListener {
+            handleCode()
+        }
         return binding.root
     }
+
+
 
     override fun onPause() {
         super.onPause()
@@ -121,17 +122,23 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d("size","findId" )
+        findId()
+    }
+
     private fun findId(){
 
         val phoneNumber : String = binding.findIdStep1PhoneNumberEt.text.toString()
 
         val authService = AuthService()
         authService.setFindIdView(this)
-        authService.findId(User(phoneNumber))
+        authService.findId(phoneNumber)
     }
-    override fun onFindIdSuccess(code:Int, result: String) {
+    override fun onFindIdSuccess(result: FindIdResult) {
 
-        init()
+        putInform(result)
 
         binding.findIdStep1FindBtn.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
@@ -148,25 +155,60 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
 
     }
 
-//    private fun getEmail(email:String){
-//        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-//        authService.getEmail(email).enqueue(object: Callback<GetEmailResponse> {
-//            override fun onResponse(call: Call<GetEmailResponse>, response: Response<GetEmailResponse>
-//            ) {
-//                Log.d("CODE/SUCCESS", response.toString())
-//                val resp: GetEmailResponse = response.body()!!
-//                Log.d("CODE/SUCCESS", resp.toString())
-//                when(resp.code){
-//                    1000-> userEmail=resp.result
-//                    else -> {}
-//                }
-//            }
-//            override fun onFailure(call: Call<GetEmailResponse>, t: Throwable) {
-//                Log.d("GET/CODE/FAILURE", t.message.toString())
-//            }
-//        })
-//    }
+    private fun putInform(findIdResult: FindIdResult) {
+        arguments = Bundle().apply {
+            val gson = Gson()
+            val findIdJson = gson.toJson(findIdResult)
+            putString("Email", findIdJson)
+
+        }
+    }
+
+        private fun getCode(phone:String){
+            val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+            authService.getCode(phone).enqueue(object: Callback<GetCodeResponse> {
+                override fun onResponse(call: Call<GetCodeResponse>, response: Response<GetCodeResponse>
+                ) {
+                    Log.d("CODE/SUCCESS", response.toString())
+                    val resp: GetCodeResponse = response.body()!!
+                    Log.d("CODE/SUCCESS", resp.toString())
+                    when(resp.code){
+                        1000-> certificationCode=resp.result
+                        else -> {}
+                    }
+                }
+                override fun onFailure(call: Call<GetCodeResponse>, t: Throwable) {
+                    Log.d("GET/CODE/FAILURE", t.message.toString())
+                }
+            })
+        }
+    private fun handleCode(){
+        if(binding.findIdStep1CertificationCodeEt.text.isEmpty()){
+            Toast.makeText(activity, "인증번호를 입력하지 않으셨습니다", Toast.LENGTH_SHORT).show()
+            Log.d("CERTIFICATIONCODE","NOT INPUT")
+            return
+        }
+        binding.findIdStep1OkayBtn.visibility = View.GONE
+        Log.d("CODE",certificationCode)
+        if(certificationCode==binding.findIdStep1CertificationCodeEt.text.toString()){
+            binding.findIdStep1CorrectBtn.visibility = View.VISIBLE
+            binding.findIdStep1NotCorrectBtn.visibility = View.GONE
+        }else{
+            binding.findIdStep1CorrectBtn.visibility = View.GONE
+            binding.findIdStep1NotCorrectBtn.visibility = View.VISIBLE
+        }
+    }
+
+
+    }
 
 
 
-}
+
+
+
+
+
+
+
+

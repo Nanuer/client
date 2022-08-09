@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
 
         <RelativeLayout
             android:id="@+id/list_header_rl"
@@ -17,25 +12,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp">
+            android:paddingHorizontal="24dp">
 
             <ImageView
                 android:id="@+id/list_bachelor_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/bachelor_cap"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="9dp"/>
 
             <TextView
-                android:id="@+id/list_uni_tv"
-                style="@style/Regular"
+                android:id="@+id/list_university_name_tv"
+                style="@style/TitleMid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/list_bachelor_iv"
-                android:gravity="center_horizontal"
-                android:layout_marginStart="9dp"
-                android:text="인하대"
+                android:text="한양대 에리카"
                 android:textColor="@color/main_black" />
 
             <ImageView
@@ -43,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/list_bell_iv"
+                android:layout_toStartOf="@id/list_bell_iv"
                 android:src="@drawable/search"
                 android:layout_marginEnd="23dp"/>
 
@@ -52,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-
                 android:layout_centerVertical="true"
                 android:src="@drawable/bell" />
 
@@ -92,10 +85,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/down_list"/>
-
-
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -106,8 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/list_header_rl2"
             android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
-            android:background="@drawable/gray_line">
+            android:layout_marginEnd="22dp">
 
             <ImageView
                 android:id="@+id/list_filter"
@@ -141,118 +129,18 @@
                 android:layout_alignParentEnd="true"
                 android:text="모집마감 안보기"
                 android:layout_centerVertical="true"/>
-                
-                
-
-
         </RelativeLayout>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_header_rl3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/list_item" />
 
-
-        <LinearLayout
-            android:id="@+id/list_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_header_rl3"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
-            android:background="@drawable/gray_line">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/list_item"
-                />
-        </LinearLayout>
-
-
-
-        <!--            <RelativeLayout-->
-<!--                android:id="@+id/list_post_rl"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/gray_line">-->
-
-<!--                <TextView-->
-<!--                    style="@style/TipSmall"-->
-<!--                    android:id="@+id/list_post_category_tv"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="브런치" />-->
-
-<!--                <TextView-->
-<!--                    style="@style/TipSmall"-->
-<!--                    android:id="@+id/list_post_minute_tv"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:text="5분전"/>-->
-
-
-<!--                <TextView-->
-<!--                    android:id="@+id/list_post_title_tv"-->
-<!--                    style="@style/Regular"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/list_post_category_tv"-->
-<!--                    android:text="써브웨이 같이 배달 시키실분 구해요"-->
-<!--                    android:textColor="@color/main_black" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/list_post_time_tv"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/list_post_title_tv"-->
-<!--                    android:text="오늘 오후 7시" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/list_post_distance_tv"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/list_post_title_tv"-->
-<!--                    android:layout_toLeftOf="@id/list_post_heart_off_tv"-->
-<!--                    android:text="내 위치에서 50M"-->
-<!--                    android:layout_marginEnd="8dp"/>-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/list_post_heart_off_tv"-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="21dp"-->
-<!--                    android:src="@drawable/heart"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:layout_below="@id/list_post_title_tv"/>-->
-
-<!--                </RelativeLayout>-->
-
-<!--        </LinearLayout>-->
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/list_test_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="게시글 만들기(임시버튼)"
-            android:textColor="@color/main_black"
-            android:background="@drawable/blue_rectangle"
-            app:layout_constraintTop_toBottomOf="@id/list_ll"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

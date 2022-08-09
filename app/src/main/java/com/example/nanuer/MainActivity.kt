@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
-                R.id.plus -> {
+                R.id.makePostActivity -> {
                     startActivity(Intent(this,MakePostActivity::class.java))
                     return@setOnItemSelectedListener true
                 }
