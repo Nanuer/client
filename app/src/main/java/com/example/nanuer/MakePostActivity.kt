@@ -18,21 +18,19 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
             finish()
         }
 
-        binding.makePostCreateBtn.setOnClickListener {
+        binding.makePostFooterOkTv.setOnClickListener {
             makePost()
         }
     }
 
     private fun makePost(){
-//        val currentTime : Long = System.currentTimeMillis()
-//        val timeFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
-
         val title : String = binding.makePostTitleEt.text.toString()
         val content : String = binding.makePostContentEt.text.toString()
+        val delivery_cost : String = binding.makePostDeliveryCostEt.toString()
 
         val postService=PostService()
         postService.setPostView(this)
-        postService.makePost(Post(title,content))
+        postService.makePost(Post(title=title,content=content,delivery_cost=delivery_cost))
     }
 
     override fun onMakePostSuccess() {

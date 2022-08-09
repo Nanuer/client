@@ -12,241 +12,133 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="20dp"
+        android:background="@drawable/textline_bottom_gray"
+        >
         <ImageView
             android:id="@+id/make_post_back_iv"
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
             android:src="@drawable/back" />
-
-
         <TextView
-            android:id="@+id/make_post_post_tv"
+            android:id="@+id/make_post_header_title_tv"
             style="@style/BtnMid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/make_post_back_iv"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="32dp"
-            android:text="게시글"
+            android:layout_toEndOf="@id/make_post_back_iv"
+            android:layout_marginStart="19dp"
+            android:includeFontPadding="false"
+            android:text="게시글 쓰기"
             android:textColor="@color/main_black" />
-
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/make_post_inform_rl"
+    <EditText
+        android:id="@+id/make_post_title_et"
+        style="@style/InputMid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="제목"
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
         app:layout_constraintTop_toBottomOf="@id/make_post_header_rl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="1dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        >
-
-        <TextView
-            android:id="@+id/make_post_category_tv"
-            style="@style/TipSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/gray_line"
-            android:includeFontPadding="false"
-            android:text="브런치"
-            android:textColor="@color/gray_dark_1"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/make_post_time_tv"
-            style="@style/TipSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/make_post_category_tv"
-            android:layout_marginStart="14dp"
-            android:layout_toEndOf="@+id/make_post_category_tv"
-            android:background="@null"
-            android:text="시간"
-            android:textColor="@color/gray_light_3" />
-
-        <EditText
-            android:id="@+id/make_post_title_et"
-            style="@style/TitleMid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/make_post_time_tv"
-            android:background="@null"
-            android:hint="제목"
-            android:includeFontPadding="false"
-            android:textColor="@color/main_black" />
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/post_get_title_tv"-->
-        <!--                style="@style/TitleMid"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:includeFontPadding="false"-->
-        <!--                android:textColor="@color/main_black"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@id/post_category_tv"-->
-        <!--                android:layout_marginTop="17dp"-->
-        <!--                android:layout_marginStart="20dp"/>-->
-
-        <TextView
-            android:id="@+id/make_post_recruit_ing_tv"
-            style="@style/TipSmall"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/make_post_title_et"
-            android:layout_marginStart="68dp"
-            android:layout_toEndOf="@+id/make_post_title_et"
-            android:background="@drawable/recruit_ing_round"
-            android:gravity="center_horizontal"
-            android:includeFontPadding="false"
-            android:text="모집중"
-            android:textColor="@color/blue_dark_2" />
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/post_recruit_end_tv"-->
-        <!--                android:layout_width="80dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                style="@style/TipSmall"-->
-        <!--                android:background="@drawable/recruit_ing_round"-->
-        <!--                android:textColor="@color/gray_dark_1"-->
-        <!--                android:gravity="center_horizontal"-->
-        <!--                android:includeFontPadding="false"-->
-        <!--                android:text="모집마감"-->
-        <!--                app:layout_constraintStart_toEndOf="@id/post_title_tv"-->
-        <!--                app:layout_constraintTop_toTopOf="@id/post_title_tv"-->
-        <!--                app:layout_constraintBottom_toBottomOf="@id/post_title_tv"-->
-        <!--                android:layout_marginStart="68dp"-->
-        <!--                android:visibility="gone"/>-->
-
-
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/make_post_user_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/make_post_inform_rl"
-        android:background="@drawable/gray_line">
-
-        <ImageView
-            android:id="@+id/make_post_profile_iv"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/profile" />
-
-        <TextView
-            android:id="@+id/make_post_user_nickname_tv"
-            style="@style/TipSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@id/make_post_profile_iv"
-            android:text="사용자닉네임" />
-
-        <TextView
-            android:id="@+id/make_post_report_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/make_post_user_nickname_tv"
-            android:layout_marginStart="14dp"
-            android:layout_toEndOf="@id/make_post_user_nickname_tv"
-            android:text="신고"
-            android:background="@drawable/gray_line"
-            />
-
-        <ImageView
-            android:id="@+id/make_post_heart_off_iv"
-            android:layout_width="27dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="109dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:layout_toEndOf="@id/make_post_report_tv"
-            android:src="@drawable/heart_off" />
-
-        <ImageView
-            android:id="@+id/make_post_heart_on_iv"
-            android:layout_width="27dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="109dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:layout_toEndOf="@id/make_post_report_tv"
-            android:src="@drawable/heart_off"
-            android:visibility="gone"/>
-
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/make_post_main_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/make_post_user_rl"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/gray_line"
-        >
-
-        <EditText
-            android:id="@+id/make_post_content_et"
-            style="@style/Regular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint=" 내용" />
-
-        <ImageView
-            android:id="@+id/make_post_clock_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/make_post_content_et"
-            android:src="@drawable/clock" />
-
-        <TextView
-            android:id="@+id/make_post_hour_tv"
-            style="@style/TipSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/make_post_content_et"
-            android:layout_alignBaseline="@id/make_post_clock_iv"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@id/make_post_clock_iv"
-            android:text="오늘 오후 7시" />
-
-
-    </RelativeLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/make_post_create_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="완료"
-        app:layout_constraintTop_toBottomOf="@+id/make_post_main_rl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <TextView
+        android:id="@+id/make_post_category_tv"
+        style="@style/Regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카테고리"
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintTop_toBottomOf="@id/make_post_title_et"
+        />
+
+    <EditText
+        android:id="@+id/make_post_delivery_cost_et"
+        style="@style/InputMid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="₩  배달비"
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintTop_toBottomOf="@id/make_post_category_tv"
+        />
+    <EditText
+        android:id="@+id/make_post_content_et"
+        style="@style/Regular"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:hint="게시글을 작성해주세요. (상호명, 예상 모집인원, 모집시간 등을 정확히 적어주셔야 모집이 빨라져요)"
+        android:gravity="top"
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintTop_toBottomOf="@id/make_post_delivery_cost_et"
+        />
+    <EditText
+        android:id="@+id/make_post_link_et"
+        style="@style/Regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="🔗 주문하고자 하는 가게의 링크를 복사해주세요"
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintTop_toBottomOf="@id/make_post_content_et"
+        />
+
+    <RelativeLayout
+        android:id="@+id/make_post_footer_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="20dp"
+        android:background="@drawable/textline_top_gray">
+        <ImageView
+            android:id="@+id/make_post_clock_icon_iv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/clock"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/make_post_footer_set_time_tv"
+            style="@style/Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간설정"
+            android:textColor="@color/main_black"
+            android:includeFontPadding="false"
+            android:layout_toEndOf="@id/make_post_clock_icon_iv"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="17dp"
+            />
+        <TextView
+            android:id="@+id/make_post_footer_ok_tv"
+            style="@style/Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="완료"
+            android:textColor="@color/blue_dark_1"
+            android:includeFontPadding="false"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
