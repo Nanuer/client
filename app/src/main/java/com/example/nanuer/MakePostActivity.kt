@@ -26,7 +26,7 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
     private fun makePost(){
         val title : String = binding.makePostTitleEt.text.toString()
         val content : String = binding.makePostContentEt.text.toString()
-        val delivery_cost : String = binding.makePostDeliveryCostEt.toString()
+        val delivery_cost : String = binding.makePostDeliveryCostEt.text.toString()
 
         val postService=PostService()
         postService.setPostView(this)

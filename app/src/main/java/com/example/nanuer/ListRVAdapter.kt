@@ -42,6 +42,7 @@ class ListRVAdapter(val context: Context, val result: PostResult): RecyclerView.
             binding.listPostTitleTv.text = post.title
             binding.listPostMinuteTv.text = post.time
             binding.listPostCategoryTv.text = post.menu
+            binding.listPostMinuteTv.text = post.created_date
         }
     }
 }
