@@ -47,20 +47,35 @@
         android:background="@drawable/textline_bottom_gray"
         app:layout_constraintTop_toBottomOf="@id/make_post_header_rl"
         />
-
-    <TextView
-        android:id="@+id/make_post_category_tv"
-        style="@style/Regular"
+    <RelativeLayout
+        android:id="@+id/make_post_category_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="카테고리"
-        android:textColor="@color/main_black"
-        android:layout_marginHorizontal="16dp"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="8dp"
-        android:background="@drawable/textline_bottom_gray"
         app:layout_constraintTop_toBottomOf="@id/make_post_title_et"
-        />
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/textline_bottom_gray"
+        >
+        <TextView
+            android:id="@+id/make_post_category_tv"
+            style="@style/Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textColor="@color/main_black"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:layout_alignParentStart="true"
+            />
+        <ImageView
+            android:id="@+id/make_post_category_down_icon_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/down_list"
+            android:layout_toEndOf="@+id/make_post_category_tv"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/make_post_delivery_cost_et"
@@ -73,7 +88,7 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="8dp"
         android:background="@drawable/textline_bottom_gray"
-        app:layout_constraintTop_toBottomOf="@id/make_post_category_tv"
+        app:layout_constraintTop_toBottomOf="@id/make_post_category_rl"
         />
     <EditText
         android:id="@+id/make_post_content_et"
