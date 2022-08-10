@@ -40,9 +40,9 @@ class ListRVAdapter(val context: Context, val result: PostResult): RecyclerView.
     inner class ViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(post: Post2){
             binding.listPostTitleTv.text = post.title
-            binding.listPostMinuteTv.text = post.time
             binding.listPostCategoryTv.text = post.menu
             binding.listPostMinuteTv.text = post.created_date
+            binding.listPostTimeTv.text = post.time
         }
     }
 }

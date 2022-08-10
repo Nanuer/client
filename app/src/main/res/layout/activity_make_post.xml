@@ -134,7 +134,7 @@
             android:layout_centerVertical="true"
             />
         <TextView
-            android:id="@+id/make_post_footer_set_time_tv"
+            android:id="@+id/make_post_footer_time_tv"
             style="@style/Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
