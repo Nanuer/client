@@ -4,28 +4,237 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <TextView
-        android:id="@+id/mypage_logout_tv"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/mypage_header_rl"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="로그아웃"
-        android:textSize="15sp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/main_black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="mypage Fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/mypage_header_title_tv"
+            style="@style/TitleMid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:includeFontPadding="false"
+            android:text="마이페이지"
+            android:textColor="@color/main_black" />
+
+        <ImageView
+            android:id="@+id/mypage_setting_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/setting" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/mypage_main_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mypage_header_rl"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/top_round"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mypage_myinfo_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp">
+            <ImageView
+                android:id="@+id/mypage_profile_iv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+            </ImageView>
+            <TextView
+                android:id="@+id/mypage_username_tv"
+                style="@style/TitleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사용자1"
+                android:textColor="@color/main_black"
+                android:includeFontPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mypage_profile_iv"
+                android:layout_marginStart="23dp"/>
+            <TextView
+                android:id="@+id/mypage_update_tv"
+                style="@style/TipSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내 정보 수정"
+                android:textColor="@color/gray_dark_2"
+                android:includeFontPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mypage_profile_iv"
+                android:layout_marginStart="23dp"
+                android:layout_marginBottom="10dp" />
+            <ImageView
+                android:id="@+id/mypage_more_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/mypage_myinfo2_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+            <RelativeLayout
+                android:id="@+id/mypage_mypost_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="25dp">
+                <ImageView
+                    android:id="@+id/mypage_mypost_icon_iv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/write"/>
+                <TextView
+                    android:id="@+id/mypage_mypost_tv"
+                    style="@style/TipSmall"
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:text="내가 쓴 글"
+                    android:textColor="@color/main_black"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/mypage_mypost_icon_iv"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/mypage_current_deal_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="25dp">
+                <ImageView
+                    android:id="@+id/mypage_paper_icon_iv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/paper" />
+                <TextView
+                    android:id="@+id/mypage_current_deal_tv"
+                    style="@style/TipSmall"
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:text="현재 거래 현황"
+                    android:textColor="@color/main_black"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/mypage_paper_icon_iv"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/mypage_heart_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="25dp">
+                <ImageView
+                    android:id="@+id/mypage_heart_icon_iv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/blue_heart"/>
+                <TextView
+                    android:id="@+id/mypage_heart_tv"
+                    style="@style/TipSmall"
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:text="찜한 글"
+                    android:textColor="@color/main_black"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/mypage_heart_icon_iv"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/mypage_list_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/mypage_deal_breakdown_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="거래 내역"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/mypage_account_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내 계좌 관리"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/mypage_question_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자주 묻는 질문"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/mypage_notice_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공지사항"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/mypage_service_center_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="고객센터"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/mypage_logout_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="로그아웃"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/mypage_unregister_tv"
+                style="@style/Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원탈퇴"
+                android:textColor="@color/main_black"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
