@@ -8,12 +8,16 @@ import retrofit2.Response
 class PostService {
     private lateinit var makePostView: MakePostView
     private lateinit var getPostsView: GetPostsView
+    private lateinit var deletePostView: DeletePostView
 
     fun setPostView(makePostView: MakePostView){
         this.makePostView = makePostView
     }
     fun setGetPostsView(getPostsView: GetPostsView){
         this.getPostsView = getPostsView
+    }
+    fun setDeletePostView(deletePostView: DeletePostView){
+        this.deletePostView = deletePostView
     }
 
     fun makePost(post:Post){
@@ -48,6 +52,24 @@ class PostService {
             }
             override fun onFailure(call: Call<PostResponse>, t: Throwable) {
                 Log.d("GETPOST/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+    fun deletePost(post_id:Int){
+        val postService = getRetrofit().create(PostRetrofitInterface::class.java)
+        postService.deletePost(post_id).enqueue(object: Callback<NormalResponse> {
+            override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
+                Log.d("DELETEPOST/SUCCESS", response.toString())
+                val resp: NormalResponse = response.body()!!
+                Log.d("DELETEPOST/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> deletePostView.onDeletePostSuccess()
+                    else-> deletePostView.onDeletePostFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
+                Log.d("DELETEPOST/FAILURE", t.message.toString())
             }
         })
     }

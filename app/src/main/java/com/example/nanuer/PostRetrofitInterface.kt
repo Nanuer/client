@@ -1,9 +1,7 @@
 package com.example.nanuer
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface PostRetrofitInterface {
     @GET("/post/all")
@@ -11,4 +9,7 @@ interface PostRetrofitInterface {
 
     @POST("/post")
     fun makePost(@Body post: Post): Call<NormalResponse>
+
+    @DELETE("/post/{post_id}")
+    fun deletePost(@Path("post_id") post_id:Int): Call<NormalResponse>
 }
