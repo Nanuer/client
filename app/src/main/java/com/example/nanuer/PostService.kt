@@ -56,6 +56,24 @@ class PostService {
         })
     }
 
+    fun getPostsByUnivAndQuery(user_id:Int, query: String?){
+        val postService = getRetrofit().create(PostRetrofitInterface::class.java)
+        postService.getPostsByUnivAndQuery(user_id, query).enqueue(object: Callback<PostResponse> {
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                Log.d("GETPOSTSBYUNIV/SUCCESS", response.toString())
+                val resp: PostResponse = response.body()!!
+                Log.d("GETPOSTSBYUNIV/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> getPostsView.onGetPostsSuccess(resp.result)
+                    else-> getPostsView.onGetPostsFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<PostResponse>, t: Throwable) {
+                Log.d("GETPOSTSBYUNIV/FAILURE", t.message.toString())
+            }
+        })
+    }
+
     fun deletePost(post_id:Int){
         val postService = getRetrofit().create(PostRetrofitInterface::class.java)
         postService.deletePost(post_id).enqueue(object: Callback<NormalResponse> {

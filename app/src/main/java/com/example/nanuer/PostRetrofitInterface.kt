@@ -7,6 +7,9 @@ interface PostRetrofitInterface {
     @GET("/post/all")
     fun getPosts(): Call<PostResponse>
 
+    @GET("/post")
+    fun getPostsByUnivAndQuery(@Query("user_id") user_id:Int, @Query("query") query: String?): Call<PostResponse>
+
     @POST("/post")
     fun makePost(@Body post: Post): Call<NormalResponse>
 

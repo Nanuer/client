@@ -43,24 +43,22 @@ class ListFragment : Fragment(),GetPostsView{
 //                }
 //            })
 
-        Log.d("size","Hello1" )
-
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d("size","Hello2" )
         getPosts()
     }
 
     private fun getPosts(){
         val postService = PostService()
-        Log.d("size","Hello3" )
         postService.setGetPostsView(this)
-        Log.d("size","Hello4" )
         postService.getPosts()
-        Log.d("size","Hello5" )
+
+//        val postService = PostService()
+//        postService.setGetPostsView(this)
+//        postService.getPostsByUnivAndQuery(jwt)
     }
 
     private fun initRecyclerView(result:PostResult){
