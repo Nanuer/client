@@ -10,6 +10,6 @@ interface PostRetrofitInterface {
     @POST("/post")
     fun makePost(@Body post: Post): Call<NormalResponse>
 
-    @DELETE("/post/{post_id}")
+    @PATCH("/post/{post_id}")
     fun deletePost(@Path("post_id") post_id:Int): Call<NormalResponse>
 }
