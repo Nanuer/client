@@ -9,6 +9,7 @@ class AuthService {
     private lateinit var signUpView: SignUpView
     private lateinit var loginView: LoginView
     private lateinit var findIdView: FindIdView
+    private lateinit var getUserIdView: GetUserIdView
 
     fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
@@ -18,6 +19,9 @@ class AuthService {
     }
     fun setFindIdView(findIdView: FindIdView){
         this.findIdView = findIdView
+    }
+    fun setGetUserIdView(getUserIdView: GetUserIdView){
+        this.getUserIdView = getUserIdView
     }
 
     fun signUp(user : User){
@@ -76,5 +80,24 @@ class AuthService {
 
         })
 
+    }
+
+    fun getUserId(token:String){
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.getUserId(token).enqueue(object: Callback<NormalResponse>{
+            override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
+                Log.d("GETUSERID/SUCCESS", response.toString())
+                val resp: NormalResponse = response.body()!!
+                Log.d("GETUSERID/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> getUserIdView.onGetUserIdSuccess(resp.result)
+                    else-> getUserIdView.onGetUserIdFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
+                Log.d("GETUSERID/FAILURE", t.message.toString())
+            }
+
+        })
     }
 }

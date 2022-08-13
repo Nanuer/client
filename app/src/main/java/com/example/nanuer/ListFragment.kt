@@ -5,14 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nanuer.databinding.FragmentListBinding
 import com.google.gson.Gson
 
-class ListFragment : Fragment(),GetPostsView{
+class ListFragment : Fragment(),GetPostsView,GetUserIdView{
     private lateinit var binding: FragmentListBinding
     private lateinit var listRVAdapter: ListRVAdapter
+    var userId : String? = null
 //    private var listdatas = ArrayList<Post2>()
 
 
@@ -51,14 +53,28 @@ class ListFragment : Fragment(),GetPostsView{
         getPosts()
     }
 
+    private fun getJwt():String?{
+        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("Jwt","0")
+    }
+
+    private fun getUserId(jwt:String){
+        val authService = AuthService()
+        authService.setGetUserIdView(this)
+        authService.getUserId(jwt)
+    }
+
     private fun getPosts(){
         val postService = PostService()
         postService.setGetPostsView(this)
         postService.getPosts()
 
+        // 대학별 post 갖고오기
+//        val jwt = getJwt()
+//        getUserId(jwt!!)
 //        val postService = PostService()
 //        postService.setGetPostsView(this)
-//        postService.getPostsByUnivAndQuery(jwt)
+//        postService.getPostsByUnivAndQuery(userId)
     }
 
     private fun initRecyclerView(result:PostResult){
@@ -82,6 +98,14 @@ class ListFragment : Fragment(),GetPostsView{
                 }
             })
             .commitAllowingStateLoss()
+    }
+
+    override fun onGetUserIdSuccess(result: String) {
+        userId=result
+    }
+
+    override fun onGetUserIdFailure(code: Int, msg: String) {
+
     }
 
     override fun onGetPostsSuccess(result: PostResult) {

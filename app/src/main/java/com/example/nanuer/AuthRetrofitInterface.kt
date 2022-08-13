@@ -1,10 +1,7 @@
 package com.example.nanuer
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface AuthRetrofitInterface {
     @POST("/user/join")
@@ -18,4 +15,7 @@ interface AuthRetrofitInterface {
 
     @GET("/user/getEmail")
     fun findId(@Body user: User): Call<FindIdResponse>
+
+    @GET("/user/userInfo")
+    fun getUserId(@Header("X-AUTH_TOKEN")token : String): Call<NormalResponse>
 }
