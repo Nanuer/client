@@ -3,6 +3,8 @@ package com.example.nanuer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     lateinit var binding: ActivitySignupBinding
     var timerTask: Timer? = null
     var certificationCode = ""
+    var univs = arrayOf("대학 선택", "숭실대", "인하대", "한양대 에리카")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,24 +85,52 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         binding.signupTerm1Cb.setOnCheckedChangeListener(listener)
         binding.signupTerm2Cb.setOnCheckedChangeListener(listener)
         binding.signupTerm3Cb.setOnCheckedChangeListener(listener)
+
+
+        handleSpinner()
+    }
+
+    private fun handleSpinner(){
+        val spinner = binding.signupUnivSpinner
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this, android.R.layout.simple_spinner_item, univs
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.setAdapter(adapter)
+        spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                Log.d("TEST", univs[position])
+//                Toast.makeText(applicationContext, univs.get(position), Toast.LENGTH_LONG).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+//                Toast.makeText(applicationContext, "선택되지 않음", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun getUser(): User{
         val email: String = binding.signupEmailEt.text.toString()
         val pw: String = binding.signupPwEt.text.toString()
         val phoneNumber: String = binding.signupPhoneNumberEt.text.toString()
-
-        return User(email,pw,phone=phoneNumber)
+        val name : String = binding.signupNameEt.text.toString()
+        val university : String = binding.signupUnivSpinner.selectedItem.toString()
+        return User(email,pw,name,phone=phoneNumber,university=university)
     }
 
     private fun signUp(){
-        if(binding.signupEmailEt.text.isEmpty() || binding.signupPwEt.text.isEmpty()){
-            Toast.makeText(this,"이메일 또는 비밀번호를 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
+        if(binding.signupNameEt.text.isEmpty() || binding.signupEmailEt.text.isEmpty() || binding.signupPwEt.text.isEmpty()){
+            Toast.makeText(this,"이메일, 비밀번호 또는 이름을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
         if(binding.signupPwEt.text.toString() != binding.signupPwCheckEt.text.toString()){
             Toast.makeText(this,"비빌번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(binding.signupUnivSpinner.selectedItemPosition==0){
+            Toast.makeText(this,"대학교를 선택해주세요.ㅇ", Toast.LENGTH_SHORT).show()
             return
         }
 
