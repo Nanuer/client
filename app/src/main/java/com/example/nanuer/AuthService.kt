@@ -21,8 +21,9 @@ class AuthService {
     fun setFindIdView(findIdView: FindIdView){
         this.findIdView = findIdView
     }
-    fun setGetUserIdView(getUserIdView: GetUserIdView){
+    fun setGetUserIdView(getUserIdView: GetUserIdView) {
         this.getUserIdView = getUserIdView
+    }
     fun setUpdatePview(updatePwView: UpdatePwView){
         this.updatePwView = updatePwView
     }
@@ -136,5 +137,5 @@ class AuthService {
         })
 
     }
-    }
+
 }
