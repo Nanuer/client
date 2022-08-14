@@ -196,7 +196,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="66dp"
-            android:background="@drawable/blue_button"/>
+            android:background="@drawable/blue_button"
+            android:visibility="gone"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/find_id_step1_find_correct_btn"
@@ -211,7 +212,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="66dp"
         android:background="@drawable/blue_button_on"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

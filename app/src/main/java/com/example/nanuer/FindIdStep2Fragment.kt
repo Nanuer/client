@@ -27,7 +27,7 @@ class FindIdStep2Fragment : Fragment() {
         binding = FragmentFindIdStep2Binding.inflate(inflater, container, false)
 
         val findIdJson = arguments?.getString("Email")
-        val userEmail = gson.fromJson(findIdJson, FindIdResult::class.java)
+        val userEmail = gson.fromJson(findIdJson, String::class.java)
         setInit(userEmail)
 
 
@@ -43,8 +43,8 @@ class FindIdStep2Fragment : Fragment() {
 
 
 
-    private fun setInit(findIdResult: FindIdResult){
-        binding.findIdStep2UserIdTv.text = findIdResult.email
+    private fun setInit(email: String){
+        binding.findIdStep2UserIdTv.text = email
     }
 
 

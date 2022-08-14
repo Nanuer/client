@@ -1,10 +1,7 @@
 package com.example.nanuer
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface AuthRetrofitInterface {
     @POST("/user/join")
@@ -18,8 +15,14 @@ interface AuthRetrofitInterface {
 
     @GET("/user/getEmail")
     fun findId(@Query("phone") phone:String): Call<FindIdResponse>
+
+    @PATCH("user/updatePw")
+    fun upDatePw(@Field("phone") phone:String,
+                 @Field("password") password:String): Call<UpdatePwResponse>
+
+
 //<<<<<<< HEAD
-    //fun getEmail(@Query("email")email:String): Call<GetEmailResponse>
+
 
 
 //=======

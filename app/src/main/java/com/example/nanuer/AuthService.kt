@@ -9,7 +9,7 @@ class AuthService {
     private lateinit var signUpView: SignUpView
     private lateinit var loginView: LoginView
     private lateinit var findIdView: FindIdView
-    var userEmail = ""
+    private lateinit var updatePwView: UpdatePwView
 
     fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
@@ -19,6 +19,9 @@ class AuthService {
     }
     fun setFindIdView(findIdView: FindIdView){
         this.findIdView = findIdView
+    }
+    fun setUpdatePview(updatePwView: UpdatePwView){
+        this.updatePwView = updatePwView
     }
 
     fun signUp(user : User){
@@ -63,18 +66,40 @@ class AuthService {
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
         authService.findId(phone).enqueue(object: Callback<FindIdResponse>{
             override fun onResponse(call: Call<FindIdResponse>, response: Response<FindIdResponse>) {
-                Log.d("LOGIN/SUCCESS", response.toString())
+                Log.d("FindId/SUCCESS", response.toString())
                 val resp: FindIdResponse = response.body()!!
-                Log.d("LOGIN/SUCCESS", resp.toString())
+                Log.d("FindId/SUCCESS", resp.toString())
                 when(val code = resp.code){
                     1000-> {
                         findIdView.onFindIdSuccess(resp.result)
-
                     }
                     else-> findIdView.onFindIdFailure(code, resp.message)
                 }
             }
             override fun onFailure(call: Call<FindIdResponse>, t: Throwable) {
+                Log.d("FindId/FAILURE", t.message.toString())
+            }
+
+        })
+
+    }
+
+    fun upDatePw(phone:String, password:String){
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.upDatePw(phone,password).enqueue(object: Callback<UpdatePwResponse>{
+            override fun onResponse(call: Call<UpdatePwResponse>, response: Response<UpdatePwResponse>) {
+                Log.d("FindId/SUCCESS", response.toString())
+                val resp: UpdatePwResponse = response.body()!!
+                Log.d("FindId/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> {
+                        updatePwView.onUpdatePwSuccess(resp.result)
+
+                    }
+                    else-> updatePwView.onUpdatePwFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<UpdatePwResponse>, t: Throwable) {
                 Log.d("FindId/FAILURE", t.message.toString())
             }
 

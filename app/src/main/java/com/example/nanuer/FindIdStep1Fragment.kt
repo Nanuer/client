@@ -44,6 +44,7 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
 
         binding.findIdStep1ResendBtn.setOnClickListener {
             // ~재전송 처리~
+            init()
             getCode(binding.findIdStep1PhoneNumberEt.text.toString())
 
             // visibility 처리
@@ -66,7 +67,8 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
             }
         }
 
-        binding.findIdStep1OkayBtn.setOnClickListener {
+        binding.findIdStep1FindCorrectBtn.setOnClickListener {
+            findId()
             handleCode()
         }
         return binding.root
@@ -125,29 +127,19 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
     override fun onStart() {
         super.onStart()
         Log.d("size","findId" )
-        findId()
+        //findId()
     }
 
     private fun findId(){
 
         val phoneNumber : String = binding.findIdStep1PhoneNumberEt.text.toString()
-
+        Log.d("GGGG","GGGGG")
         val authService = AuthService()
         authService.setFindIdView(this)
         authService.findId(phoneNumber)
     }
-    override fun onFindIdSuccess(result: FindIdResult) {
-
-        putInform(result)
-
-        binding.findIdStep1FindBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().apply {
-                replace(R.id.find_id_fl, FindIdStep2Fragment())
-                addToBackStack(null)
-                commit()
-            }
-        }
-
+    override fun onFindIdSuccess(result: String) {
+        moveToStep2(result)
     }
 
     override fun onFindIdFailure(code: Int, msg: String) {
@@ -155,12 +147,18 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
 
     }
 
-    private fun putInform(findIdResult: FindIdResult) {
-        arguments = Bundle().apply {
-            val gson = Gson()
-            val findIdJson = gson.toJson(findIdResult)
-            putString("Email", findIdJson)
+    private fun moveToStep2(findIdResult: String) {
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.find_id_fl, FindIdStep2Fragment().apply{
+                arguments = Bundle().apply {
+                    val gson = Gson()
+                    val findIdJson = gson.toJson(findIdResult)
+                    putString("Email", findIdJson)
 
+                }
+            })
+            addToBackStack(null)
+            commit()
         }
     }
 
