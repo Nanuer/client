@@ -1,17 +1,25 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentFindPwStep1Binding
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.timer
 
-class FindPwStep1Fragment : Fragment() {
+class FindPwStep1Fragment : Fragment(), UpdatePwView {
     var check = true
     var timerTask: Timer? = null
+    private lateinit var updatePwView: UpdatePwView
+    var certificationCode = ""
 
     lateinit var binding: FragmentFindPwStep1Binding
 
@@ -37,10 +45,13 @@ class FindPwStep1Fragment : Fragment() {
             binding.findPwStep1ResendMessageTv.visibility = View.VISIBLE
             binding.findPwStep1Timer.visibility = View.VISIBLE
             startTimer(2, 59)
+            getCode(binding.findPwStep1PhoneNumberEt.text.toString())
         }
 
         binding.findPwStep1ResendBtn.setOnClickListener {
             // ~재전송 처리~
+            init()
+            getCode(binding.findPwStep1PhoneNumberEt.text.toString())
 
             // visibility 처리
             binding.findPwStep1CorrectBtn.visibility = View.GONE
@@ -76,7 +87,6 @@ class FindPwStep1Fragment : Fragment() {
     }
 
     private fun init(){
-        binding.findPwStep1IdEt.setText(null)
         binding.findPwStep1PhoneNumberEt.setText(null)
         binding.findPwStep1CertificationCodeEt.setText(null)
 
@@ -113,4 +123,61 @@ class FindPwStep1Fragment : Fragment() {
             }
         }
     }
+
+    private fun upDatePw() {
+
+        val phoneNUmber : String = binding.findPwStep1PhoneNumberEt.text.toString()
+        val passWord : String = binding.findIdStep1UpdatePwEt.text.toString()
+
+        val authService = AuthService()
+        authService.setUpdatePview(this)
+        authService.upDatePw(phoneNUmber, passWord)
+    }
+
+
+
+    override fun onUpdatePwSuccess(result: UserPw) {
+        putInform(result)
+
+        binding.findPwStep1FindBtn.setOnClickListener {
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    override fun onUpdatePwFailure(code: Int, msg: String) {
+        Log.d("onUpdatePwFailure", "!!!!!")
+    }
+
+    private fun putInform(userPw: UserPw) {
+        arguments = Bundle().apply {
+            val gson = Gson()
+            val userPwJson = gson.toJson(userPw)
+            putString("password", userPwJson)
+
+        }
+    }
+
+    private fun getCode(phone:String){
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.getCode(phone).enqueue(object: Callback<GetCodeResponse> {
+            override fun onResponse(call: Call<GetCodeResponse>, response: Response<GetCodeResponse>
+            ) {
+                Log.d("CODE/SUCCESS", response.toString())
+                val resp: GetCodeResponse = response.body()!!
+                Log.d("CODE/SUCCESS", resp.toString())
+                when(resp.code){
+                    1000-> certificationCode=resp.result
+                    else -> {}
+                }
+            }
+            override fun onFailure(call: Call<GetCodeResponse>, t: Throwable) {
+                Log.d("GET/CODE/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+
+
 }

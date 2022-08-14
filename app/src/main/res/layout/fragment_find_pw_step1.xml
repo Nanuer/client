@@ -19,21 +19,7 @@
         android:layout_marginTop="28dp"
         />
 
-    <EditText
-        android:id="@+id/find_pw_step1_id_et"
-        style="@style/InputMid"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginHorizontal="35dp"
-        android:hint="아이디 (이메일) 입력"
-        android:inputType="text"
-        android:includeFontPadding="false"
-        android:paddingHorizontal="9dp"
-        android:background="@drawable/textline_bottom_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_message_tv" />
+
 
     <RelativeLayout
         android:id="@+id/find_pw_step1_phone_number_rl"
@@ -42,7 +28,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_id_et"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_message_tv"
         android:layout_marginHorizontal="35dp">
 
         <EditText
@@ -56,6 +42,8 @@
             android:hint="휴대폰 번호 (숫자만 입력)"
             android:inputType="text"
             android:paddingHorizontal="9dp" />
+
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/find_pw_step1_phone_number_void_btn"
@@ -169,6 +157,39 @@
             android:visibility="gone"/>
     </RelativeLayout>
 
+    <EditText
+        android:id="@+id/find_id_step1_updatePw_et"
+        style="@style/InputMid"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginHorizontal="35dp"
+        android:hint="새 비밀번호를 입력해주세요"
+        android:inputType="text"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="9dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_certification_code_rl"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/find_id_step1_pw_confirm_et"
+        style="@style/InputMid"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginHorizontal="35dp"
+        android:background="@drawable/textline_bottom_gray"
+        android:hint="입력한 비밀번호를 확인해주세요"
+        android:inputType="text"
+        android:paddingHorizontal="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/find_id_step1_updatePw_et"
+        android:visibility="gone"/>
+
 
 
     <TextView
@@ -208,7 +229,7 @@
         android:text="비밀번호 찾기"
         android:includeFontPadding="false"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/find_pw_step1_resend_message_tv"
+        app:layout_constraintTop_toBottomOf="@id/find_id_step1_pw_confirm_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="66dp"

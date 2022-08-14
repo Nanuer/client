@@ -10,6 +10,7 @@ class AuthService {
     private lateinit var loginView: LoginView
     private lateinit var findIdView: FindIdView
     private lateinit var getUserIdView: GetUserIdView
+    private lateinit var updatePwView: UpdatePwView
 
     fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
@@ -22,6 +23,8 @@ class AuthService {
     }
     fun setGetUserIdView(getUserIdView: GetUserIdView){
         this.getUserIdView = getUserIdView
+    fun setUpdatePview(updatePwView: UpdatePwView){
+        this.updatePwView = updatePwView
     }
 
     fun signUp(user : User){
@@ -62,15 +65,17 @@ class AuthService {
         })
     }
 
-    fun findId(user: User){
+    fun findId(phone:String){
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.findId(user).enqueue(object: Callback<FindIdResponse>{
+        authService.findId(phone).enqueue(object: Callback<FindIdResponse>{
             override fun onResponse(call: Call<FindIdResponse>, response: Response<FindIdResponse>) {
-                Log.d("LOGIN/SUCCESS", response.toString())
+                Log.d("FindId/SUCCESS", response.toString())
                 val resp: FindIdResponse = response.body()!!
-                Log.d("LOGIN/SUCCESS", resp.toString())
+                Log.d("FindId/SUCCESS", resp.toString())
                 when(val code = resp.code){
-                    1000-> findIdView.onFindIdSuccess(code, resp.result)
+                    1000-> {
+                        findIdView.onFindIdSuccess(resp.result)
+                    }
                     else-> findIdView.onFindIdFailure(code, resp.message)
                 }
             }
@@ -82,22 +87,54 @@ class AuthService {
 
     }
 
-    fun getUserId(token:String){
+    fun getUserId(token:String) {
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.getUserId(token).enqueue(object: Callback<NormalResponse>{
-            override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
+        authService.getUserId(token).enqueue(object : Callback<NormalResponse> {
+            override fun onResponse(
+                call: Call<NormalResponse>,
+                response: Response<NormalResponse>
+            ) {
                 Log.d("GETUSERID/SUCCESS", response.toString())
                 val resp: NormalResponse = response.body()!!
                 Log.d("GETUSERID/SUCCESS", resp.toString())
-                when(val code = resp.code){
-                    1000-> getUserIdView.onGetUserIdSuccess(resp.result)
-                    else-> getUserIdView.onGetUserIdFailure(code, resp.message)
+                when (val code = resp.code) {
+                    1000 -> getUserIdView.onGetUserIdSuccess(resp.result)
+                    else -> getUserIdView.onGetUserIdFailure(code, resp.message)
                 }
             }
+
             override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
                 Log.d("GETUSERID/FAILURE", t.message.toString())
             }
 
         })
+    }
+
+    fun upDatePw(phone:String, password:String) {
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.upDatePw(phone, password).enqueue(object : Callback<UpdatePwResponse> {
+            override fun onResponse(
+                call: Call<UpdatePwResponse>,
+                response: Response<UpdatePwResponse>
+            ) {
+                Log.d("FindId/SUCCESS", response.toString())
+                val resp: UpdatePwResponse = response.body()!!
+                Log.d("FindId/SUCCESS", resp.toString())
+                when (val code = resp.code) {
+                    1000 -> {
+                        updatePwView.onUpdatePwSuccess(resp.result)
+
+                    }
+                    else -> updatePwView.onUpdatePwFailure(code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<UpdatePwResponse>, t: Throwable) {
+                Log.d("FindId/FAILURE", t.message.toString())
+            }
+
+        })
+
+    }
     }
 }
