@@ -4,26 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ScrollView
         android:id="@+id/post_sv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/post_footer_rl"
         android:layout_alignParentTop="true"
-        android:layout_above="@id/post_footer_rl">
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="-1dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            >
+            android:paddingHorizontal="20dp">
+
             <RelativeLayout
                 android:id="@+id/post_header_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:paddingVertical="13dp"
-                >
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/post_header_back_iv"
@@ -38,9 +41,9 @@
                     style="@style/BtnMid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/post_header_back_iv"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="19dp"
+                    android:layout_toEndOf="@id/post_header_back_iv"
                     android:includeFontPadding="false"
                     android:text="게시글"
                     android:textColor="@color/main_black" />
@@ -49,9 +52,8 @@
                     android:id="@+id/post_header_menu_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/menu"
                     android:layout_alignParentEnd="true"
-                    />
+                    android:src="@drawable/menu" />
             </RelativeLayout>
 
             <TextView
@@ -59,13 +61,13 @@
                 style="@style/TipSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
                 android:background="@drawable/gray_line"
                 android:includeFontPadding="false"
                 android:text="브런치"
                 android:textColor="@color/gray_dark_1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/post_header_rl"
-                android:layout_marginTop="18dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/post_header_rl" />
 
             <TextView
                 android:id="@+id/post_create_time_tv"
@@ -76,8 +78,8 @@
                 android:includeFontPadding="false"
                 android:text="2022-07-29 17:01"
                 android:textColor="@color/gray_light_3"
-                app:layout_constraintTop_toTopOf="@id/post_category_tv"
-                app:layout_constraintStart_toEndOf="@id/post_category_tv"/>
+                app:layout_constraintStart_toEndOf="@id/post_category_tv"
+                app:layout_constraintTop_toTopOf="@id/post_category_tv" />
 
             <TextView
                 android:id="@+id/post_recruit_tv"
@@ -89,8 +91,8 @@
                 android:includeFontPadding="false"
                 android:text="모집중"
                 android:textColor="@color/blue_dark_2"
-                app:layout_constraintTop_toTopOf="@id/post_category_tv"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/post_category_tv" />
 
 
             <TextView
@@ -98,21 +100,21 @@
                 style="@style/TitleMid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
                 android:includeFontPadding="false"
                 android:text="서브웨이 배달 시키실분"
                 android:textColor="@color/main_black"
-                app:layout_constraintTop_toBottomOf="@id/post_category_tv"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="17dp"/>
+                app:layout_constraintTop_toBottomOf="@id/post_category_tv" />
 
             <ImageView
                 android:id="@+id/post_profile_iv"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/profile"
-                app:layout_constraintTop_toBottomOf="@id/post_title_tv"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="15dp"/>
+                app:layout_constraintTop_toBottomOf="@id/post_title_tv" />
 
             <TextView
                 android:id="@+id/post_user_nickname_tv"
@@ -121,45 +123,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:text="사용자닉네임"
-                app:layout_constraintTop_toTopOf="@id/post_profile_iv"
                 app:layout_constraintBottom_toBottomOf="@id/post_profile_iv"
                 app:layout_constraintStart_toEndOf="@id/post_profile_iv"
-                app:layout_goneMarginStart="13dp"/>
+                app:layout_constraintTop_toTopOf="@id/post_profile_iv"
+                app:layout_goneMarginStart="13dp" />
 
             <ImageView
                 android:id="@+id/post_heart_off_iv"
                 android:layout_width="27dp"
                 android:layout_height="23dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/heart_off"
-                app:layout_constraintTop_toTopOf="@id/post_profile_iv"
                 app:layout_constraintBottom_toBottomOf="@id/post_profile_iv"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                />
+                app:layout_constraintTop_toTopOf="@id/post_profile_iv" />
 
             <ImageView
                 android:id="@+id/post_heart_on_iv"
                 android:layout_width="27dp"
                 android:layout_height="23dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/heart_on"
-                app:layout_constraintTop_toTopOf="@id/post_profile_iv"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/post_profile_iv"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                android:visibility="gone"/>
+                app:layout_constraintTop_toTopOf="@id/post_profile_iv" />
 
 
             <RelativeLayout
                 android:id="@+id/post_main_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/post_profile_iv"
                 android:layout_marginTop="17dp"
-                android:paddingVertical="20dp"
                 android:background="@drawable/textline_bottom_top_gray"
-                >
+                android:paddingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/post_profile_iv">
 
                 <TextView
                     android:id="@+id/post_content_tv"
@@ -194,8 +194,8 @@
                     android:layout_toEndOf="@id/post_clock_icon_iv"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray_dark_2"
-                    android:text="오늘 오후 7시" />
+                    android:text="오늘 오후 7시"
+                    android:textColor="@color/gray_dark_2" />
 
                 <ImageView
                     android:id="@+id/post_location_icon_iv"
@@ -216,14 +216,15 @@
                     android:layout_alignTop="@+id/post_location_icon_iv"
                     android:layout_alignBottom="@id/post_location_icon_iv"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="13dp"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray_dark_2"
-                    android:layout_marginEnd="13dp"
-                    android:text="학산소극장 앞" />
+                    android:text="학산소극장 앞"
+                    android:textColor="@color/gray_dark_2" />
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <RelativeLayout
         android:id="@+id/post_footer_rl"
         android:layout_width="match_parent"
