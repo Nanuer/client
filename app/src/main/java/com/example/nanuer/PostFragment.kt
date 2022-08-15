@@ -1,5 +1,6 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -36,6 +37,10 @@ class PostFragment : Fragment(), DeletePostView{
 
         binding.postHeaderMenuIv.setOnClickListener{view ->
             handlePopUp(view,post)
+        }
+
+        binding.postFooterChattingBtn.setOnClickListener {
+            startActivity(Intent(requireContext(),ChatActivity::class.java))
         }
 
         return binding.root
