@@ -14,6 +14,7 @@ import com.google.gson.Gson
 class ListFragment : Fragment(),GetPostsView,GetUserIdView{
     private lateinit var binding: FragmentListBinding
     private lateinit var listRVAdapter: ListRVAdapter
+    private var gson: Gson = Gson()
     var userId : String? = null
 //    private var listdatas = ArrayList<Post2>()
 
@@ -45,6 +46,13 @@ class ListFragment : Fragment(),GetPostsView,GetUserIdView{
 //                }
 //            })
 
+
+        binding.listSearchIv.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_fl, SearchFragment())
+                .commitAllowingStateLoss()
+        }
+
         return binding.root
     }
 
@@ -69,12 +77,20 @@ class ListFragment : Fragment(),GetPostsView,GetUserIdView{
         postService.setGetPostsView(this)
         postService.getPosts()
 
-        // 대학별 post 갖고오기
+        // 대학별 post 갖고오기 + 검색어로 결과 가져오기
 //        val jwt = getJwt()
 //        getUserId(jwt!!)
 //        val postService = PostService()
 //        postService.setGetPostsView(this)
-//        postService.getPostsByUnivAndQuery(userId)
+//
+//        val searchJson = arguments?.getString("searchData")
+//        if(searchJson!=null){
+//            val searchData = gson.fromJson(searchJson, String::class.java)
+//            postService.getPostsByUnivAndQuery(userId, searchData)
+//            Log.d("aa",searchData)
+//        }else{
+//            postService.getPostsByUnivAndQuery(userId)
+//        }
     }
 
     private fun initRecyclerView(result:PostResult){
