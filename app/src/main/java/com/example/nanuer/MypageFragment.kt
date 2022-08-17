@@ -23,6 +23,12 @@ class MypageFragment : Fragment(){
 //            logout()
             activity?.finish()
         }
+        binding.mypageMypostRl.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_fl, MyPostsFragment())
+                .commitAllowingStateLoss()
+        }
+
         return binding.root
     }
 

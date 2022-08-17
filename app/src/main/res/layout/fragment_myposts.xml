@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/myposts_header_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/myposts_header_title_tv"
+            style="@style/TitleMid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:includeFontPadding="false"
+            android:text="내가 쓴 글"
+            android:textColor="@color/main_black" />
+
+        <TextView
+            android:id="@+id/myposts_header_num_tv"
+            style="@style/Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22건"
+            android:textColor="@color/blue_dark_2"
+            android:layout_toEndOf="@+id/myposts_header_title_tv"
+            android:includeFontPadding="false"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="11dp"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myposts_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myposts_header_rl"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/list_item"
+        android:background="@drawable/top_round"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
