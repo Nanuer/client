@@ -60,8 +60,8 @@ class LoginActivity : AppCompatActivity(), LoginView{
     }
 
     private fun init(){
-        binding.loginIdEt.setText(null)
-        binding.loginPwEt.setText(null)
+        binding.loginIdEt.text = null
+        binding.loginPwEt.text = null
         binding.loginWarningTv.visibility = View.GONE
     }
 
@@ -84,5 +84,4 @@ class LoginActivity : AppCompatActivity(), LoginView{
             }
         }
     }
-
 }

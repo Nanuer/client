@@ -35,33 +35,47 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         }
 
         binding.signupSendNumberBtn.setOnClickListener {
-            binding.signupSendNumberBtn.visibility = View.GONE
-            binding.signupResendBtn.visibility = View.VISIBLE
-            binding.signupCertificationCodeRl.visibility = View.VISIBLE
-            binding.signupResendMessageTv.visibility = View.VISIBLE
-            binding.signupTimer.visibility = View.VISIBLE
-            startTimer(2, 59)
-            getCode(binding.signupPhoneNumberEt.text.toString())
+            handleSendBtn()
         }
 
         binding.signupResendBtn.setOnClickListener {
-            // ~재전송 처리~
-            getCode(binding.signupPhoneNumberEt.text.toString())
-
-            // visibility 처리
-            binding.signupCorrectBtn.visibility = View.GONE
-            binding.signupNotCorrectBtn.visibility = View.GONE
-            binding.signupOkayBtn.visibility = View.VISIBLE
-
-            // timer reset
-            timerTask?.cancel()
-            startTimer(2, 59)
+            handleResendBtn()
         }
 
         binding.signupOkayBtn.setOnClickListener {
             handleCode()
         }
 
+        handleTerms()
+
+        handleSpinner()
+    }
+
+    private fun handleSendBtn(){
+        binding.signupSendNumberBtn.visibility = View.GONE
+        binding.signupResendBtn.visibility = View.VISIBLE
+        binding.signupCertificationCodeRl.visibility = View.VISIBLE
+        binding.signupResendMessageTv.visibility = View.VISIBLE
+        binding.signupTimer.visibility = View.VISIBLE
+        startTimer(2, 59)
+        getCode(binding.signupPhoneNumberEt.text.toString())
+    }
+
+    private fun handleResendBtn(){
+        // ~재전송 처리~
+        getCode(binding.signupPhoneNumberEt.text.toString())
+
+        // visibility 처리
+        binding.signupCorrectBtn.visibility = View.GONE
+        binding.signupNotCorrectBtn.visibility = View.GONE
+        binding.signupOkayBtn.visibility = View.VISIBLE
+
+        // timer reset
+        timerTask?.cancel()
+        startTimer(2, 59)
+    }
+
+    private fun handleTerms(){
         val listener = CompoundButton.OnCheckedChangeListener {buttonView, isChecked ->
             when(buttonView.id){
                 R.id.signup_terms_cb -> {
@@ -80,14 +94,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                 }
             }
         }
-
         binding.signupTermsCb.setOnCheckedChangeListener(listener)
         binding.signupTerm1Cb.setOnCheckedChangeListener(listener)
         binding.signupTerm2Cb.setOnCheckedChangeListener(listener)
         binding.signupTerm3Cb.setOnCheckedChangeListener(listener)
-
-
-        handleSpinner()
     }
 
     private fun handleSpinner(){
@@ -130,7 +140,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         }
 
         if(binding.signupUnivSpinner.selectedItemPosition==0){
-            Toast.makeText(this,"대학교를 선택해주세요.ㅇ", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"대학교를 선택해주세요.", Toast.LENGTH_SHORT).show()
             return
         }
 

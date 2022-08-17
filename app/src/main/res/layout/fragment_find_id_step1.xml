@@ -23,7 +23,7 @@
 
         <RelativeLayout
             android:id="@+id/find_id_step1_phone_number_rl"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="37dp"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
