@@ -23,7 +23,6 @@
             android:layout_centerVertical="true"
             android:src="@drawable/back" />
 
-
         <TextView
             android:id="@+id/chat_personal_post_tv"
             style="@style/BtnMid"
@@ -32,7 +31,7 @@
             android:layout_alignStart="@id/chat_personal_back_iv"
             android:layout_centerInParent="true"
             android:layout_marginStart="32dp"
-            android:text="게시글"
+            android:text="서브웨이 배달 시키실 분"
             android:textColor="@color/main_black" />
 
         <ImageView
@@ -64,8 +63,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/chat_personal_bottom_rl"
         app:layout_constraintTop_toBottomOf="@id/chat_personal_message_tv"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-16dp"
+        android:paddingHorizontal="16dp"
         tools:listitem="@layout/chat_item"
         android:background="@drawable/gray_line"/>
 
@@ -80,7 +78,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageView
             android:id="@+id/chat_personal_plus_btn"
             android:layout_width="28dp"
             android:layout_height="28dp"
@@ -88,13 +86,12 @@
             android:layout_centerVertical="true"
             android:src="@drawable/plus" />
 
-
         <EditText
             android:id="@+id/chat_personal_write_et"
             android:layout_width="231dp"
             android:layout_height="40dp"
-            android:layout_toEndOf="@id/chat_personal_plus_btn"
             android:layout_marginStart="11dp"
+            android:layout_toEndOf="@id/chat_personal_plus_btn"
             android:background="@drawable/gray_btn" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -108,10 +105,6 @@
             android:background="#00ff0000"
             android:text="보내기"
             android:textColor="@color/blue_dark_1" />
-
-
-
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

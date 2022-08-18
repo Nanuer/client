@@ -14,7 +14,9 @@ class ChatActivity: AppCompatActivity(){
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        binding.chatPersonalBackIv.setOnClickListener{
+            finish()
+        }
     }
 
     override fun onDestroy() {
