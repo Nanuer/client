@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentPostBinding
@@ -63,9 +64,15 @@ class PostFragment : Fragment(), DeletePostView{
     }
 
     private fun deletePost(post_id:Int?){
+        val jwt = getJwt()
         val postService=PostService()
         postService.setDeletePostView(this)
-        postService.deletePost(post_id!!)
+        postService.deletePost(jwt!!, post_id!!)
+    }
+
+    private fun getJwt():String?{
+        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("Jwt","0")
     }
 
     private fun setInit(post:Post2){

@@ -5,14 +5,14 @@ import retrofit2.http.*
 
 interface PostRetrofitInterface {
     @GET("/post/all")
-    fun getPosts(): Call<PostResponse>
+    fun getPosts(@Header("X-AUTH-TOKEN")token : String): Call<PostResponse>
 
     @GET("/post")
-    fun getPostsByUnivAndQuery(@Query("user_id") user_id:Int, @Query("query") query: String?): Call<PostResponse>
+    fun getPostsByUnivAndQuery(@Header("X-AUTH-TOKEN")token : String, @Query("query") query: String?): Call<PostResponse>
 
     @POST("/post")
-    fun makePost(@Body post: Post): Call<NormalResponse>
+    fun makePost(@Header("X-AUTH-TOKEN")token : String, @Body post: Post): Call<NormalResponse>
 
     @PATCH("/post/{post_id}")
-    fun deletePost(@Path("post_id") post_id:Int): Call<NormalResponse>
+    fun deletePost(@Header("X-AUTH-TOKEN")token : String, @Path("post_id") post_id:Int): Call<NormalResponse>
 }

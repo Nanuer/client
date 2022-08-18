@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nanuer.databinding.FragmentListBinding
 import com.google.gson.Gson
 
-class ListFragment : Fragment(),GetPostsView,GetUserIdView{
+class ListFragment : Fragment(),GetPostsView{
     private lateinit var binding: FragmentListBinding
     private lateinit var listRVAdapter: ListRVAdapter
     private var gson: Gson = Gson()
-    var userId : String? = null
 //    private var listdatas = ArrayList<Post2>()
 
 
@@ -66,31 +65,24 @@ class ListFragment : Fragment(),GetPostsView,GetUserIdView{
         return spf!!.getString("Jwt","0")
     }
 
-    private fun getUserId(jwt:String){
-        val authService = AuthService()
-        authService.setGetUserIdView(this)
-        authService.getUserId(jwt)
-    }
-
     private fun getPosts(){
-        val postService = PostService()
-        postService.setGetPostsView(this)
-        postService.getPosts()
-
-        // 대학별 post 갖고오기 + 검색어로 결과 가져오기
-//        val jwt = getJwt()
-//        getUserId(jwt!!)
 //        val postService = PostService()
 //        postService.setGetPostsView(this)
-//
-//        val searchJson = arguments?.getString("searchData")
-//        if(searchJson!=null){
-//            val searchData = gson.fromJson(searchJson, String::class.java)
-//            postService.getPostsByUnivAndQuery(userId, searchData)
-//            Log.d("aa",searchData)
-//        }else{
-//            postService.getPostsByUnivAndQuery(userId)
-//        }
+//        postService.getPosts()
+
+        // 대학별 post 갖고오기 + 검색어로 결과 가져오기
+        val jwt = getJwt()
+        val postService = PostService()
+        postService.setGetPostsView(this)
+
+        val searchJson = arguments?.getString("searchData")
+        if(searchJson!=null){
+            val searchData = gson.fromJson(searchJson, String::class.java)
+            postService.getPostsByUnivAndQuery(jwt!!, searchData)
+            Log.d("aa",searchData)
+        }else{
+            postService.getPostsByUnivAndQuery(jwt!!, null)
+        }
     }
 
     private fun initRecyclerView(result:PostResult){
@@ -114,14 +106,6 @@ class ListFragment : Fragment(),GetPostsView,GetUserIdView{
                 }
             })
             .commitAllowingStateLoss()
-    }
-
-    override fun onGetUserIdSuccess(result: String) {
-        userId=result
-    }
-
-    override fun onGetUserIdFailure(code: Int, msg: String) {
-
     }
 
     override fun onGetPostsSuccess(result: PostResult) {

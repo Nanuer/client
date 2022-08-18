@@ -25,14 +25,12 @@ data class Post2(
     @SerializedName("menu")val menu:String,
     @SerializedName("total")val total:Int?=null,
     @SerializedName("location")val location:String?=null,
-    @SerializedName("time")val time:String,
-    @SerializedName("userEntity")val userEntity:UserEntity?=null,
-    @SerializedName("categoryEntity")val categoryEntity:CategoryEntity?=null,
-    @SerializedName("createdDate")val createdDate:String?=null,
-    @SerializedName("modifiedDate")val modifiedDate:String?=null,
     @SerializedName("cost_info")val cost_info:String?=null,
     @SerializedName("delivery_cost")val delivery_cost:String?=null,
-    @SerializedName("post_status")val post_status:Int?=null
+    @SerializedName("time")val time:String,
+    @SerializedName("post_status")val post_status:Int?=null,
+    @SerializedName("userEntity")val userEntity:UserEntity?=null,
+    @SerializedName("categoryEntity")val categoryEntity:CategoryEntity?=null,
 )
 
 data class UserEntity(
@@ -51,8 +49,6 @@ data class UserEntity(
     @SerializedName("userScore")val userScore:Int,
     @SerializedName("role")val role:String,
     @SerializedName("present")val present:Boolean,
-    @SerializedName("createdDate")val createdDate:String,
-    @SerializedName("modifiedDate")val modifiedDate:String
 )
 
 data class CategoryEntity(

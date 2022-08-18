@@ -16,9 +16,9 @@ class MypageService {
         this.getHeartPostsView = getHeartPostsView
     }
 
-    fun getMyPosts(email : String){
+    fun getMyPosts(jwt : String){
         val mypageService = getRetrofit().create(MypageRetrofitInterface::class.java)
-        mypageService.getMyPosts(email).enqueue(object: Callback<PostResponse> {
+        mypageService.getMyPosts(jwt).enqueue(object: Callback<PostResponse> {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.d("GETMYPOSTS/SUCCESS", response.toString())
                 val resp: PostResponse = response.body()!!
@@ -35,9 +35,9 @@ class MypageService {
         })
     }
 
-    fun getHeartPosts(email : String){
+    fun getHeartPosts(jwt : String){
         val mypageService = getRetrofit().create(MypageRetrofitInterface::class.java)
-        mypageService.getHeartPosts(email).enqueue(object: Callback<PostResponse> {
+        mypageService.getHeartPosts(jwt).enqueue(object: Callback<PostResponse> {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.d("GETHEARTPOSTS/SUCCESS", response.toString())
                 val resp: PostResponse = response.body()!!

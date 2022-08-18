@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nanuer.databinding.FragmentMypostsBinding
@@ -24,13 +25,19 @@ class MyPostsFragment : Fragment(),GetMyPostsView{
 
     override fun onStart() {
         super.onStart()
-//        getMyPosts()
+        getMyPosts()
     }
 
-    private fun getMyPosts(email:String){
+    private fun getMyPosts(){
+        val jwt = getJwt()
         val myPageService = MypageService()
         myPageService.setGetMyPostsView(this)
-        myPageService.getMyPosts(email)
+        myPageService.getMyPosts(jwt!!)
+    }
+
+    private fun getJwt():String?{
+        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("Jwt","0")
     }
 
     private fun initRecyclerView(postList:PostResult){

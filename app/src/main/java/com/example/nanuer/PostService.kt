@@ -20,9 +20,9 @@ class PostService {
         this.deletePostView = deletePostView
     }
 
-    fun makePost(post:Post){
+    fun makePost(jwt:String, post:Post){
         val postService = getRetrofit().create(PostRetrofitInterface::class.java)
-        postService.makePost(post).enqueue(object: Callback<NormalResponse> {
+        postService.makePost(jwt, post).enqueue(object: Callback<NormalResponse> {
             override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
                 Log.d("MAKEPOST/SUCCESS", response.toString())
                 val resp: NormalResponse = response.body()!!
@@ -38,9 +38,9 @@ class PostService {
         })
     }
 
-    fun getPosts(){
+    fun getPosts(jwt:String){
         val postService = getRetrofit().create(PostRetrofitInterface::class.java)
-        postService.getPosts().enqueue(object: Callback<PostResponse> {
+        postService.getPosts(jwt).enqueue(object: Callback<PostResponse> {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.d("GETPOSTS/SUCCESS", response.toString())
                 val resp: PostResponse = response.body()!!
@@ -51,14 +51,14 @@ class PostService {
                 }
             }
             override fun onFailure(call: Call<PostResponse>, t: Throwable) {
-                Log.d("GETPOST/FAILURE", t.message.toString())
+                Log.d("GETPOSTS/FAILURE", t.message.toString())
             }
         })
     }
 
-    fun getPostsByUnivAndQuery(user_id:Int, query: String?){
+    fun getPostsByUnivAndQuery(jwt:String, query: String?){
         val postService = getRetrofit().create(PostRetrofitInterface::class.java)
-        postService.getPostsByUnivAndQuery(user_id, query).enqueue(object: Callback<PostResponse> {
+        postService.getPostsByUnivAndQuery(jwt, query).enqueue(object: Callback<PostResponse> {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.d("GETPOSTSBYUNIV/SUCCESS", response.toString())
                 val resp: PostResponse = response.body()!!
@@ -74,9 +74,9 @@ class PostService {
         })
     }
 
-    fun deletePost(post_id:Int){
+    fun deletePost(jwt:String, post_id:Int){
         val postService = getRetrofit().create(PostRetrofitInterface::class.java)
-        postService.deletePost(post_id).enqueue(object: Callback<NormalResponse> {
+        postService.deletePost(jwt, post_id).enqueue(object: Callback<NormalResponse> {
             override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
                 Log.d("DELETEPOST/SUCCESS", response.toString())
                 val resp: NormalResponse = response.body()!!

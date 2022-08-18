@@ -11,6 +11,5 @@ data class Post(
     @SerializedName(value="delivery_cost")val delivery_cost:String?=null,
     @SerializedName(value="location")val location:String?=null,
     @SerializedName(value="time")val time:String?=null,
-    @SerializedName(value="user_id")val user_id:Int?=3,
     @SerializedName(value="category_id")val category_id:Int?=1
 )
