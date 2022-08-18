@@ -53,7 +53,6 @@
 거래가 확정되면 아래 거래확정 버튼을 눌러주세요"
         android:gravity="center_horizontal"
         android:textColor="@color/main_black"
-        android:letterSpacing="-0.01"
         app:layout_constraintTop_toBottomOf="@id/chat_personal_header_rl"/>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -67,5 +67,20 @@
                 android:background="@null"
                 android:layout_weight="1"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dialog_category_row3_ll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/dialog_category_btn5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="기타"
+                android:background="@null"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

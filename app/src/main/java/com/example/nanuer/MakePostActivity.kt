@@ -49,6 +49,7 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
                 R.id.dialog_category_btn2 -> categoryTv.text = "식재료"
                 R.id.dialog_category_btn3 -> categoryTv.text = "택시"
                 R.id.dialog_category_btn4 -> categoryTv.text = "구독"
+                R.id.dialog_category_btn5 -> categoryTv.text = "기타"
             }
             mAlertDialog.dismiss()
         }
@@ -57,11 +58,13 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
         val btn2 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn2)
         val btn3 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn3)
         val btn4 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn4)
+        val btn5 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn5)
 
         btn1.setOnClickListener(onClickListener)
         btn2.setOnClickListener(onClickListener)
         btn3.setOnClickListener(onClickListener)
         btn4.setOnClickListener(onClickListener)
+        btn5.setOnClickListener(onClickListener)
     }
 
     private fun handleTimeDialog(){
@@ -98,13 +101,35 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
     private fun makePost(){
         val title : String = binding.makePostTitleEt.text.toString()
         val content : String = binding.makePostContentEt.text.toString()
-        val delivery_cost : String = binding.makePostDeliveryCostEt.text.toString()
-        val time : String = binding.makePostFooterTimeTv.toString()
+        val deliveryCost : String = binding.makePostDeliveryCostEt.text.toString()
+        val time : String = binding.makePostFooterTimeTv.text.toString()
+        val categoryId = getCategoryId(binding.makePostCategoryTv.text.toString())
+        val location = binding.makePostLocationEt.text.toString()
+
+        val jwt=getJwt()
 
         val postService=PostService()
         postService.setPostView(this)
-        postService.makePost(Post(title=title,content=content,delivery_cost=delivery_cost,time=time))
+        postService.makePost(jwt!!, Post(title,content,deliveryCost,time,location,categoryId))
     }
+
+    private fun getJwt():String?{
+        val spf = this.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("jwt","0")
+    }
+
+    private fun getCategoryId(category:String):Int{
+        val categoryId = when(category){
+            "배달" -> 1
+            "식재료" -> 2
+            "택시" -> 3
+            "구독" -> 4
+            "기타" -> 5
+            else -> -1
+        }
+        return categoryId
+    }
+
 
     override fun onMakePostSuccess() {
         finish()

@@ -15,8 +15,6 @@ class ListFragment : Fragment(),GetPostsView{
     private lateinit var binding: FragmentListBinding
     private lateinit var listRVAdapter: ListRVAdapter
     private var gson: Gson = Gson()
-//    private var listdatas = ArrayList<Post2>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,27 +22,6 @@ class ListFragment : Fragment(),GetPostsView{
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentListBinding.inflate(inflater,container,false)
-
-
-//임시 데이터 API연결 안할 때 임시 사용
-//        listdatas.apply {
-//            add(Post2(title="서브웨이 시키실분",content = "오늘 오후 6시에 학산소극장에서 서브웨이 배달시킬분 구합니다 최소금액은 15000원이라 7000원 이상 주문하셔야해요 배달비는 3000원이고 거래는 계좌이체로 진행합니다",menu="브런치",time = "오늘 오후 7시"))
-//            add(Post2(title="맥도날드 시키실분",content ="오늘 오후 6시에 학산소극장에서 맥도날드 배달시킬분 구합니다 최소금액은 15000원이라 7000원 이상 주문하셔야해요 배달비는 3000원이고 거래는 계좌이체로 진행합니다",menu="햄버거",time = "오늘 오후 5시"))
-//            add(Post2(title="버거킹 시키실분",content ="오늘 오후 6시에 학산소극장에서 버거킹 배달시킬분 구합니다 최소금액은 15000원이라 7000원 이상 주문하셔야해요 배달비는 3000원이고 거래는 계좌이체로 진행합니다",menu="햄버거",time = "오늘 오후 1시"))
-//            add(Post2(title="플랜비 시키실분",content ="오늘 오후 6시에 학산소극장에서 플랜비 배달시킬분 구합니다 최소금액은 15000원이라 7000원 이상 주문하셔야해요 배달비는 3000원이고 거래는 계좌이체로 진행합니다",menu="부리또",time = "오늘 오후 3시"))
-//            add(Post2(title="BBQ 시키실분",content ="오늘 오후 6시에 학산소극장에서 BBQ 배달시킬분 구합니다 최소금액은 15000원이라 7000원 이상 주문하셔야해요 배달비는 3000원이고 거래는 계좌이체로 진행합니다",menu="치킨",time = "오늘 오전 12시"))
-//        }
-//
-//        val listRVAdapter = ListRVAdapter(listdatas)
-//        binding.listRv.adapter = listRVAdapter
-//        binding.listRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-//
-//        listRVAdapter.setMyItemClickListener(object: ListRVAdapter.MyItemClickListener{
-//            override fun onItemClick(post: Post2) {
-//                    changePostFragment(post)
-//                }
-//            })
-
 
         binding.listSearchIv.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
@@ -62,7 +39,7 @@ class ListFragment : Fragment(),GetPostsView{
 
     private fun getJwt():String?{
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("Jwt","0")
+        return spf!!.getString("jwt","0")
     }
 
     private fun getPosts(){
@@ -74,6 +51,7 @@ class ListFragment : Fragment(),GetPostsView{
         val jwt = getJwt()
         val postService = PostService()
         postService.setGetPostsView(this)
+        Log.d("jwt", jwt!!)
 
         val searchJson = arguments?.getString("searchData")
         if(searchJson!=null){

@@ -19,7 +19,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     lateinit var binding: ActivitySignupBinding
     var timerTask: Timer? = null
     var certificationCode = ""
-    var univs = arrayOf("대학 선택", "숭실대", "인하대", "한양대 에리카")
+    var univs = arrayOf("대학 선택", "숭실대", "인하대", "한양대에리카")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

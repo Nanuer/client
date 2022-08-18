@@ -12,7 +12,7 @@ import com.google.gson.Gson
 
 class MyPostsFragment : Fragment(),GetMyPostsView{
     lateinit var binding: FragmentMypostsBinding
-    private lateinit var myPostsRVAdapter: ListRVAdapter
+    private lateinit var myPostsRVAdapter: MyPostsRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,14 +37,14 @@ class MyPostsFragment : Fragment(),GetMyPostsView{
 
     private fun getJwt():String?{
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("Jwt","0")
+        return spf!!.getString("jwt","0")
     }
 
     private fun initRecyclerView(postList:PostResult){
-        myPostsRVAdapter = ListRVAdapter(requireContext(), postList)
+        myPostsRVAdapter = MyPostsRVAdapter(requireContext(), postList)
         binding.mypostsRv.adapter = myPostsRVAdapter
         binding.mypostsRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-        myPostsRVAdapter.setMyItemClickListener(object: ListRVAdapter.MyItemClickListener{
+        myPostsRVAdapter.setMyItemClickListener(object: MyPostsRVAdapter.MyItemClickListener{
             override fun onItemClick(post: Post2) {
                 changePostFragment(post)
             }

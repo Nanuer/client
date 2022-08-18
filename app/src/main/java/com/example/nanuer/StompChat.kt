@@ -32,7 +32,7 @@ class StompChat {
     }
 
     fun subscribe(){
-        topic = stomp.join("/destination")
+        topic = stomp.join("/sub/channel/")
             .doOnError{error -> }
             .subscribe { Log.i("AA", it) }
     }

@@ -7,7 +7,7 @@ interface PostRetrofitInterface {
     @GET("/post/all")
     fun getPosts(@Header("X-AUTH-TOKEN")token : String): Call<PostResponse>
 
-    @GET("/post")
+    @GET("/post?query=")
     fun getPostsByUnivAndQuery(@Header("X-AUTH-TOKEN")token : String, @Query("query") query: String?): Call<PostResponse>
 
     @POST("/post")

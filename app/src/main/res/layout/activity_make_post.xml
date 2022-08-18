@@ -117,6 +117,19 @@
         android:background="@drawable/textline_bottom_gray"
         app:layout_constraintTop_toBottomOf="@id/make_post_content_et"
         />
+    <EditText
+        android:id="@+id/make_post_location_et"
+        style="@style/Regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="🗺 만나고자 하는 장소를 입력해주세요."
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintTop_toBottomOf="@id/make_post_link_et"
+        />
 
     <RelativeLayout
         android:id="@+id/make_post_footer_rl"

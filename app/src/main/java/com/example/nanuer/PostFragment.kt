@@ -41,7 +41,9 @@ class PostFragment : Fragment(), DeletePostView{
         }
 
         binding.postFooterChattingBtn.setOnClickListener {
-            startActivity(Intent(requireContext(),ChatActivity::class.java))
+            val intent = Intent(requireActivity(),ChatActivity::class.java)
+            intent.putExtra("postId",post.postId)
+            startActivity(intent)
         }
 
         return binding.root
@@ -76,16 +78,28 @@ class PostFragment : Fragment(), DeletePostView{
     }
 
     private fun setInit(post:Post2){
-        binding.postCategoryTv.text = post.menu
+        val category = getCategoryName(post.categoryEntity?.categoryId!!)
+        binding.postCategoryTv.text = category
         binding.postTitleTv.text = post.title
         binding.postContentTv.text = post.content
         binding.postTimeTv.text = post.time
         binding.postLocationTv.text = post.location
-        binding.postCreateTimeTv.text = post.createdDate
+        binding.postCreateTimeTv.text = post.created_date
         binding.postUserNicknameTv.text = post.userEntity?.nickName
 //        binding.postProfileIv.setImageResource(post.userEntity.profileImg)
         binding.postFooterDeliveryFeeTv.text = post.delivery_cost
+    }
 
+    private fun getCategoryName(categoryId:Int):String{
+        val category = when(categoryId){
+            1->"배달"
+            2->"식재료"
+            3->"택시"
+            4->"구독"
+            5->"기타"
+            else -> "기타"
+        }
+        return category
     }
 
     override fun onDeletePostSuccess() {
