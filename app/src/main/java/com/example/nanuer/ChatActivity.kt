@@ -2,6 +2,7 @@ package com.example.nanuer
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.system.Os.socket
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nanuer.databinding.ActivityChatBinding
 
