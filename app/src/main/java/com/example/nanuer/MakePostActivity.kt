@@ -40,20 +40,15 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
     private fun handleCategoryDialog(){
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_category, null)
         val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
-        val  mAlertDialog = mBuilder.show()
+        val mAlertDialog = mBuilder.show()
 
         val onClickListener = View.OnClickListener { view ->
             val categoryTv = binding.makePostCategoryTv
             when (view.id) {
-                R.id.dialog_category_btn1 -> categoryTv.text = "한식"
-                R.id.dialog_category_btn2 -> categoryTv.text = "양식"
-                R.id.dialog_category_btn3 -> categoryTv.text = "중식"
-                R.id.dialog_category_btn4 -> categoryTv.text = "일식"
-                R.id.dialog_category_btn5 -> categoryTv.text = "치킨"
-                R.id.dialog_category_btn6 -> categoryTv.text = "디저트"
-                R.id.dialog_category_btn7 -> categoryTv.text = "회"
-                R.id.dialog_category_btn8 -> categoryTv.text = "아시안"
-                R.id.dialog_category_btn9 -> categoryTv.text = "기타"
+                R.id.dialog_category_btn1 -> categoryTv.text = "배달"
+                R.id.dialog_category_btn2 -> categoryTv.text = "식재료"
+                R.id.dialog_category_btn3 -> categoryTv.text = "택시"
+                R.id.dialog_category_btn4 -> categoryTv.text = "구독"
             }
             mAlertDialog.dismiss()
         }
@@ -62,21 +57,11 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
         val btn2 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn2)
         val btn3 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn3)
         val btn4 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn4)
-        val btn5 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn5)
-        val btn6 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn6)
-        val btn7 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn7)
-        val btn8 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn8)
-        val btn9 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn9)
 
         btn1.setOnClickListener(onClickListener)
         btn2.setOnClickListener(onClickListener)
         btn3.setOnClickListener(onClickListener)
         btn4.setOnClickListener(onClickListener)
-        btn5.setOnClickListener(onClickListener)
-        btn6.setOnClickListener(onClickListener)
-        btn7.setOnClickListener(onClickListener)
-        btn8.setOnClickListener(onClickListener)
-        btn9.setOnClickListener(onClickListener)
     }
 
     private fun handleTimeDialog(){
