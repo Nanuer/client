@@ -14,9 +14,10 @@ import com.example.nanuer.databinding.FragmentPostBinding
 import com.google.gson.Gson
 
 
-class PostFragment : Fragment(), DeletePostView{
+class PostFragment : Fragment(), DeletePostView, GetUserIdView{
     lateinit var binding: FragmentPostBinding
     private var gson:Gson = Gson()
+    private var userId = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +25,8 @@ class PostFragment : Fragment(), DeletePostView{
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPostBinding.inflate(inflater,container,false)
+
+//        getUserId()
 
         val postJson = arguments?.getString("post")
         val post = gson.fromJson(postJson, Post2::class.java)
@@ -37,7 +40,8 @@ class PostFragment : Fragment(), DeletePostView{
         }
 
         binding.postHeaderMenuIv.setOnClickListener{view ->
-            handlePopUp(view,post)
+            if(userId==post.userEntity?.userId) handleUserPopUp(view,post)
+            else handleNotUserPopUp(view)
         }
 
         binding.postFooterChattingBtn.setOnClickListener {
@@ -49,20 +53,42 @@ class PostFragment : Fragment(), DeletePostView{
         return binding.root
     }
 
-    private fun handlePopUp(view: View, post:Post2){
+    private fun handleUserPopUp(view: View, post:Post2){
         val popup = PopupMenu(requireContext(), view)
         popup.menuInflater.inflate(R.menu.post_popup_user, popup.menu)
         popup.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem): Boolean {
                 when (item.itemId) { // 메뉴 아이템에 따라 동작 다르게 하기
-                    R.id.change_completion -> Toast.makeText(requireContext(), "hello world!", Toast.LENGTH_LONG).show()
-//                    R.id.modify_post -> // updatePost(post.postId)
+                    R.id.change_completion -> Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
+                    R.id.modify_post -> Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()// updatePost(post.postId)
                     R.id.delete_post -> deletePost(post.postId)
                 }
                 return true
             }
         })
         popup.show()
+    }
+
+    private fun handleNotUserPopUp(view: View){
+        val popup = PopupMenu(requireContext(), view)
+        popup.menuInflater.inflate(R.menu.post_popup_not_user, popup.menu)
+        popup.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem): Boolean {
+                when (item.itemId) { // 메뉴 아이템에 따라 동작 다르게 하기
+                    R.id.report_post -> Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
+                    R.id.share_post -> Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
+                }
+                return true
+            }
+        })
+        popup.show()
+    }
+
+    private fun getUserId(){
+        val jwt = getJwt()
+        val authService = AuthService()
+        authService.setGetUserIdView(this)
+        authService.getUserId(jwt!!)
     }
 
     private fun deletePost(post_id:Int?){
@@ -110,6 +136,14 @@ class PostFragment : Fragment(), DeletePostView{
     }
 
     override fun onDeletePostFailure(code: Int, msg: String) {
+
+    }
+
+    override fun onGetUserIdSuccess(user_id: Int) {
+        userId=user_id
+    }
+
+    override fun onGetUserIdFailure(code: Int, msg: String) {
 
     }
 }
