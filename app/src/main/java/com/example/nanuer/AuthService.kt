@@ -90,13 +90,13 @@ class AuthService {
 
     fun getUserId(token:String) {
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.getUserId(token).enqueue(object : Callback<NormalResponse> {
+        authService.getUserId(token).enqueue(object : Callback<GetUserIdResponse> {
             override fun onResponse(
-                call: Call<NormalResponse>,
-                response: Response<NormalResponse>
+                call: Call<GetUserIdResponse>,
+                response: Response<GetUserIdResponse>
             ) {
                 Log.d("GETUSERID/SUCCESS", response.toString())
-                val resp: NormalResponse = response.body()!!
+                val resp: GetUserIdResponse = response.body()!!
                 Log.d("GETUSERID/SUCCESS", resp.toString())
                 when (val code = resp.code) {
                     1000 -> getUserIdView.onGetUserIdSuccess(resp.result)
@@ -104,7 +104,7 @@ class AuthService {
                 }
             }
 
-            override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
+            override fun onFailure(call: Call<GetUserIdResponse>, t: Throwable) {
                 Log.d("GETUSERID/FAILURE", t.message.toString())
             }
 

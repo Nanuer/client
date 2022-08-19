@@ -11,5 +11,5 @@ data class GetRoomAndUserIdResponse(
 
 data class GetRoomAndUserIdResult(
     @SerializedName(value="userId")val userId:Int,
-    @SerializedName(value="roomId")val roomId:Int,
+    @SerializedName(value="roomNumber")val roomNumber:Int,
 )

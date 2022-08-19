@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@id/chat_personal_bottom_rl"
         app:layout_constraintTop_toBottomOf="@id/chat_personal_message_tv"
         android:paddingHorizontal="16dp"
-        tools:listitem="@layout/chat_item"
+        tools:listitem="@layout/chat_left_item"
         android:background="@drawable/gray_line"/>
 
     <RelativeLayout

@@ -12,9 +12,9 @@ class ChatService {
         this.getRoomAndUserIdView = getRoomAndUserIdView
     }
 
-    fun getRoomIdAndUserId(postId:Int){
+    fun getRoomIdAndUserId(jwt:String, postId:Int){
         val ChatService = getRetrofit().create(ChatRetrofitInterface::class.java)
-        ChatService.getRoomIdAndUserId(postId).enqueue(object: Callback<GetRoomAndUserIdResponse> {
+        ChatService.getRoomIdAndUserId(jwt, postId).enqueue(object: Callback<GetRoomAndUserIdResponse> {
             override fun onResponse(call: Call<GetRoomAndUserIdResponse>, response: Response<GetRoomAndUserIdResponse>) {
                 Log.d("RoomAndUserId/SUCCESS", response.toString())
                 val resp: GetRoomAndUserIdResponse = response.body()!!
