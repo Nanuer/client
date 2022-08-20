@@ -106,7 +106,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             this, android.R.layout.simple_spinner_item, univs
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.setAdapter(adapter)
+        spinner.adapter = adapter
         spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 //                Log.d("TEST", univs[position])
@@ -122,15 +122,16 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     private fun getUser(): User{
         val email: String = binding.signupEmailEt.text.toString()
         val pw: String = binding.signupPwEt.text.toString()
+        val nickname : String = binding.signupNicknameEt.text.toString()
         val phoneNumber: String = binding.signupPhoneNumberEt.text.toString()
         val name : String = binding.signupNameEt.text.toString()
         val university : String = binding.signupUnivSpinner.selectedItem.toString()
-        return User(email,pw,name,phone=phoneNumber,university=university)
+        return User(email,pw,name,nickname,phoneNumber,university=university)
     }
 
     private fun signUp(){
-        if(binding.signupNameEt.text.isEmpty() || binding.signupEmailEt.text.isEmpty() || binding.signupPwEt.text.isEmpty()){
-            Toast.makeText(this,"이메일, 비밀번호 또는 이름을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
+        if(binding.signupNameEt.text.isEmpty() || binding.signupNicknameEt.text.isEmpty() || binding.signupEmailEt.text.isEmpty() || binding.signupPwEt.text.isEmpty()){
+            Toast.makeText(this,"이메일, 비밀번호, 이름 또는 닉네임을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 

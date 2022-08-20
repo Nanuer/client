@@ -61,6 +61,22 @@
             app:layout_constraintTop_toBottomOf="@id/signup_info_tv" />
 
         <EditText
+            android:id="@+id/signup_nickname_et"
+            style="@style/InputMid"
+            android:layout_width="330dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/textline_bottom_gray"
+            android:hint="닉네임"
+            android:inputType="text"
+            android:paddingHorizontal="20dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/main_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_name_et" />
+
+        <EditText
             android:id="@+id/signup_email_et"
             style="@style/InputMid"
             android:layout_width="330dp"
@@ -74,7 +90,7 @@
             android:textColor="@color/main_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/signup_name_et" />
+            app:layout_constraintTop_toBottomOf="@id/signup_nickname_et" />
 
         <EditText
             android:id="@+id/signup_pw_et"
@@ -470,7 +486,7 @@
             android:layout_height="43dp"
             android:text="가입하기"
             android:textColor="@color/white"
-            android:background="@drawable/blue_button"
+            android:background="@drawable/blue_button_on"
             android:includeFontPadding="false"
             app:layout_constraintTop_toBottomOf="@id/signup_terms_ll"
             app:layout_constraintStart_toStartOf="parent"
