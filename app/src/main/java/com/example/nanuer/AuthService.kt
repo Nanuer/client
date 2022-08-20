@@ -55,7 +55,7 @@ class AuthService {
                 val resp: LoginResponse = response.body()!!
                 Log.d("LOGIN/SUCCESS", resp.toString())
                 when(val code = resp.code){
-                    1000-> loginView.onLoginSuccess(code, resp.result)
+                    1000-> loginView.onLoginSuccess(code, resp.result, user.university!!)
                     else-> loginView.onLoginFailure(code, resp.message)
                 }
             }

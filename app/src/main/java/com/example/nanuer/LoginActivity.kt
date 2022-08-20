@@ -65,13 +65,15 @@ class LoginActivity : AppCompatActivity(), LoginView{
         binding.loginWarningTv.visibility = View.GONE
     }
 
-    override fun onLoginSuccess(code:Int, jwt:String) {
+    override fun onLoginSuccess(code:Int, jwt:String, university:String) {
         when(code){
             1000 -> {
                 binding.loginWarningTv.visibility = View.GONE
                 saveJwt(jwt)
                 init()
-                startActivity(Intent(this, MainActivity::class.java))
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("university", university)
+                startActivity(intent)
             }
         }
     }

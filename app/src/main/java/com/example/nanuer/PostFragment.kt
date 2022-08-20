@@ -26,6 +26,8 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
     ): View? {
         binding = FragmentPostBinding.inflate(inflater,container,false)
 
+        setUniv()
+
 //        getUserId()
 
         val postJson = arguments?.getString("post")
@@ -52,6 +54,10 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         }
 
         return binding.root
+    }
+    private fun setUniv(){
+        val university = arguments?.getString("university")
+        binding.postUserNicknameTv.text = university
     }
 
     private fun handleUserPopUp(view: View, post:Post2){

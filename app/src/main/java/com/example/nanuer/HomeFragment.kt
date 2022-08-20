@@ -47,6 +47,9 @@ class HomeFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+        setUniv()
+
 //        mapView = MapView(activity)
 //        binding.mapView.addView(mapView)
 
@@ -76,6 +79,11 @@ class HomeFragment : Fragment(){
 //            setMyCurrentLoc()
 //        }
         return binding.root
+    }
+
+    private fun setUniv(){
+        val university = arguments?.getString("university")
+        binding.homeUniversityNameTv.text = university
     }
 
     private fun setMyCurrentLoc(){

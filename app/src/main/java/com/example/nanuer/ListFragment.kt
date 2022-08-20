@@ -89,6 +89,7 @@ class ListFragment : Fragment(),GetPostsView{
     override fun onGetPostsSuccess(result: PostResult) {
         Log.d("size",result.postList.size.toString() )
         initRecyclerView(result)
+        binding.listNumberTv.text = "총 ${result.postList.size}건"
     }
 
     override fun onGetPostsFailure(code: Int, msg: String) {
