@@ -15,12 +15,12 @@ class LoginActivity : AppCompatActivity(), LoginView{
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loginForgetMessageTv.setOnClickListener {
+        binding.loginFindIdPwRl.setOnClickListener {
             init()
             startActivity(Intent(this, FindActivity::class.java))
         }
 
-        binding.loginSingUpBtn.setOnClickListener {
+        binding.loginSignUpRl.setOnClickListener {
             init()
             startActivity(Intent(this, SignUpActivity::class.java))
         }
@@ -29,9 +29,9 @@ class LoginActivity : AppCompatActivity(), LoginView{
             login()
         }
 
-        binding.loginTestBtn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+//        binding.loginTestBtn.setOnClickListener {
+//            startActivity(Intent(this, MainActivity::class.java))
+//        }
 
     }
 
