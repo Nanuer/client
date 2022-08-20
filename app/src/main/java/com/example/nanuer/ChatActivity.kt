@@ -33,6 +33,8 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
 
         imm=getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
+        setChatTitleHeaderMessage()
+
         getRoomAndUserId()
 
         binding.chatPersonalBackIv.setOnClickListener{
@@ -46,6 +48,12 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                 binding.chatPersonalWriteEt.text.clear()
             }
         }
+    }
+
+    private fun setChatTitleHeaderMessage(){
+        val title = intent.getStringExtra("title")
+        binding.chatPersonalTitleTv.text = title
+        binding.chatPersonalMessageTv.text = "‘${title}’ 채팅 방입니다.\n거래가 확정되면 아래 거래확정 버튼을 눌러주세요"
     }
 
     private fun hideKeyboard(){
@@ -131,7 +139,6 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
         Log.d("roomId UserID", "${userId}, ${roomId}")
 
         send("ENTER",roomId,userId,"")
-
     }
 
     override fun onGetRoomAndUserIdFailure(code: Int, msg: String) {

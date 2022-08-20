@@ -24,7 +24,7 @@
             android:src="@drawable/back" />
 
         <TextView
-            android:id="@+id/chat_personal_post_tv"
+            android:id="@+id/chat_personal_title_tv"
             style="@style/BtnMid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -38,12 +38,12 @@
         android:layout_marginStart="16dp"
         android:background="@drawable/gray_round"
         android:paddingHorizontal="20dp"/>
-    <TextView
-        android:id="@+id/chat_left_item_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="오후 1:32"
-        app:layout_constraintStart_toEndOf="@id/chat_left_item_chatting_tv"
-        app:layout_constraintBottom_toBottomOf="@id/chat_left_item_chatting_tv"
-        android:layout_marginStart="10dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/chat_left_item_time_tv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="오후 1:32"-->
+<!--        app:layout_constraintStart_toEndOf="@id/chat_left_item_chatting_tv"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/chat_left_item_chatting_tv"-->
+<!--        android:layout_marginStart="10dp"/>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

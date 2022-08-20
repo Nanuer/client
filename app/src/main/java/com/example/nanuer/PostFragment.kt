@@ -47,6 +47,7 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         binding.postFooterChattingBtn.setOnClickListener {
             val intent = Intent(requireActivity(),ChatActivity::class.java)
             intent.putExtra("postId",post.postId)
+            intent.putExtra("title",post.title)
             startActivity(intent)
         }
 
