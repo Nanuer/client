@@ -52,7 +52,7 @@ class ChatRVAdapter(private val userId: Int, private val chatList: ArrayList<Cha
             (holder as LeftViewHolder).userName.text = chatList[position].userId.toString()
             (holder as LeftViewHolder).msg.text = chatList[position].msg
         }else{
-            (holder as RightViewHolder).userName.text = chatList[position].userId.toString()
+//            (holder as RightViewHolder).userName.text = chatList[position].userId.toString()
             (holder as RightViewHolder).msg.text = chatList[position].msg
         }
     }
@@ -60,7 +60,7 @@ class ChatRVAdapter(private val userId: Int, private val chatList: ArrayList<Cha
     override fun getItemCount(): Int = chatList.size
 
     inner class RightViewHolder(val binding: ChatRightItemBinding): RecyclerView.ViewHolder(binding.root){
-        val userName = binding.chatRightItemUsernameTv
+//        val userName = binding.chatRightItemUsernameTv
         val msg = binding.chatRightItemChattingTv
     }
 
