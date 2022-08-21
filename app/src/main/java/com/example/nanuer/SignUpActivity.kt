@@ -124,14 +124,15 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         val pw: String = binding.signupPwEt.text.toString()
         val nickname : String = binding.signupNicknameEt.text.toString()
         val phoneNumber: String = binding.signupPhoneNumberEt.text.toString()
+        val birth: String = binding.signupBirthEt.text.toString()
         val name : String = binding.signupNameEt.text.toString()
         val university : String = binding.signupUnivSpinner.selectedItem.toString()
-        return User(email,pw,name,nickname,phoneNumber,university=university)
+        return User(email,pw,name,nickname,phoneNumber,birth,university=university)
     }
 
     private fun signUp(){
-        if(binding.signupNameEt.text.isEmpty() || binding.signupNicknameEt.text.isEmpty() || binding.signupEmailEt.text.isEmpty() || binding.signupPwEt.text.isEmpty()){
-            Toast.makeText(this,"이메일, 비밀번호, 이름 또는 닉네임을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
+        if(binding.signupNameEt.text.isEmpty() || binding.signupNicknameEt.text.isEmpty() || binding.signupEmailEt.text.isEmpty() || binding.signupPwEt.text.isEmpty()|| binding.signupBirthEt.text.isEmpty()){
+            Toast.makeText(this,"이메일, 비밀번호, 이름, 닉네임 또는 생년월일을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
