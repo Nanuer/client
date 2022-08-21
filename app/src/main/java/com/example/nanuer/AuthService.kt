@@ -10,6 +10,7 @@ class AuthService {
     private lateinit var loginView: LoginView
     private lateinit var findIdView: FindIdView
     private lateinit var getUserIdView: GetUserIdView
+    private lateinit var getUserInfoView: GetUserInfoView
     private lateinit var updatePwView: UpdatePwView
 
     fun setSignUpView(signUpView: SignUpView){
@@ -24,9 +25,13 @@ class AuthService {
     fun setGetUserIdView(getUserIdView: GetUserIdView) {
         this.getUserIdView = getUserIdView
     }
+    fun setGetUserInfoView(getUserInfoView: GetUserInfoView){
+        this.getUserInfoView = getUserInfoView
+    }
     fun setUpdatePview(updatePwView: UpdatePwView){
         this.updatePwView = updatePwView
     }
+
 
     fun signUp(user : User){
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
@@ -55,7 +60,7 @@ class AuthService {
                 val resp: LoginResponse = response.body()!!
                 Log.d("LOGIN/SUCCESS", resp.toString())
                 when(val code = resp.code){
-                    1000-> loginView.onLoginSuccess(code, resp.result, user.university!!)
+                    1000-> loginView.onLoginSuccess(code, resp.result)
                     else-> loginView.onLoginFailure(code, resp.message)
                 }
             }
@@ -83,9 +88,7 @@ class AuthService {
             override fun onFailure(call: Call<FindIdResponse>, t: Throwable) {
                 Log.d("FindId/FAILURE", t.message.toString())
             }
-
         })
-
     }
 
     fun getUserId(token:String) {
@@ -108,6 +111,27 @@ class AuthService {
                 Log.d("GETUSERID/FAILURE", t.message.toString())
             }
 
+        })
+    }
+
+    fun getUserInfo(token:String) {
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.getUserInfo(token).enqueue(object : Callback<GetUserInfoResponse> {
+            override fun onResponse(
+                call: Call<GetUserInfoResponse>,
+                response: Response<GetUserInfoResponse>
+            ) {
+                Log.d("GETUSERINFO/SUCCESS", response.toString())
+                val resp: GetUserInfoResponse = response.body()!!
+                Log.d("GETUSERINFO/SUCCESS", resp.toString())
+                when (val code = resp.code) {
+                    1000 -> getUserInfoView.onGetUserInfoSuccess(resp.result)
+                    else -> getUserInfoView.onGetUserInfoFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<GetUserInfoResponse>, t: Throwable) {
+                Log.d("GETUSERINFO/FAILURE", t.message.toString())
+            }
         })
     }
 

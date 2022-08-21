@@ -2,6 +2,7 @@ package com.example.nanuer
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -26,9 +27,7 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
     ): View? {
         binding = FragmentPostBinding.inflate(inflater,container,false)
 
-        setUniv()
-
-//        getUserId()
+        getUserId()
 
         val postJson = arguments?.getString("post")
         val post = gson.fromJson(postJson, Post2::class.java)
@@ -42,6 +41,7 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         }
 
         binding.postHeaderMenuIv.setOnClickListener{view ->
+            Log.d("TEST","${userId},${post.userEntity?.userId}")
             if(userId==post.userEntity?.userId) handleUserPopUp(view,post)
             else handleNotUserPopUp(view)
         }
@@ -54,10 +54,6 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         }
 
         return binding.root
-    }
-    private fun setUniv(){
-        val university = arguments?.getString("university")
-        binding.postUserNicknameTv.text = university
     }
 
     private fun handleUserPopUp(view: View, post:Post2){
@@ -107,7 +103,7 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
 
     private fun getJwt():String?{
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("Jwt","0")
+        return spf!!.getString("jwt","0")
     }
 
     private fun setInit(post:Post2){

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nanuer.databinding.FragmentListBinding
 import com.google.gson.Gson
 
-class ListFragment : Fragment(),GetPostsView{
+class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
     private lateinit var binding: FragmentListBinding
     private lateinit var listRVAdapter: ListRVAdapter
     private var gson: Gson = Gson()
@@ -22,6 +22,8 @@ class ListFragment : Fragment(),GetPostsView{
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentListBinding.inflate(inflater,container,false)
+
+//        getUserInfo()
 
         binding.listSearchIv.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
@@ -37,16 +39,19 @@ class ListFragment : Fragment(),GetPostsView{
         getPosts()
     }
 
+    private fun getUserInfo(){
+        val jwt = getJwt()
+        val authService = AuthService()
+        authService.setGetUserInfoView(this)
+        authService.getUserInfo(jwt!!)
+    }
+
     private fun getJwt():String?{
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return spf!!.getString("jwt","0")
     }
 
     private fun getPosts(){
-//        val postService = PostService()
-//        postService.setGetPostsView(this)
-//        postService.getPosts()
-
         // 대학별 post 갖고오기 + 검색어로 결과 가져오기
         val jwt = getJwt()
         val postService = PostService()
@@ -59,7 +64,7 @@ class ListFragment : Fragment(),GetPostsView{
             postService.getPostsByUnivAndQuery(jwt!!, searchData)
             Log.d("aa",searchData)
         }else{
-            postService.getPostsByUnivAndQuery(jwt!!, null)
+            postService.getPostsByUnivAndQuery(jwt!!, "")
         }
     }
 
@@ -93,6 +98,15 @@ class ListFragment : Fragment(),GetPostsView{
     }
 
     override fun onGetPostsFailure(code: Int, msg: String) {
+
+    }
+
+    override fun onGetUserInfoSuccess(userInfo: User) {
+        val university = userInfo.university
+        binding.listUniversityNameTv.text = university
+    }
+
+    override fun onGetUserInfoFailure(code: Int, msg: String) {
 
     }
 

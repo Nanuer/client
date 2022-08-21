@@ -16,8 +16,11 @@ interface AuthRetrofitInterface {
     @GET("/getEmail")
     fun findId(@Query("phone") phone:String): Call<FindIdResponse>
 
-    @GET("/user/info")
+    @GET("/user/userInfo")
     fun getUserId(@Header("X-AUTH-TOKEN")token : String): Call<GetUserIdResponse>
+
+    @GET("/user/Info")
+    fun getUserInfo(@Header("X-AUTH-TOKEN")token : String): Call<GetUserInfoResponse>
 
     @PATCH("/updatePw")
     fun upDatePw(@Field("phone") phone:String,

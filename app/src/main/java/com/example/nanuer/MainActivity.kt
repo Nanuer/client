@@ -8,7 +8,6 @@ import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
-    val university = intent.getStringExtra("university")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,22 +28,14 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.homeFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_fl, HomeFragment().apply {
-                            arguments = Bundle().apply {
-                                putString("university", university)
-                            }
-                        })
+                        .replace(R.id.main_fl, HomeFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
 
                 R.id.postFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_fl, ListFragment().apply {
-                            arguments = Bundle().apply {
-                                putString("university", university)
-                            }
-                        })
+                        .replace(R.id.main_fl, ListFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
