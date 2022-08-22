@@ -48,7 +48,14 @@ class HomeFragment : Fragment(), GetUserInfoView{
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-//        getUserInfo()
+        getUserInfo()
+        binding.homeSearchIv.setOnClickListener{
+            Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
+        }
+        binding.homeBellIv.setOnClickListener{
+            Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
+        }
+
 //        mapView = MapView(activity)
 //        binding.mapView.addView(mapView)
 

@@ -12,8 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:padding="20dp">
 
         <ImageView
             android:id="@+id/chat_personal_back_iv"
@@ -25,7 +24,8 @@
 
         <TextView
             android:id="@+id/chat_personal_title_tv"
-            style="@style/BtnMid"
+            style="@style/TitleMid"
+            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/chat_personal_back_iv"

@@ -11,7 +11,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingHorizontal="24dp"
+        android:padding="20dp"
         >
         <ImageView
             android:id="@+id/home_bachelor_cap_iv"
@@ -26,10 +26,11 @@
         <TextView
             android:id="@+id/home_university_name_tv"
             style="@style/TitleMid"
+            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/home_bachelor_cap_iv"
-            android:text="한양대 에리카"
+            android:text=""
             android:textColor="@color/main_black" />
         <ImageView
             android:id="@+id/home_search_iv"

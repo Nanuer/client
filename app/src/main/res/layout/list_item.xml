@@ -5,7 +5,7 @@
     android:paddingTop="11dp"
     android:paddingBottom="17dp"
     android:paddingHorizontal="22dp"
-    android:background="@drawable/textline_top_gray"
+    android:background="@drawable/textline_bottom_gray"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 

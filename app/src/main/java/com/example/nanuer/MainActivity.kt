@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavigation(){
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_fl, HomeFragment())
+            .replace(R.id.main_fl, ListFragment())
             .commitAllowingStateLoss()
 
         binding.mainBnv.setOnItemSelectedListener{ item ->
@@ -40,22 +40,22 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.chatFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_fl, ChatFragment())
-                        .commitAllowingStateLoss()
-                    return@setOnItemSelectedListener true
-                }
+//                R.id.chatFragment -> {
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.main_fl, ChatFragment())
+//                        .commitAllowingStateLoss()
+//                    return@setOnItemSelectedListener true
+//                }
                 R.id.mypageFragment -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_fl, MypageFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
-                R.id.makePostActivity -> {
-                    startActivity(Intent(this,MakePostActivity::class.java))
-                    return@setOnItemSelectedListener true
-                }
+//                R.id.makePostActivity -> {
+//                    startActivity(Intent(this,MakePostActivity::class.java))
+//                    return@setOnItemSelectedListener true
+//                }
             }
             false
         }

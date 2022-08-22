@@ -2,29 +2,17 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/homeFragment"
-        android:icon="@drawable/home"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:title="홈"
-        tools:ignore="AlwaysShowAction" />
+
     <item
         android:id="@+id/postFragment"
-        android:icon="@drawable/post"
+        android:icon="@drawable/home"
         app:showAsAction="always"
-        android:title="게시글" />
+        android:title="홈" />
     <item
-        android:id="@+id/makePostActivity"
-        android:icon="@drawable/plus"
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/map2"
         app:showAsAction="always"
-        android:title=""
-        />
-    <item
-        android:id="@+id/chatFragment"
-        android:icon="@drawable/chat"
-        app:showAsAction="always"
-        android:title="채팅" />
+        android:title="지도" />
     <item
         android:id="@+id/mypageFragment"
         android:icon="@drawable/mypage"

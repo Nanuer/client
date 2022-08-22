@@ -1,5 +1,6 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,10 @@ class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
                 .commitAllowingStateLoss()
         }
 
+        binding.listAddPostIv.setOnClickListener{
+            startActivity(Intent(requireActivity(),MakePostActivity::class.java))
+        }
+
         return binding.root
     }
 
@@ -52,7 +57,7 @@ class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
         val category5 = binding.listCategory5Tv
 
         category1.setTextColor(Color.parseColor("#000000"))
-        category1.setBackgroundResource(R.drawable.textline_bottom_gray)
+        category1.setBackgroundResource(R.drawable.textline_bottom_gray_bold)
 
         val categories = arrayListOf<TextView>(category1,category2,category3,category4,category5)
 
@@ -61,7 +66,7 @@ class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
                 for(j:Int in 0..4){
                     if(j==i) {
                         categories[j].setTextColor(Color.parseColor("#000000"))
-                        categories[j].setBackgroundResource(R.drawable.textline_bottom_gray)
+                        categories[j].setBackgroundResource(R.drawable.textline_bottom_gray_bold)
                     } else{
                         categories[j].setTextColor(Color.parseColor("#767676"))
                         categories[j].setBackgroundResource(android.R.color.transparent)

@@ -10,7 +10,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingHorizontal="20dp">
+        android:padding="20dp">
 
         <ImageView
             android:id="@+id/search_back_iv"
@@ -23,6 +23,7 @@
         <EditText
             android:id="@+id/search_et"
             style="@style/InputMid"
+            android:includeFontPadding="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/search_back_iv"
@@ -37,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="확인"
+            android:includeFontPadding="false"
             android:textColor="@color/blue_dark_2"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>

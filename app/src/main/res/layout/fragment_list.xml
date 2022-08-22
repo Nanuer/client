@@ -12,7 +12,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:paddingHorizontal="24dp">
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/list_bachelor_iv"
@@ -26,6 +26,7 @@
             <TextView
                 android:id="@+id/list_university_name_tv"
                 style="@style/TitleMid"
+                android:includeFontPadding="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/list_bachelor_iv"
@@ -59,13 +60,14 @@
             app:layout_constraintTop_toBottomOf="@id/list_header_rl"
             android:orientation="horizontal"
             android:weightSum="5"
+            android:background="@drawable/textline_bottom_gray"
             >
             <TextView
                 android:id="@+id/list_category1_tv"
                 style="@style/Regular"
                 android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="배달"
                 android:gravity="center"
                 android:layout_weight="1" />
@@ -74,7 +76,7 @@
                 style="@style/Regular"
                 android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="식재료"
                 android:gravity="center"
                 android:layout_weight="1" />
@@ -83,7 +85,7 @@
                 style="@style/Regular"
                 android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="택시"
                 android:gravity="center"
                 android:layout_weight="1" />
@@ -92,7 +94,7 @@
                 style="@style/Regular"
                 android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="구독"
                 android:gravity="center"
                 android:layout_weight="1" />
@@ -101,7 +103,7 @@
                 style="@style/Regular"
                 android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="기타"
                 android:gravity="center"
                 android:layout_weight="1" />
@@ -114,5 +116,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/list_categories_ll"
         tools:listitem="@layout/list_item" />
+    <ImageView
+        android:id="@+id/list_add_post_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/list_rv"
+        app:layout_constraintBottom_toBottomOf="@id/list_rv"
+        android:src="@drawable/add_post"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
