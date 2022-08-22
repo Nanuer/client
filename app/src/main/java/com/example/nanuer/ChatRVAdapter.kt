@@ -46,8 +46,7 @@ class ChatRVAdapter(private val userId: Int, private val chatList: ArrayList<Cha
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is CenterViewHolder){
-//            (holder as CenterViewHolder).msg.text = chatList[position].msg
-            (holder as CenterViewHolder).msg.text = "누군가가 들어가거나 나갔습니다."
+            (holder as CenterViewHolder).msg.text = chatList[position].msg
         }else if(holder is LeftViewHolder){
             (holder as LeftViewHolder).userName.text = chatList[position].userId.toString()
             (holder as LeftViewHolder).msg.text = chatList[position].msg

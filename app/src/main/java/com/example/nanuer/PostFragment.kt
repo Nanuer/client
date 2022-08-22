@@ -50,6 +50,7 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
             val intent = Intent(requireActivity(),ChatActivity::class.java)
             intent.putExtra("postId",post.postId)
             intent.putExtra("title",post.title)
+            intent.putExtra("userId",post.userEntity?.userId)
             startActivity(intent)
         }
 

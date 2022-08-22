@@ -44,6 +44,29 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/chat_deal_ll"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/chat_personal_header_rl"
+        android:weightSum="5"
+        android:visibility="gone">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_users_rv"
+            android:layout_weight="4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/chat_user_item"
+            android:orientation="horizontal" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chat_deal_ok_btn"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="거래확정"/>
+    </LinearLayout>
+
     <TextView
         style="@style/Regular"
         android:id="@+id/chat_personal_message_tv"
@@ -53,7 +76,7 @@
 거래가 확정되면 아래 거래확정 버튼을 눌러주세요"
         android:gravity="center_horizontal"
         android:textColor="@color/main_black"
-        app:layout_constraintTop_toBottomOf="@id/chat_personal_header_rl"/>
+        app:layout_constraintTop_toBottomOf="@id/chat_deal_ll"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_personal_rv"

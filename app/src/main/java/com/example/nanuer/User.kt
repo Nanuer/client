@@ -12,3 +12,11 @@ data class User(
     @SerializedName(value="profileImg")var profileImg:String? = null,
     @SerializedName(value="university")var university:String? = null
 )
+
+data class ChatUser(
+    @SerializedName(value="userId")var userId:Int? = null,
+    @SerializedName(value="nickName")var ninkName:String? = null,
+    @SerializedName(value="profileImg")var profileImg:String? = null,
+    @SerializedName(value="selected")var selected:Boolean? = false,
+
+)
