@@ -2,6 +2,7 @@ package com.example.nanuer
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nanuer.databinding.ListItemBinding
@@ -25,6 +26,15 @@ class ListRVAdapter(val context: Context, val postList: ArrayList<Post2>): Recyc
     override fun onBindViewHolder(holder: ListRVAdapter.ViewHolder, position: Int) {
         holder.bind(postList[position])
         holder.itemView.setOnClickListener{mItemClickListener.onItemClick(postList[position])}
+        holder.binding.listPostHeartOnTv.setOnClickListener{
+            holder.binding.listPostHeartOnTv.visibility = View.GONE
+            holder.binding.listPostHeartOffTv.visibility = View.VISIBLE
+        }
+        holder.binding.listPostHeartOffTv.setOnClickListener{
+            holder.binding.listPostHeartOnTv.visibility = View.VISIBLE
+            holder.binding.listPostHeartOffTv.visibility = View.GONE
+        }
+
     }
 
     override fun getItemCount(): Int = postList.size

@@ -21,14 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
          />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/list_post_heart_off_tv"-->
-<!--        android:layout_width="25dp"-->
-<!--        android:layout_height="21dp"-->
-<!--        android:src="@drawable/heart_off"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        app:layout_constraintTop_toTopOf="@id/list_post_distance_tv"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
     <ImageView
         android:id="@+id/list_post_heart_off_tv"
         style="@style/TipSmall"
@@ -38,6 +30,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="6dp"/>
+
+    <ImageView
+        android:id="@+id/list_post_heart_on_tv"
+        style="@style/TipSmall"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:src="@drawable/heart_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="6dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/list_post_title_tv"
