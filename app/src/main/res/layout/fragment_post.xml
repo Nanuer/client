@@ -10,9 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/post_footer_rl"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="-1dp">
+        android:layout_alignParentTop="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -62,9 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:background="@drawable/gray_line"
                 android:includeFontPadding="false"
-                android:text="브런치"
+                android:text="카테고리"
+                android:background="@drawable/textline_bottom_gray"
                 android:textColor="@color/gray_dark_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_header_rl" />
@@ -194,7 +192,6 @@
                     android:layout_toEndOf="@id/post_clock_icon_iv"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="오늘 오후 7시"
                     android:textColor="@color/gray_dark_2" />
 
                 <ImageView
@@ -219,7 +216,6 @@
                     android:layout_marginEnd="13dp"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="학산소극장 앞"
                     android:textColor="@color/gray_dark_2" />
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -246,16 +242,15 @@
             android:id="@+id/post_footer_delivery_fee_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="배달비 3,900원"
-            android:layout_centerInParent="true"
-            />
+            android:layout_centerInParent="true" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/post_footer_chatting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="채팅하기"
-            android:background="@drawable/blue_button"
+            android:background="@drawable/blue_button_on"
+            android:textColor="@color/white"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             />

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nanuer.databinding.ListItemBinding
 
-class ListRVAdapter(val context: Context, val result: PostResult): RecyclerView.Adapter<ListRVAdapter.ViewHolder>() {
+class ListRVAdapter(val context: Context, val postList: ArrayList<Post2>): RecyclerView.Adapter<ListRVAdapter.ViewHolder>() {
 
     interface MyItemClickListener{
         fun onItemClick(post: Post2)
@@ -23,17 +23,21 @@ class ListRVAdapter(val context: Context, val result: PostResult): RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ListRVAdapter.ViewHolder, position: Int) {
-        holder.bind(result.postList[position])
-        holder.itemView.setOnClickListener{mItemClickListener.onItemClick(result.postList[position])}
+        holder.bind(postList[position])
+        holder.itemView.setOnClickListener{mItemClickListener.onItemClick(postList[position])}
     }
 
-    override fun getItemCount(): Int = result.postList.size
+    override fun getItemCount(): Int = postList.size
 
     inner class ViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(post: Post2){
             binding.listPostTitleTv.text = post.title
-            binding.listPostMinuteTv.text = post.created_date
             binding.listPostTimeTv.text = post.time
+
+            val createdDate = post.created_date
+            val date = createdDate?.substring(0,10)
+            val time = createdDate?.substring(11,16)
+            binding.listPostMinuteTv.text = "${date} ${time}"
         }
     }
 }

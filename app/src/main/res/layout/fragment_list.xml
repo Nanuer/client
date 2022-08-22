@@ -51,94 +51,69 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/list_header_rl2"
+        <LinearLayout
+            android:id="@+id/list_categories_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/list_header_rl"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp">
-
+            android:orientation="horizontal"
+            android:weightSum="5"
+            >
             <TextView
-                android:id="@+id/list_number_tv"
+                android:id="@+id/list_category1_tv"
                 style="@style/Regular"
+                android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="총 25건"
-                android:textColor="@color/main_black"/>
-
+                android:text="배달"
+                android:gravity="center"
+                android:layout_weight="1" />
             <TextView
+                android:id="@+id/list_category2_tv"
                 style="@style/Regular"
-                android:id="@+id/list_class_tv"
+                android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최신순"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/list_down_iv"/>
-
-            <ImageView
-                android:id="@+id/list_down_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/down_list"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/list_header_rl3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_header_rl2"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp">
-
-            <ImageView
-                android:id="@+id/list_filter"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/filter"
-                android:layout_centerVertical="true"/>
-
+                android:text="식재료"
+                android:gravity="center"
+                android:layout_weight="1" />
             <TextView
-                android:id="@+id/list_category_tv"
-                style="@style/TipSmall"
+                android:id="@+id/list_category3_tv"
+                style="@style/Regular"
+                android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_toRightOf="@id/list_filter"
-                android:text="카테고리" />
-
-            <ImageView
-                android:id="@+id/list_check_on_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/check_on"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/list_hide_tv"/>
-
+                android:text="택시"
+                android:gravity="center"
+                android:layout_weight="1" />
             <TextView
-                android:id="@+id/list_hide_tv"
-                style="@style/BtnSmall"
+                android:id="@+id/list_category4_tv"
+                style="@style/Regular"
+                android:textColor="@color/gray_dark_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="모집마감 안보기"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-
-
+                android:text="구독"
+                android:gravity="center"
+                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/list_category5_tv"
+                style="@style/Regular"
+                android:textColor="@color/gray_dark_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타"
+                android:gravity="center"
+                android:layout_weight="1" />
+        </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/list_header_rl3"
+        app:layout_constraintTop_toBottomOf="@id/list_categories_ll"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/list_item" />

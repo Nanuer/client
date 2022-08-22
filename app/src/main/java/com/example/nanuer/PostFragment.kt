@@ -112,11 +112,22 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         binding.postTitleTv.text = post.title
         binding.postContentTv.text = post.content
         binding.postTimeTv.text = post.time
+        if(post.time == null){
+            binding.postClockIconIv.visibility = View.GONE
+        }
+        if(post.location == null){
+            binding.postLocationTv.visibility = View.GONE
+        }
         binding.postLocationTv.text = post.location
-        binding.postCreateTimeTv.text = post.created_date
         binding.postUserNicknameTv.text = post.userEntity?.nickName
 //        binding.postProfileIv.setImageResource(post.userEntity.profileImg)
-        binding.postFooterDeliveryFeeTv.text = post.delivery_cost
+        if(post.delivery_cost != null){
+            binding.postFooterDeliveryFeeTv.text = "배달비 ${post.delivery_cost}원"
+        }
+        val createdDate = post.created_date
+        val date = createdDate?.substring(0,10)
+        val time = createdDate?.substring(11,16)
+        binding.postCreateTimeTv.text = "${date} ${time}"
     }
 
     private fun getCategoryName(categoryId:Int):String{

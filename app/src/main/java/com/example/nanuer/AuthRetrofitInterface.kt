@@ -19,7 +19,7 @@ interface AuthRetrofitInterface {
     @GET("/user/userInfo")
     fun getUserId(@Header("X-AUTH-TOKEN")token : String): Call<GetUserIdResponse>
 
-    @GET("/user/Info")
+    @GET("/user/info")
     fun getUserInfo(@Header("X-AUTH-TOKEN")token : String): Call<GetUserInfoResponse>
 
     @PATCH("/updatePw")
