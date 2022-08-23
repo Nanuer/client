@@ -10,7 +10,7 @@ import com.example.nanuer.databinding.ChatCenterItemBinding
 import com.example.nanuer.databinding.ChatLeftItemBinding
 import com.example.nanuer.databinding.ChatRightItemBinding
 
-class ChatRVAdapter(private val context: Context, private val userId: Int, private val chatList: ArrayList<Chat>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class ChatRVAdapter(private val context: Context, private val userId: Int, private val chatList: ArrayList<Chat>, private val profileImg:String?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     interface MyItemClickListener{
         fun onItemClick(chat: Chat)
     }
@@ -52,7 +52,7 @@ class ChatRVAdapter(private val context: Context, private val userId: Int, priva
         }else if(holder is LeftViewHolder){
             (holder as LeftViewHolder).userName.text = chatList[position].nickName
             (holder as LeftViewHolder).msg.text = chatList[position].msg
-            Glide.with(context).load(chatList[position].profileImg).circleCrop().into((holder as LeftViewHolder).profileImg);
+            Glide.with(context).load(chatList[position].profileImg).error(R.drawable.profile).circleCrop().into((holder as LeftViewHolder).profileImg)
         }else{
 //            (holder as RightViewHolder).userName.text = chatList[position].userId.toString()
             (holder as RightViewHolder).msg.text = chatList[position].msg

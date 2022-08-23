@@ -3,12 +3,11 @@ package com.example.nanuer
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nanuer.databinding.ChatUserItemBinding
-import com.example.nanuer.databinding.ListItemBinding
+
 
 class ChatUserRVAdapter(private val context: Context, private val userList: ArrayList<ChatUser>): RecyclerView.Adapter<ChatUserRVAdapter.ViewHolder>(){
     interface MyItemClickListener{
@@ -68,14 +67,15 @@ class ChatUserRVAdapter(private val context: Context, private val userList: Arra
         }
     }
 
+
+
     override fun getItemCount(): Int = userList.size
 
     inner class ViewHolder(val binding: ChatUserItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(user: ChatUser){
             binding.chatUserItemUsernameTv.text = user.nickName
+            Glide.with(context).load(user.profileImg).error(R.drawable.profile).circleCrop().into(binding.chatUserItemProfileIv)
 
-            Glide.with(context).load(user.profileImg).circleCrop().into(binding.chatUserItemProfileIv);
-//            binding.chatUserItemProfileIv.setImageResource(user.profileImg)
         }
     }
 }

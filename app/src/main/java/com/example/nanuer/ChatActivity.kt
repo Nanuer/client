@@ -131,11 +131,12 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
         roomId = result.roomNumber
         userId = result.userId
         nickname = result.nickName
+        profileImg = result.profileImg
 
         val bossUserId = intent.getIntExtra("userId",0)
         setChatTitleHeaderMessage(userId,bossUserId)
 
-        chatRVAdapter = ChatRVAdapter(this, userId, chatDataList)
+        chatRVAdapter = ChatRVAdapter(this, userId, chatDataList, profileImg)
         binding.chatPersonalRv.adapter = chatRVAdapter
         binding.chatPersonalRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
             .apply {
