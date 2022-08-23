@@ -33,6 +33,8 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
     private var userList = ArrayList<ChatUser>()
     private var userId:Int = -1
     private var roomId:Int = -1
+    private var nickname:String = "미정"
+    private var profileImg:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,7 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
 
         binding.chatPersonalSendBtn.setOnClickListener{
             val msg = binding.chatPersonalWriteEt.text.toString()
-            send("TALK",roomId,userId,msg)
+            send("TALK",roomId,userId,msg,nickname,profileImg)
             if(binding.chatPersonalWriteEt.length() > 0){
                 binding.chatPersonalWriteEt.text.clear()
             }
@@ -75,12 +77,14 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
         imm?.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
 
-    private fun send(type:String, roomId:Int, sender:Int, data:String){
+    private fun send(type:String, roomId:Int, sender:Int, data:String, nickname:String, profileImg:String?){
         val jsonObject = JSONObject()
         jsonObject.put("type",type)
         jsonObject.put("roomId",roomId)
         jsonObject.put("sender",sender)
         jsonObject.put("data",data)
+        jsonObject.put("nickName",nickname)
+        jsonObject.put("profileImg",profileImg)
         val jsonString = jsonObject.toString()
         stomp.send("/pub/send", jsonString).subscribe {
             if(it){ }
@@ -111,14 +115,14 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
 
         registerBtn.setOnClickListener {
             val account = accountEt.text.toString()
-            send("QUIT",roomId,userId,"CONFIRM${account}")
+            send("QUIT",roomId,userId,"CONFIRM${account}",nickname,profileImg)
             mAlertDialog.dismiss()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        send("QUIT",roomId,userId,"${userId}님이 나갔습니다.")
+        send("QUIT",roomId,userId,"${nickname}님이 나갔습니다.",nickname,profileImg)
         topic.dispose()
         stompConnection.dispose()
     }
@@ -126,18 +130,19 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
     override fun onGetRoomAndUserIdSuccess(result: GetRoomAndUserIdResult) {
         roomId = result.roomNumber
         userId = result.userId
+        nickname = result.nickName
 
         val bossUserId = intent.getIntExtra("userId",0)
         setChatTitleHeaderMessage(userId,bossUserId)
 
-        chatRVAdapter = ChatRVAdapter(userId, chatDataList)
+        chatRVAdapter = ChatRVAdapter(this, userId, chatDataList)
         binding.chatPersonalRv.adapter = chatRVAdapter
         binding.chatPersonalRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
             .apply {
                 this.stackFromEnd = true	// 가장 최근의 대화를 표시하기 위해 맨 아래로 정렬.
             }
 
-        chatUserRVAdapter = ChatUserRVAdapter(userId, userList)
+        chatUserRVAdapter = ChatUserRVAdapter(this, userList)
         binding.chatUsersRv.adapter = chatUserRVAdapter
         binding.chatUsersRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
 
@@ -164,12 +169,13 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                 val data = chatObject.getString("data")
                 val userId = chatObject.getInt("sender")
                 val type = chatObject.getString("type")
+                val nickname = chatObject.getString("nickName")
+                val profileImg = chatObject.getString("profileImg")
                 Log.d("CHAT DATA", chatData.toString())
                 Log.d("MSG, USERID", "${data}, ${userId}")
-                Log.d("Adapter", chatRVAdapter.toString())
 
-                if(type=="ENTER"&&bossUserId!==userId){
-                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId)) }
+                if(type=="ENTER"&&bossUserId!=userId){
+                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId,ninkName=nickname,profileImg=profileImg)) }
                 }else if(type=="QUIT"){
                     if(data.substring(0 until 7)=="CONFIRM"&&bossUserId==userId){
                         val intent = Intent(this,AccountActivity::class.java)
@@ -191,14 +197,14 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                 }
 
                 runOnUiThread {
-                    chatRVAdapter.addItem(Chat(userId=userId,type=type,msg=data))
+                    chatRVAdapter.addItem(Chat(userId=userId,type=type,msg=data,nickName=nickname,profileImg=profileImg))
                 }
                 hideKeyboard()
                 Log.d("LIST", chatDataList.toString())
             }
         Log.d("roomId UserID", "${userId}, ${roomId}")
 
-        send("ENTER",roomId,userId,"${userId}님이 들어왔습니다.")
+        send("ENTER",roomId,userId,"${nickname}님이 들어왔습니다.",nickname,profileImg)
     }
 
     override fun onGetRoomAndUserIdFailure(code: Int, msg: String) {

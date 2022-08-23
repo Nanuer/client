@@ -12,8 +12,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/chat_left_item_profile_iv"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/profile" />
         <TextView
@@ -22,8 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
+            android:gravity="center"
+            android:layout_alignStart="@+id/chat_left_item_profile_iv"
+            android:layout_alignEnd="@+id/chat_left_item_profile_iv"
             android:layout_below="@+id/chat_left_item_profile_iv"
-            android:text="사용자1"/>
+            android:text="사용자"/>
     </RelativeLayout>
     <TextView
         android:id="@+id/chat_left_item_chatting_tv"
@@ -35,7 +38,7 @@
         app:layout_constraintTop_toTopOf="@id/chat_left_item_profile_rl"
         app:layout_constraintBottom_toBottomOf="@id/chat_left_item_profile_rl"
         app:layout_constraintStart_toEndOf="@id/chat_left_item_profile_rl"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:background="@drawable/gray_round"
         android:paddingHorizontal="20dp"/>
 <!--    <TextView-->

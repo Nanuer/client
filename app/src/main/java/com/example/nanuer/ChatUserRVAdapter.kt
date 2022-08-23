@@ -1,14 +1,16 @@
 package com.example.nanuer
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.nanuer.databinding.ChatUserItemBinding
 import com.example.nanuer.databinding.ListItemBinding
 
-class ChatUserRVAdapter(private val userId: Int, private val userList: ArrayList<ChatUser>): RecyclerView.Adapter<ChatUserRVAdapter.ViewHolder>(){
+class ChatUserRVAdapter(private val context: Context, private val userList: ArrayList<ChatUser>): RecyclerView.Adapter<ChatUserRVAdapter.ViewHolder>(){
     interface MyItemClickListener{
         fun onItemClick(chat: Chat)
     }
@@ -71,8 +73,9 @@ class ChatUserRVAdapter(private val userId: Int, private val userList: ArrayList
     inner class ViewHolder(val binding: ChatUserItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(user: ChatUser){
             binding.chatUserItemUsernameTv.text = user.ninkName
-            binding.chatUserItemUsernameTv.text = user.userId.toString()
-//            binding.chatUserItemProfileIv.setImageResource()
+
+            Glide.with(context).load(user.profileImg).circleCrop().into(binding.chatUserItemProfileIv);
+//            binding.chatUserItemProfileIv.setImageResource(user.profileImg)
         }
     }
 }

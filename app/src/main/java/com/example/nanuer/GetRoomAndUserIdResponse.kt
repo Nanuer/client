@@ -12,4 +12,6 @@ data class GetRoomAndUserIdResponse(
 data class GetRoomAndUserIdResult(
     @SerializedName(value="userId")val userId:Int,
     @SerializedName(value="roomNumber")val roomNumber:Int,
+    @SerializedName(value="profileImg")val profileImg:String?=null,
+    @SerializedName(value="nickName")val nickName:String,
 )

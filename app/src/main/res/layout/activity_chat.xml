@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textColor="@color/main_black"
+        android:background="@drawable/textline_bottom_top_gray"
         app:layout_constraintTop_toBottomOf="@id/chat_personal_header_rl"/>
 
     <RelativeLayout
@@ -113,22 +114,25 @@
 
         <EditText
             android:id="@+id/chat_personal_write_et"
-            android:layout_width="231dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginStart="11dp"
+            android:layout_marginHorizontal="11dp"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@id/chat_personal_plus_btn"
+            android:layout_toStartOf="@id/chat_personal_send_btn"
             android:background="@drawable/gray_btn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chat_personal_send_btn"
             style="@style/Regular"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/chat_personal_write_et"
-            android:background="#00ff0000"
+
+            android:background="@drawable/blue_rectangle"
             android:text="보내기"
+            android:includeFontPadding="false"
             android:textColor="@color/blue_dark_1" />
     </RelativeLayout>
 
