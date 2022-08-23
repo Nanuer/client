@@ -10,21 +10,20 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/chat_left_item_profile_iv"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/profile" />
         <TextView
             android:id="@+id/chat_left_item_username_tv"
             style="@style/TipSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:gravity="center"
-            android:layout_alignStart="@+id/chat_left_item_profile_iv"
-            android:layout_alignEnd="@+id/chat_left_item_profile_iv"
             android:layout_below="@+id/chat_left_item_profile_iv"
             android:text="사용자"/>
     </RelativeLayout>
@@ -38,9 +37,8 @@
         app:layout_constraintTop_toTopOf="@id/chat_left_item_profile_rl"
         app:layout_constraintBottom_toBottomOf="@id/chat_left_item_profile_rl"
         app:layout_constraintStart_toEndOf="@id/chat_left_item_profile_rl"
-        android:layout_marginStart="10dp"
         android:background="@drawable/gray_round"
-        android:paddingHorizontal="20dp"/>
+        android:paddingHorizontal="10dp"/>
 <!--    <TextView-->
 <!--        android:id="@+id/chat_left_item_time_tv"-->
 <!--        android:layout_width="wrap_content"-->

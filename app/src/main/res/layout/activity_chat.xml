@@ -89,7 +89,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/chat_personal_bottom_rl"
         app:layout_constraintTop_toBottomOf="@id/chat_deal_rl"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="8dp"
         tools:listitem="@layout/chat_left_item"
         android:background="@drawable/gray_line"/>
 
