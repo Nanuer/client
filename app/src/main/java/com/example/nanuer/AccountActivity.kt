@@ -15,5 +15,9 @@ class AccountActivity :AppCompatActivity(){
         val account = intent.getStringExtra("account")
 
         binding.accountAccountTv.text="${account}\n으로 ()를 보내주세요."
+
+        binding.accountOkBtn.setOnClickListener {
+            finish()
+        }
     }
 }

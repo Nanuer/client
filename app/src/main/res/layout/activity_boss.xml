@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
-        android:id="@+id/account_header_rl"
+        android:id="@+id/boss_header_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,52 +18,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginStart="32dp"
             android:includeFontPadding="false"
-            android:text="결제창"
+            android:text="결제 확인"
             android:textColor="@color/main_black" />
-
-        <ImageView
-            android:id="@+id/account_icon_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/money"
-            app:tint="@color/blue_dark_1"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="5dp"
-            android:layout_toStartOf="@id/chat_personal_title_tv"/>
     </RelativeLayout>
 
-
     <TextView
-        android:id="@+id/account_account_tv"
+        android:id="@+id/boss_tv"
         style="@style/TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="농협 0000000000000\n으로 5000원을 보내주세요."
+        android:text="방 구성원들이 돈을 보내는 중입니다.\n 모두 확인이 되면 결게 확인 버튼을 눌러주세요."
         android:gravity="center"
         android:textColor="@color/black"
         android:includeFontPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/account_header_rl"
+        app:layout_constraintTop_toBottomOf="@id/boss_header_rl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         android:layout_marginTop="70dp"
         />
 
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/account_ok_btn"
+        android:id="@+id/boss_ok_btn"
         style="@style/BtnMid"
         android:layout_width="200dp"
         android:layout_height="45.3dp"
-        android:text="송금 완료"
+        android:text="결제 확인"
         android:textColor="@color/white"
         android:background="@drawable/blue_button_on"
         android:gravity="center"
         android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_account_tv"
+        app:layout_constraintTop_toBottomOf="@id/boss_tv"
         android:layout_marginTop="60dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -104,6 +105,15 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
         val spf = this.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return spf!!.getString("jwt","0")
     }
+    private fun stringToList(s : String):ArrayList<Int>{
+        val stringList = s.split(' ')
+        val intList = ArrayList<Int>()
+        for(i in stringList){
+            intList.add(i.toInt())
+        }
+        return intList
+        Log.d("stringListType","${stringList.toString()}")
+    }
 
     private fun handleAccountDialog(){
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_account, null)
@@ -115,9 +125,23 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
 
         registerBtn.setOnClickListener {
             val account = accountEt.text.toString()
-            send("QUIT",roomId,userId,"CONFIRM${account}",nickname,profileImg)
+            send("QUIT",roomId,userId,"CONFIRM${account}/${makeSelectedListString()}",nickname,profileImg)
             mAlertDialog.dismiss()
         }
+    }
+
+    private fun makeSelectedListString() : String{
+        var selectedListString = ""
+        for(user in userList){
+            if(user.selected){
+                selectedListString += "${user.userId} "
+            }
+        }
+        Log.d("length",selectedListString.length.toString())
+        if(selectedListString.length==0){
+            return " "
+        }
+        return selectedListString.substring(0,selectedListString.length-1)
     }
 
     override fun onDestroy() {
@@ -168,35 +192,48 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                     chatData->
                 val chatObject = JSONObject(chatData)
                 val data = chatObject.getString("data")
-                val userId = chatObject.getInt("sender")
+                val userId2 = chatObject.getInt("sender")
                 val type = chatObject.getString("type")
                 val nickname = chatObject.getString("nickName")
                 val profileImg = chatObject.getString("profileImg")
-                Log.d("CHAT DATA", chatData.toString())
-                Log.d("MSG, USERID", "${data}, ${userId}")
-
-                if(type=="ENTER"&&bossUserId!=userId){
-                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId,nickName=nickname,profileImg=profileImg)) }
+//                Log.d("CHAT DATA", chatData.toString())
+//                Log.d("MSG, USERID", "${data}, ${userId2}")
+//
+//                Log.d("USERLIST", userList.toString())
+                if(type=="ENTER"&&userId2!=bossUserId){
+                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId2,nickName=nickname,profileImg=profileImg)) }
                 }else if(type=="QUIT"){
-                    if(data.substring(0 until 7)=="CONFIRM"&&bossUserId==userId){
-                        val intent = Intent(this,AccountActivity::class.java)
-                        intent.putExtra("account",data.substring(7))
-                        startActivity(intent)
-//                        Log.d("AAAA",chatUserRVAdapter.isSelected(userId).toString())
-//                        if(chatUserRVAdapter.isSelected(userId)){
-//                            val intent = Intent(this,AccountActivity::class.java)
-//                            intent.putExtra("account",data.substring(7))
-//                            startActivity(intent)
-//                        }else{
-//                            finish()
-//                        }
+                    if(data.substring(0 until 7)=="CONFIRM"){
+                        val listString = data.substring(data.indexOf("/")+1)
+                        var flag = false
+                        if(listString!=" "){
+                            val userIdList = stringToList(listString)
+                            for(i in userIdList){
+                                if(i==userId){
+                                    flag=true
+                                    break
+                                }
+                            }
+                        }
+                        if(userId==bossUserId){
+                            finish()
+                            val intent = Intent(this,BossActivity::class.java)
+                            startActivity(intent)
+                        }else if(flag){
+                            finish()
+                            val intent = Intent(this,AccountActivity::class.java)
+                            intent.putExtra("account",data.substring(7,data.indexOf("/")))
+                            startActivity(intent)
+                        }else{
+                            Toast.makeText(this, "거래 인원에 포함되지 못했습니다.", Toast.LENGTH_LONG).show()
+                            finish()
+                        }
                     }else{
                         runOnUiThread{
                             chatUserRVAdapter.removeItem(userId)
                         }
                     }
                 }
-
                 runOnUiThread {
                     chatRVAdapter.addItem(Chat(userId=userId,type=type,msg=data,nickName=nickname,profileImg=profileImg))
                 }

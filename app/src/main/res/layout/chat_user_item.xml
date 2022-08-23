@@ -25,5 +25,25 @@
         app:layout_constraintStart_toEndOf="@id/chat_user_item_profile_iv"
         android:text="사용자1"
         android:textColor="@color/main_black"/>
-
+    <ImageView
+        android:id="@+id/chat_user_item_check_off_iv"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/check_off"
+        app:layout_constraintStart_toEndOf="@id/chat_user_item_username_tv"
+        app:layout_constraintTop_toTopOf="@id/chat_user_item_username_tv"
+        app:layout_constraintBottom_toBottomOf="@id/chat_user_item_username_tv"
+        android:layout_marginStart="5dp"
+        />
+    <ImageView
+        android:id="@+id/chat_user_item_check_on_iv"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/check_on"
+        app:layout_constraintStart_toEndOf="@id/chat_user_item_username_tv"
+        app:layout_constraintTop_toTopOf="@id/chat_user_item_username_tv"
+        app:layout_constraintBottom_toBottomOf="@id/chat_user_item_username_tv"
+        android:layout_marginStart="5dp"
+        android:visibility="gone"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

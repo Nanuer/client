@@ -3,6 +3,7 @@ package com.example.nanuer
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -53,21 +54,20 @@ class ChatUserRVAdapter(private val context: Context, private val userList: Arra
 
     override fun onBindViewHolder(holder: ChatUserRVAdapter.ViewHolder, position: Int) {
         holder.bind(userList[position])
-        holder.itemView.setOnClickListener {
-            if(!userList[position].selected){
-                holder.itemView.setBackgroundResource(R.drawable.chat_user_item_selected)
-                userList[position].selected=true
-                notifyItemChanged(position)
-            }else{
-                holder.itemView.setBackgroundResource(R.drawable.chat_user_item_unselected)
-                userList[position].selected=false
-                notifyItemChanged(position)
-            }
+        holder.binding.chatUserItemCheckOnIv.setOnClickListener{
+            holder.binding.chatUserItemCheckOnIv.visibility = View.GONE
+            holder.binding.chatUserItemCheckOffIv.visibility = View.VISIBLE
+            userList[position].selected=false
             Log.d("userList",userList.toString())
         }
+        holder.binding.chatUserItemCheckOffIv.setOnClickListener{
+            holder.binding.chatUserItemCheckOnIv.visibility = View.VISIBLE
+            holder.binding.chatUserItemCheckOffIv.visibility = View.GONE
+            userList[position].selected=true
+            Log.d("userList",userList.toString())
+        }
+
     }
-
-
 
     override fun getItemCount(): Int = userList.size
 

@@ -32,10 +32,15 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         val postJson = arguments?.getString("post")
         val post = gson.fromJson(postJson, Post2::class.java)
         setInit(post)
+        val university = arguments?.getString("university")
 
         binding.postHeaderBackIv.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.main_fl, ListFragment())
+                replace(R.id.main_fl, ListFragment().apply{
+                    arguments = Bundle().apply {
+                        putString("university", university)
+                    }
+                })
                 commit()
             }
         }

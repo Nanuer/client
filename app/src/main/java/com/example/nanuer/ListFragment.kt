@@ -19,6 +19,7 @@ class ListFragment : Fragment(),GetPostsView{
     private lateinit var listRVAdapter: ListRVAdapter
     private var categoryId = 1
     private var gson: Gson = Gson()
+    private var university = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +28,7 @@ class ListFragment : Fragment(),GetPostsView{
     ): View? {
         binding = FragmentListBinding.inflate(inflater,container,false)
 
-        val university = arguments?.getString("university")
+        university = arguments?.getString("university")!!
         binding.listUniversityNameTv.text = university
 
         handleCategoryBtns()
@@ -121,6 +122,7 @@ class ListFragment : Fragment(),GetPostsView{
                     val gson = Gson()
                     val postJson = gson.toJson(post)
                     putString("post", postJson)
+                    putString("university",university)
                 }
             })
             .commitAllowingStateLoss()
