@@ -17,6 +17,6 @@ data class ChatUser(
     @SerializedName(value="userId")var userId:Int? = null,
     @SerializedName(value="nickName")var ninkName:String? = null,
     @SerializedName(value="profileImg")var profileImg:String? = null,
-    @SerializedName(value="selected")var selected:Boolean? = false,
+    @SerializedName(value="selected")var selected:Boolean = false,
 
 )

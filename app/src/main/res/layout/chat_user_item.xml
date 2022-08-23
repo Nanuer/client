@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingVertical="5dp"
     android:paddingHorizontal="8dp"
-    android:background="@color/gray_light_1"
+    android:background="@drawable/chat_user_item_unselected"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/chat_user_item_profile_iv"
@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="@id/chat_user_item_profile_iv"
         app:layout_constraintBottom_toBottomOf="@id/chat_user_item_profile_iv"
         app:layout_constraintStart_toEndOf="@id/chat_user_item_profile_iv"
-        android:text="사용자1"/>
+        android:text="사용자1"
+        android:textColor="@color/main_black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

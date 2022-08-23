@@ -34,6 +34,17 @@ class ChatUserRVAdapter(private val userId: Int, private val userList: ArrayList
         notifyDataSetChanged()
     }
 
+    fun isSelected(userId: Int):Boolean{
+        for(i in 0 until userList.size){
+            Log.d("lalala","lalal")
+            if(userList[i].userId==userId){
+                Log.d("FINDUSER","SELECTED")
+                return userList[i].selected
+            }
+        }
+        return false
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ChatUserRVAdapter.ViewHolder {
         val binding: ChatUserItemBinding = ChatUserItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
@@ -42,14 +53,16 @@ class ChatUserRVAdapter(private val userId: Int, private val userList: ArrayList
     override fun onBindViewHolder(holder: ChatUserRVAdapter.ViewHolder, position: Int) {
         holder.bind(userList[position])
         holder.itemView.setOnClickListener {
-            if(userList[position].selected==false){
-                holder.itemView.setBackgroundResource(R.color.gray_dark_1)
+            if(!userList[position].selected){
+                holder.itemView.setBackgroundResource(R.drawable.chat_user_item_selected)
                 userList[position].selected=true
+                notifyItemChanged(position)
             }else{
-                holder.itemView.setBackgroundResource(R.color.gray_light_1)
+                holder.itemView.setBackgroundResource(R.drawable.chat_user_item_unselected)
                 userList[position].selected=false
+                notifyItemChanged(position)
             }
-            notifyItemChanged(position)
+            Log.d("userList",userList.toString())
         }
     }
 

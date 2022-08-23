@@ -1,9 +1,15 @@
 package com.example.nanuer
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.NumberPicker
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nanuer.databinding.ActivityChatBinding
@@ -35,8 +41,6 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
 
         imm=getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-        setChatTitleHeaderMessage()
-
         getRoomAndUserId()
 
         binding.chatPersonalBackIv.setOnClickListener{
@@ -50,12 +54,21 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                 binding.chatPersonalWriteEt.text.clear()
             }
         }
+
+        binding.chatDealOkBtn.setOnClickListener {
+            handleAccountDialog()
+        }
     }
 
-    private fun setChatTitleHeaderMessage(){
+    private fun setChatTitleHeaderMessage(userId:Int,bossUserId:Int){
         val title = intent.getStringExtra("title")
         binding.chatPersonalTitleTv.text = title
-        binding.chatPersonalMessageTv.text = "‘${title}’ 채팅 방입니다.\n거래가 확정되면 아래 거래확정 버튼을 눌러주세요"
+        if(bossUserId==userId){
+            binding.chatDealRl.visibility = View.VISIBLE
+            binding.chatPersonalMessageTv.text = "‘${title}’ 채팅 방입니다.\n거래가 확정되면 아래 거래확정 버튼을 눌러주세요"
+        }else{
+            binding.chatPersonalMessageTv.text = "‘${title}’ 채팅 방입니다.\n방장이 거래확정 버튼을 누르면 계좌번호 창으로 이동합니다."
+        }
     }
 
     private fun hideKeyboard(){
@@ -88,6 +101,21 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
         return spf!!.getString("jwt","0")
     }
 
+    private fun handleAccountDialog(){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_account, null)
+        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+
+        val accountEt = mDialogView.findViewById<EditText>(R.id.dialog_account_et)
+        val registerBtn = mDialogView.findViewById<TextView>(R.id.dialog_account_tv)
+
+        registerBtn.setOnClickListener {
+            val account = accountEt.text.toString()
+            send("QUIT",roomId,userId,"CONFIRM${account}")
+            mAlertDialog.dismiss()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         send("QUIT",roomId,userId,"${userId}님이 나갔습니다.")
@@ -100,9 +128,7 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
         userId = result.userId
 
         val bossUserId = intent.getIntExtra("userId",0)
-        if(bossUserId==userId){
-            binding.chatDealLl.visibility = View.VISIBLE
-        }
+        setChatTitleHeaderMessage(userId,bossUserId)
 
         chatRVAdapter = ChatRVAdapter(userId, chatDataList)
         binding.chatPersonalRv.adapter = chatRVAdapter
@@ -141,16 +167,29 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                 Log.d("CHAT DATA", chatData.toString())
                 Log.d("MSG, USERID", "${data}, ${userId}")
                 Log.d("Adapter", chatRVAdapter.toString())
-                if(type=="ENTER"){
-                    runOnUiThread{
-                        chatUserRVAdapter.addItem(ChatUser(userId=userId))
+
+                if(type=="ENTER"&&bossUserId!==userId){
+                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId)) }
+                }else if(type=="QUIT"){
+                    if(data.substring(0 until 7)=="CONFIRM"&&bossUserId==userId){
+                        val intent = Intent(this,AccountActivity::class.java)
+                        intent.putExtra("account",data.substring(7))
+                        startActivity(intent)
+//                        Log.d("AAAA",chatUserRVAdapter.isSelected(userId).toString())
+//                        if(chatUserRVAdapter.isSelected(userId)){
+//                            val intent = Intent(this,AccountActivity::class.java)
+//                            intent.putExtra("account",data.substring(7))
+//                            startActivity(intent)
+//                        }else{
+//                            finish()
+//                        }
+                    }else{
+                        runOnUiThread{
+                            chatUserRVAdapter.removeItem(userId)
+                        }
                     }
                 }
-                if(type=="QUIT"){
-                    runOnUiThread{
-                        chatUserRVAdapter.removeItem(userId)
-                    }
-                }
+
                 runOnUiThread {
                     chatRVAdapter.addItem(Chat(userId=userId,type=type,msg=data))
                 }

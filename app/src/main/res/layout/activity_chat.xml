@@ -25,13 +25,12 @@
         <TextView
             android:id="@+id/chat_personal_title_tv"
             style="@style/TitleMid"
-            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/chat_personal_back_iv"
             android:layout_centerInParent="true"
             android:layout_marginStart="32dp"
-            android:text="서브웨이 배달 시키실 분"
+            android:includeFontPadding="false"
             android:textColor="@color/main_black" />
 
         <ImageView
@@ -44,47 +43,51 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/chat_deal_ll"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/chat_personal_header_rl"
-        android:weightSum="5"
-        android:visibility="gone">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chat_users_rv"
-            android:layout_weight="4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/chat_user_item"
-            android:orientation="horizontal" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/chat_deal_ok_btn"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="거래확정"/>
-    </LinearLayout>
-
     <TextView
         style="@style/Regular"
         android:id="@+id/chat_personal_message_tv"
+        android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="‘써브웨이 배달 시키실분’ 채팅 방입니다.\n
-거래가 확정되면 아래 거래확정 버튼을 눌러주세요"
         android:gravity="center_horizontal"
         android:textColor="@color/main_black"
-        app:layout_constraintTop_toBottomOf="@id/chat_deal_ll"/>
+        app:layout_constraintTop_toBottomOf="@id/chat_personal_header_rl"/>
 
+    <RelativeLayout
+        android:id="@+id/chat_deal_rl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/chat_personal_message_tv"
+        android:visibility="gone">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_users_rv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/chat_user_item"
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/chat_deal_ok_btn"/>
+        <TextView
+            android:id="@+id/chat_deal_ok_btn"
+            style="@style/Regular"
+            android:includeFontPadding="false"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="거래확정"
+            android:textColor="@color/blue_dark_1"
+            android:background="@drawable/blue_rectangle"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_personal_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/chat_personal_bottom_rl"
-        app:layout_constraintTop_toBottomOf="@id/chat_personal_message_tv"
+        app:layout_constraintTop_toBottomOf="@id/chat_deal_rl"
         android:paddingHorizontal="16dp"
         tools:listitem="@layout/chat_left_item"
         android:background="@drawable/gray_line"/>
