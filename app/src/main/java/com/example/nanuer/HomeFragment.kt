@@ -29,7 +29,7 @@ import java.io.IOException
 import java.util.*
 
 
-class HomeFragment : Fragment(), GetUserInfoView{
+class HomeFragment : Fragment(){
     lateinit var binding: FragmentHomeBinding
     private lateinit var mapView : MapView
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -48,13 +48,15 @@ class HomeFragment : Fragment(), GetUserInfoView{
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        getUserInfo()
         binding.homeSearchIv.setOnClickListener{
             Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
         }
         binding.homeBellIv.setOnClickListener{
             Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
         }
+
+        val university = arguments?.getString("university")
+        binding.homeUniversityNameTv.text = university
 
 //        mapView = MapView(activity)
 //        binding.mapView.addView(mapView)
@@ -85,19 +87,6 @@ class HomeFragment : Fragment(), GetUserInfoView{
 //            setMyCurrentLoc()
 //        }
         return binding.root
-    }
-
-
-    private fun getUserInfo(){
-        val jwt = getJwt()
-        val authService = AuthService()
-        authService.setGetUserInfoView(this)
-        authService.getUserInfo(jwt!!)
-    }
-
-    private fun getJwt():String?{
-        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("jwt","0")
     }
 
     private fun setMyCurrentLoc(){
@@ -262,14 +251,5 @@ class HomeFragment : Fragment(), GetUserInfoView{
         val locationManager = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager?
         return (locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
-    }
-
-    override fun onGetUserInfoSuccess(userInfo: User) {
-        val university = userInfo.university
-        binding.homeUniversityNameTv.text = university
-    }
-
-    override fun onGetUserInfoFailure(code: Int, msg: String) {
-
     }
 }

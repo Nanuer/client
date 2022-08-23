@@ -175,7 +175,7 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                 Log.d("MSG, USERID", "${data}, ${userId}")
 
                 if(type=="ENTER"&&bossUserId!=userId){
-                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId,ninkName=nickname,profileImg=profileImg)) }
+                    runOnUiThread { chatUserRVAdapter.addItem(ChatUser(userId=userId,nickName=nickname,profileImg=profileImg)) }
                 }else if(type=="QUIT"){
                     if(data.substring(0 until 7)=="CONFIRM"&&bossUserId==userId){
                         val intent = Intent(this,AccountActivity::class.java)

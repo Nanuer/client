@@ -18,6 +18,9 @@ class MypageFragment : Fragment(){
     ): View? {
         binding = FragmentMypageBinding.inflate(inflater,container,false)
 
+        val nickname = arguments?.getString("nickname")
+        binding.mypageUsernameTv.text = nickname
+
         binding.mypageLogoutTv.setOnClickListener {
             // 임시버튼 누르고 mainActivity 진입 시 jwt가 저장이 안 되기 때문에 에러 방지용으로 주석처리함
             logout()

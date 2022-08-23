@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nanuer.databinding.FragmentListBinding
 import com.google.gson.Gson
 
-class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
+class ListFragment : Fragment(),GetPostsView{
     private lateinit var binding: FragmentListBinding
     private lateinit var listRVAdapter: ListRVAdapter
     private var categoryId = 1
@@ -27,7 +27,8 @@ class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
     ): View? {
         binding = FragmentListBinding.inflate(inflater,container,false)
 
-        getUserInfo()
+        val university = arguments?.getString("university")
+        binding.listUniversityNameTv.text = university
 
         handleCategoryBtns()
 
@@ -79,12 +80,6 @@ class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
         }
     }
 
-    private fun getUserInfo(){
-        val jwt = getJwt()
-        val authService = AuthService()
-        authService.setGetUserInfoView(this)
-        authService.getUserInfo(jwt!!)
-    }
 
     private fun getJwt():String?{
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
@@ -142,15 +137,6 @@ class ListFragment : Fragment(),GetPostsView,GetUserInfoView{
     }
 
     override fun onGetPostsFailure(code: Int, msg: String) {
-
-    }
-
-    override fun onGetUserInfoSuccess(userInfo: User) {
-        val university = userInfo.university
-        binding.listUniversityNameTv.text = university
-    }
-
-    override fun onGetUserInfoFailure(code: Int, msg: String) {
 
     }
 

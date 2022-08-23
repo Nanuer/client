@@ -72,7 +72,7 @@ class ChatUserRVAdapter(private val context: Context, private val userList: Arra
 
     inner class ViewHolder(val binding: ChatUserItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(user: ChatUser){
-            binding.chatUserItemUsernameTv.text = user.ninkName
+            binding.chatUserItemUsernameTv.text = user.nickName
 
             Glide.with(context).load(user.profileImg).circleCrop().into(binding.chatUserItemProfileIv);
 //            binding.chatUserItemProfileIv.setImageResource(user.profileImg)
