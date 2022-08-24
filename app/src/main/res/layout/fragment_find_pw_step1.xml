@@ -84,7 +84,7 @@
 
     <RelativeLayout
         android:id="@+id/find_pw_step1_certification_code_rl"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="37dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
             android:id="@+id/find_pw_step1_certification_code_et"
             style="@style/InputMid"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="37dp"
             android:layout_alignParentLeft="true"
             android:layout_toStartOf="@id/find_pw_step1_certification_code_void_btn"
             android:background="@drawable/textline_bottom_gray"
@@ -160,7 +160,7 @@
     <EditText
         android:id="@+id/find_id_step1_updatePw_et"
         style="@style/InputMid"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="37dp"
         android:layout_marginTop="37dp"
         android:layout_marginHorizontal="35dp"
@@ -177,7 +177,7 @@
     <EditText
         android:id="@+id/find_id_step1_pw_confirm_et"
         style="@style/InputMid"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="37dp"
         android:layout_marginTop="37dp"
         android:layout_marginHorizontal="35dp"
@@ -226,7 +226,7 @@
         style="@style/BtnLarge"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:text="비밀번호 찾기"
+        android:text="완료"
         android:includeFontPadding="false"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/find_id_step1_pw_confirm_et"

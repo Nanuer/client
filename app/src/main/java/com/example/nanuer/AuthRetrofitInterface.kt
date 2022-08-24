@@ -20,6 +20,5 @@ interface AuthRetrofitInterface {
     fun getUserId(@Header("X-AUTH-TOKEN")token : String): Call<NormalResponse>
 
     @PATCH("/updatePw")
-    fun upDatePw(@Field("phone") phone:String,
-                 @Field("password") password:String): Call<UpdatePwResponse>
+    fun upDatePw(@Body user: User): Call<UpdatePwResponse>
 }

@@ -127,7 +127,7 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
     override fun onStart() {
         super.onStart()
         Log.d("size","findId" )
-        //findId()
+
     }
 
     private fun findId(){

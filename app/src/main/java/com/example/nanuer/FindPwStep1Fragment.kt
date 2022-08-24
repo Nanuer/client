@@ -2,10 +2,13 @@ package com.example.nanuer
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings.Global.putString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentFindPwStep1Binding
 import com.google.gson.Gson
@@ -21,6 +24,8 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
     private lateinit var updatePwView: UpdatePwView
     var certificationCode = ""
 
+
+
     lateinit var binding: FragmentFindPwStep1Binding
 
     override fun onCreateView(
@@ -29,6 +34,8 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFindPwStep1Binding.inflate(inflater,container,false)
+
+
 
         binding.findPwStep1FindBtn.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
@@ -64,16 +71,33 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
         binding.findPwStep1OkayBtn.setOnClickListener {
             binding.findPwStep1OkayBtn.visibility = View.GONE
             //인증 성공
-            if (check) {
-                binding.findPwStep1CorrectBtn.visibility = View.VISIBLE
-                binding.findPwStep1NotCorrectBtn.visibility = View.GONE
-            } else {// 인증 실패
-                binding.findPwStep1CorrectBtn.visibility = View.GONE
-                binding.findPwStep1NotCorrectBtn.visibility = View.VISIBLE
-            }
+//            if (check) {
+//                binding.findPwStep1CorrectBtn.visibility = View.VISIBLE
+//                binding.findPwStep1NotCorrectBtn.visibility = View.GONE
+//            } else {// 인증 실패
+//                binding.findPwStep1CorrectBtn.visibility = View.GONE
+//                binding.findPwStep1NotCorrectBtn.visibility = View.VISIBLE
+//            }
+            handleCode()
+        }
+
+        binding.findPwStep1CorrectBtn.setOnClickListener {
+            handleCode()
+        }
+
+        binding.findPwStep1FindBtn.setOnClickListener {
+            upDatePw()
+
+//            val intent = Intent(activity, LoginActivity::class.java)
+//            startActivity(intent)
         }
 
         return binding.root
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.d("size","updatePw" )
+
     }
 
     override fun onPause() {
@@ -126,23 +150,26 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
 
     private fun upDatePw() {
 
+        val jwt = getJwt()
         val phoneNUmber : String = binding.findPwStep1PhoneNumberEt.text.toString()
         val passWord : String = binding.findIdStep1UpdatePwEt.text.toString()
 
+
         val authService = AuthService()
-        authService.setUpdatePview(this)
-        authService.upDatePw(phoneNUmber, passWord)
+        authService.setUpdatePwview(this)
+        authService.upDatePw(jwt!!,User(phoneNUmber))
+    }
+
+    private fun getJwt():String?{
+        val passWord : String = binding.findIdStep1UpdatePwEt.text.toString()
+        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("Jwt",passWord)
     }
 
 
 
-    override fun onUpdatePwSuccess(result: UserPw) {
-        putInform(result)
-
-        binding.findPwStep1FindBtn.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-        }
+    override fun onUpdatePwSuccess(result: String) {
+        moveToStep2(result)
 
     }
 
@@ -150,12 +177,20 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
         Log.d("onUpdatePwFailure", "!!!!!")
     }
 
-    private fun putInform(userPw: UserPw) {
-        arguments = Bundle().apply {
-            val gson = Gson()
-            val userPwJson = gson.toJson(userPw)
-            putString("password", userPwJson)
 
+
+    private fun moveToStep2(updatePwResult: String) {
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.find_pw_fl, FindPwStep2Fragment().apply{
+                arguments = Bundle().apply {
+                    val gson = Gson()
+                    val updatePwJson = gson.toJson(updatePwResult)
+                    putString("password", updatePwJson)
+
+                }
+            })
+            addToBackStack(null)
+            commit()
         }
     }
 
@@ -176,6 +211,30 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
                 Log.d("GET/CODE/FAILURE", t.message.toString())
             }
         })
+    }
+
+    private fun handleCode(){
+        if(binding.findPwStep1CertificationCodeEt.text.isEmpty()){
+            Toast.makeText(activity, "인증번호를 입력하지 않으셨습니다", Toast.LENGTH_SHORT).show()
+            Log.d("CERTIFICATIONCODE","NOT INPUT")
+            return
+        }
+        binding.findPwStep1OkayBtn.visibility = View.GONE
+        Log.d("CODE",certificationCode)
+        if(certificationCode==binding.findPwStep1CertificationCodeEt.text.toString()){
+            binding.findPwStep1CorrectBtn.visibility = View.VISIBLE
+            binding.findPwStep1NotCorrectBtn.visibility = View.GONE
+            binding.findIdStep1UpdatePwEt.visibility = View.VISIBLE
+            binding.findIdStep1PwConfirmEt.visibility = View.VISIBLE
+            timerTask?.cancel()
+            binding.findPwStep1Timer.visibility = View.GONE
+            binding.findPwStep1ResendMessageTv.visibility = View.GONE
+        }else{
+            binding.findPwStep1CorrectBtn.visibility = View.GONE
+            binding.findPwStep1NotCorrectBtn.visibility = View.VISIBLE
+            binding.findIdStep1UpdatePwEt.visibility = View.GONE
+            binding.findIdStep1PwConfirmEt.visibility = View.GONE
+        }
     }
 
 

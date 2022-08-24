@@ -24,7 +24,7 @@ class AuthService {
     fun setGetUserIdView(getUserIdView: GetUserIdView) {
         this.getUserIdView = getUserIdView
     }
-    fun setUpdatePview(updatePwView: UpdatePwView){
+    fun setUpdatePwview(updatePwView: UpdatePwView){
         this.updatePwView = updatePwView
     }
 
@@ -111,9 +111,9 @@ class AuthService {
         })
     }
 
-    fun upDatePw(phone:String, password:String) {
+    fun upDatePw(user: User) {
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.upDatePw(phone, password).enqueue(object : Callback<UpdatePwResponse> {
+        authService.upDatePw(user).enqueue(object : Callback<UpdatePwResponse> {
             override fun onResponse(
                 call: Call<UpdatePwResponse>,
                 response: Response<UpdatePwResponse>
@@ -124,6 +124,7 @@ class AuthService {
                 when (val code = resp.code) {
                     1000 -> {
                         updatePwView.onUpdatePwSuccess(resp.result)
+
 
                     }
                     else -> updatePwView.onUpdatePwFailure(code, resp.message)
