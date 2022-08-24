@@ -102,15 +102,25 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
         val title : String = binding.makePostTitleEt.text.toString()
         val content : String = binding.makePostContentEt.text.toString()
         val deliveryCost : String = binding.makePostDeliveryCostEt.text.toString()
+        val costInfo : String = binding.makeCostInfoEt.text.toString()
         val time : String = binding.makePostFooterTimeTv.text.toString()
         val categoryId = getCategoryId(binding.makePostCategoryTv.text.toString())
         val location = binding.makePostLocationEt.text.toString()
+
+        if(title==""){
+            Toast.makeText(this, "제목을 입력해주세요!", Toast.LENGTH_LONG).show()
+            return
+        }
+        if(content==""){
+            Toast.makeText(this, "내용을 입력해주세요!", Toast.LENGTH_LONG).show()
+            return
+        }
 
         val jwt=getJwt()
 
         val postService=PostService()
         postService.setPostView(this)
-        postService.makePost(jwt!!, Post(title,content,deliveryCost,time,location,categoryId))
+        postService.makePost(jwt!!, Post(title,content,deliveryCost,time,location,categoryId,costInfo))
     }
 
     private fun getJwt():String?{

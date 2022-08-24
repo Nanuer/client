@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.nanuer.databinding.FragmentPostBinding
 import com.google.gson.Gson
 
@@ -56,6 +57,13 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
             intent.putExtra("postId",post.postId)
             intent.putExtra("title",post.title)
             intent.putExtra("userId",post.userEntity?.userId)
+            intent.putExtra("categoryId",post.categoryEntity?.categoryId)
+            if(post.cost_info!=null){
+                intent.putExtra("costInfo",post.cost_info.toInt())
+            }
+            if(post.delivery_cost!=null){
+                intent.putExtra("deliveryCost",post.delivery_cost.toInt())
+            }
             startActivity(intent)
         }
 
@@ -117,19 +125,23 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         binding.postCategoryTv.text = category
         binding.postTitleTv.text = post.title
         binding.postContentTv.text = post.content
+
         binding.postTimeTv.text = post.time
-        if(post.time == null){
+        if(post.time!="시간설정"&&post.time == null){
             binding.postClockIconIv.visibility = View.GONE
         }
-        if(post.location == null){
-            binding.postLocationTv.visibility = View.GONE
+        if(post.location!=""&&post.location == null){
+            binding.postLocationIconIv.visibility = View.GONE
+        }
+        if(post.cost_info != ""&&post.cost_info != null){
+            binding.postCostInfoTv.text = "총 금액 ${post.cost_info}원"
         }
         binding.postLocationTv.text = post.location
         binding.postUserNicknameTv.text = post.userEntity?.nickName
-//        binding.postProfileIv.setImageResource(post.userEntity.profileImg)
-        if(post.delivery_cost != null){
+        if(post.delivery_cost != ""&&post.delivery_cost != null){
             binding.postFooterDeliveryFeeTv.text = "배달비 ${post.delivery_cost}원"
         }
+        Glide.with(requireContext()).load(post.userEntity?.profileImg).error(R.drawable.profile).circleCrop().into(binding.postProfileIv)
         val createdDate = post.created_date
         val date = createdDate?.substring(0,10)
         val time = createdDate?.substring(11,16)
@@ -149,10 +161,13 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
     }
 
     override fun onDeletePostSuccess() {
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.main_fl, ListFragment())
-            commit()
-        }
+        val university = arguments?.getString("university")
+        parentFragmentManager.beginTransaction().
+            replace(R.id.main_fl, ListFragment().apply{
+                arguments = Bundle().apply {
+                    putString("university", university)
+                }
+            }).commit()
     }
 
     override fun onDeletePostFailure(code: Int, msg: String) {

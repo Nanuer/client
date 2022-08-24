@@ -218,6 +218,16 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/gray_dark_2" />
             </RelativeLayout>
+            <TextView
+                style="@style/TitleMid"
+                android:id="@+id/post_cost_info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/post_main_rl"
+                app:layout_constraintStart_toStartOf="@id/post_main_rl"
+                app:layout_constraintEnd_toEndOf="@id/post_main_rl"
+                android:textColor="@color/blue_dark_1"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

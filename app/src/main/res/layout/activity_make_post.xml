@@ -55,17 +55,17 @@
         android:layout_marginHorizontal="16dp"
         android:background="@drawable/textline_bottom_gray"
         >
+
         <TextView
             android:id="@+id/make_post_category_tv"
             style="@style/Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="카테고리"
-            android:textColor="@color/main_black"
+            android:layout_alignParentStart="true"
             android:paddingHorizontal="10dp"
             android:paddingVertical="8dp"
-            android:layout_alignParentStart="true"
-            />
+            android:text="배달"
+            android:textColor="@color/main_black" />
         <ImageView
             android:id="@+id/make_post_category_down_icon_iv"
             android:layout_width="24dp"
@@ -76,19 +76,34 @@
             />
 
     </RelativeLayout>
-
     <EditText
-        android:id="@+id/make_post_delivery_cost_et"
+        android:id="@+id/make_cost_info_et"
         style="@style/InputMid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="₩  배달비"
+        android:hint="₩  총 금액"
+        android:inputType="number"
         android:textColor="@color/main_black"
         android:layout_marginHorizontal="16dp"
         android:paddingHorizontal="10dp"
         android:paddingVertical="8dp"
         android:background="@drawable/textline_bottom_gray"
         app:layout_constraintTop_toBottomOf="@id/make_post_category_rl"
+        />
+
+    <EditText
+        android:id="@+id/make_post_delivery_cost_et"
+        style="@style/InputMid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="₩  배달비 (배달이 필요한 경우만 입력)"
+        android:inputType="number"
+        android:textColor="@color/main_black"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintTop_toBottomOf="@id/make_cost_info_et"
         />
     <EditText
         android:id="@+id/make_post_content_et"
@@ -104,19 +119,19 @@
         android:background="@drawable/textline_bottom_gray"
         app:layout_constraintTop_toBottomOf="@id/make_post_delivery_cost_et"
         />
-    <EditText
-        android:id="@+id/make_post_link_et"
-        style="@style/Regular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="🔗 주문하고자 하는 가게의 링크를 복사해주세요"
-        android:textColor="@color/main_black"
-        android:layout_marginHorizontal="16dp"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="8dp"
-        android:background="@drawable/textline_bottom_gray"
-        app:layout_constraintTop_toBottomOf="@id/make_post_content_et"
-        />
+<!--    <EditText-->
+<!--        android:id="@+id/make_post_link_et"-->
+<!--        style="@style/Regular"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="🔗 주문하고자 하는 가게의 링크를 복사해주세요"-->
+<!--        android:textColor="@color/main_black"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:paddingVertical="8dp"-->
+<!--        android:background="@drawable/textline_bottom_gray"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/make_post_content_et"-->
+<!--        />-->
     <EditText
         android:id="@+id/make_post_location_et"
         style="@style/Regular"
@@ -128,7 +143,7 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="8dp"
         android:background="@drawable/textline_bottom_gray"
-        app:layout_constraintTop_toBottomOf="@id/make_post_link_et"
+        app:layout_constraintTop_toBottomOf="@id/make_post_content_et"
         />
 
     <RelativeLayout

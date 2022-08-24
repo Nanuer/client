@@ -222,9 +222,15 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                             val intent = Intent(this,BossActivity::class.java)
                             startActivity(intent)
                         }else if(flag){
+                            val costInfo = intent.getIntExtra("costInfo",0)
+                            val categoryId = intent.getIntExtra("categoryId",0)
+                            val deliveryCost = intent.getIntExtra("deliveryCost",0)
                             finish()
                             val intent = Intent(this,AccountActivity::class.java)
                             intent.putExtra("account",data.substring(7,data.indexOf("/")))
+                            intent.putExtra("costInfoPerOne",costInfo/(userIdList.size+1))
+                            intent.putExtra("deliveryCostPerOne", deliveryCost/(userIdList.size+1))
+                            intent.putExtra("categoryId",categoryId)
                             startActivity(intent)
                         }else{
                             Toast.makeText(this, "거래 인원에 포함되지 못했습니다.", Toast.LENGTH_LONG).show()
