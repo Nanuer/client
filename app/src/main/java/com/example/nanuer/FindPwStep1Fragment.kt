@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentFindPwStep1Binding
 import com.google.gson.Gson
@@ -31,11 +32,12 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
         binding = FragmentFindPwStep1Binding.inflate(inflater,container,false)
 
         binding.findPwStep1FindBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().apply {
-                replace(R.id.find_pw_fl, FindPwStep2Fragment())
-                addToBackStack(null)
-                commit()
-            }
+//            parentFragmentManager.beginTransaction().apply {
+//                replace(R.id.find_pw_fl, FindPwStep2Fragment())
+//                addToBackStack(null)
+//                commit()
+//            }
+            Toast.makeText(requireContext(), "아직 지원하지 않는 기능입니다.", Toast.LENGTH_LONG).show()
         }
 
         binding.findPwStep1SendNumberBtn.setOnClickListener {

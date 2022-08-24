@@ -233,6 +233,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="66dp"
-        android:background="@drawable/blue_button"/>
+        android:background="@drawable/blue_button_on"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
