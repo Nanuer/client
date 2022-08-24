@@ -14,6 +14,7 @@ import com.example.nanuer.databinding.ActivityMakePostBinding
 
 class MakePostActivity : AppCompatActivity(), MakePostView {
     lateinit var binding: ActivityMakePostBinding
+    private var categoryId = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,18 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
         }
     }
 
+
+    private fun setEtByCategory(){
+        if(categoryId==1){
+            binding.makeCostInfoEt.visibility = View.GONE
+            binding.makePostDeliveryCostEt.visibility =View.VISIBLE
+        }else{
+            binding.makeCostInfoEt.visibility = View.VISIBLE
+            binding.makePostDeliveryCostEt.visibility =View.GONE
+        }
+    }
+
+
     private fun handleCategoryDialog(){
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_category, null)
         val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
@@ -45,13 +58,29 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
         val onClickListener = View.OnClickListener { view ->
             val categoryTv = binding.makePostCategoryTv
             when (view.id) {
-                R.id.dialog_category_btn1 -> categoryTv.text = "배달"
-                R.id.dialog_category_btn2 -> categoryTv.text = "식재료"
-                R.id.dialog_category_btn3 -> categoryTv.text = "택시"
-                R.id.dialog_category_btn4 -> categoryTv.text = "구독"
-                R.id.dialog_category_btn5 -> categoryTv.text = "기타"
+                R.id.dialog_category_btn1 -> {
+                    categoryTv.text = "배달"
+                    categoryId=1
+                }
+                R.id.dialog_category_btn2 -> {
+                    categoryTv.text = "식재료"
+                    categoryId=2
+                }
+                R.id.dialog_category_btn3 -> {
+                    categoryTv.text = "택시"
+                    categoryId=3
+                }
+                R.id.dialog_category_btn4 -> {
+                    categoryTv.text = "구독"
+                    categoryId=4
+                }
+                R.id.dialog_category_btn5 -> {
+                    categoryTv.text = "기타"
+                    categoryId=5
+                }
             }
             mAlertDialog.dismiss()
+            setEtByCategory()
         }
 
         val btn1 = mDialogView.findViewById<AppCompatButton>(R.id.dialog_category_btn1)
@@ -101,8 +130,14 @@ class MakePostActivity : AppCompatActivity(), MakePostView {
     private fun makePost(){
         val title : String = binding.makePostTitleEt.text.toString()
         val content : String = binding.makePostContentEt.text.toString()
-        val deliveryCost : String = binding.makePostDeliveryCostEt.text.toString()
-        val costInfo : String = binding.makeCostInfoEt.text.toString()
+        var deliveryCost : Int = 0
+        if(binding.makePostDeliveryCostEt.text.toString()!=""){
+            deliveryCost=binding.makePostDeliveryCostEt.text.toString().toInt()
+        }
+        var costInfo : Int = 0
+        if(binding.makeCostInfoEt.text.toString()!=""){
+            costInfo=binding.makeCostInfoEt.text.toString().toInt()
+        }
         val time : String = binding.makePostFooterTimeTv.text.toString()
         val categoryId = getCategoryId(binding.makePostCategoryTv.text.toString())
         val location = binding.makePostLocationEt.text.toString()

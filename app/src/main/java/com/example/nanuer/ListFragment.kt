@@ -35,7 +35,11 @@ class ListFragment : Fragment(),GetPostsView{
 
         binding.listSearchIv.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main_fl, SearchFragment())
+                .replace(R.id.main_fl, SearchFragment().apply{
+                    arguments = Bundle().apply {
+                        putString("university", university)
+                    }
+                })
                 .commitAllowingStateLoss()
         }
 

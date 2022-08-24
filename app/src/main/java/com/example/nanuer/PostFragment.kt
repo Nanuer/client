@@ -58,11 +58,11 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
             intent.putExtra("title",post.title)
             intent.putExtra("userId",post.userEntity?.userId)
             intent.putExtra("categoryId",post.categoryEntity?.categoryId)
-            if(post.cost_info!=null){
-                intent.putExtra("costInfo",post.cost_info.toInt())
+            if(post.cost_info!=0&&post.cost_info!=null){
+                intent.putExtra("costInfo",post.cost_info)
             }
-            if(post.delivery_cost!=null){
-                intent.putExtra("deliveryCost",post.delivery_cost.toInt())
+            if(post.delivery_cost!=0&&post.delivery_cost!=null){
+                intent.putExtra("deliveryCost",post.delivery_cost)
             }
             startActivity(intent)
         }
@@ -127,18 +127,21 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         binding.postContentTv.text = post.content
 
         binding.postTimeTv.text = post.time
-        if(post.time!="시간설정"&&post.time == null){
-            binding.postClockIconIv.visibility = View.GONE
+        if(post.time!="시간설정"&&post.time!=null){
+            binding.postClockIconIv.visibility = View.VISIBLE
+            binding.postTimeTv.visibility = View.VISIBLE
+            binding.postTimeTv.text = post.time
         }
-        if(post.location!=""&&post.location == null){
-            binding.postLocationIconIv.visibility = View.GONE
+        if(post.location!=""&&post.location != null){
+            binding.postLocationIconIv.visibility = View.VISIBLE
+            binding.postLocationTv.text = post.location
         }
-        if(post.cost_info != ""&&post.cost_info != null){
+        if(post.cost_info != 0&&post.cost_info != null){
             binding.postCostInfoTv.text = "총 금액 ${post.cost_info}원"
         }
-        binding.postLocationTv.text = post.location
+
         binding.postUserNicknameTv.text = post.userEntity?.nickName
-        if(post.delivery_cost != ""&&post.delivery_cost != null){
+        if(post.delivery_cost!=0&&post.delivery_cost != null){
             binding.postFooterDeliveryFeeTv.text = "배달비 ${post.delivery_cost}원"
         }
         Glide.with(requireContext()).load(post.userEntity?.profileImg).error(R.drawable.profile).circleCrop().into(binding.postProfileIv)

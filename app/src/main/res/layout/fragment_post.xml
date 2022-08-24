@@ -178,7 +178,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="13dp"
                     android:layout_marginTop="53dp"
-                    android:src="@drawable/clock" />
+                    android:src="@drawable/clock"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/post_time_tv"
@@ -192,7 +193,8 @@
                     android:layout_toEndOf="@id/post_clock_icon_iv"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray_dark_2" />
+                    android:textColor="@color/gray_dark_2"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/post_location_icon_iv"
@@ -202,7 +204,8 @@
                     android:layout_marginTop="53dp"
                     android:layout_marginEnd="13dp"
                     android:layout_toStartOf="@id/post_location_tv"
-                    android:src="@drawable/location" />
+                    android:src="@drawable/location"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/post_location_tv"

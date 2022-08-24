@@ -42,7 +42,8 @@ class ListRVAdapter(val context: Context, val postList: ArrayList<Post2>): Recyc
     inner class ViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(post: Post2){
             binding.listPostTitleTv.text = post.title
-            binding.listPostTimeTv.text = post.time
+            if(post.time!="시간설정"&&post.time!=null)binding.listPostTimeTv.text = post.time
+
 
             val createdDate = post.created_date
             val date = createdDate?.substring(0,10)
