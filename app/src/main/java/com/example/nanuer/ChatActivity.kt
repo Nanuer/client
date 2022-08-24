@@ -125,7 +125,11 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
 
         registerBtn.setOnClickListener {
             val account = accountEt.text.toString()
-            send("QUIT",roomId,userId,"CONFIRM${account}/${makeSelectedListString()}",nickname,profileImg)
+            if(makeSelectedListString()==" "){
+                Toast.makeText(this, "아무도 선택되지 않았습니다. 다시 확인한 후 진행해주세요.", Toast.LENGTH_LONG).show()
+            }else{
+                send("QUIT",roomId,userId,"CONFIRM${account}/${makeSelectedListString()}",nickname,profileImg)
+            }
             mAlertDialog.dismiss()
         }
     }
@@ -206,13 +210,11 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                     if(data.substring(0 until 7)=="CONFIRM"){
                         val listString = data.substring(data.indexOf("/")+1)
                         var flag = false
-                        if(listString!=" "){
-                            val userIdList = stringToList(listString)
-                            for(i in userIdList){
-                                if(i==userId){
-                                    flag=true
-                                    break
-                                }
+                        val userIdList = stringToList(listString)
+                        for(i in userIdList){
+                            if(i==userId){
+                                flag=true
+                                break
                             }
                         }
                         if(userId==bossUserId){
