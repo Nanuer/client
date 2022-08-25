@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nanuer.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity(), LoginView{
+class LoginActivity : AppCompatActivity(), LoginView, JwtIsValidateView{
     lateinit var binding : ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,14 +32,19 @@ class LoginActivity : AppCompatActivity(), LoginView{
         val spf = this.getSharedPreferences("auth", MODE_PRIVATE)
         val jwt = spf!!.getString("jwt","0")
         if(jwt!="0"){
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            jwtIsValidate(jwt!!)
         }
 
 //        binding.loginTestBtn.setOnClickListener {
 //            startActivity(Intent(this, MainActivity::class.java))
 //        }
 
+    }
+
+    private fun jwtIsValidate(jwt:String){
+        val authService = AuthService()
+        authService.setJwtIsValidateView(this)
+        authService.jwtIsValidate(jwt)
     }
 
     private fun login(){
@@ -91,5 +96,17 @@ class LoginActivity : AppCompatActivity(), LoginView{
                 binding.loginWarningTv.text = msg
             }
         }
+    }
+
+    override fun onJwtIsValidateSuccess(result: Boolean) {
+        Log.d("JWTISVALIDATE????",result.toString())
+        if(result){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun onJwtIsValidateFailure(code: Int, msg: String) {
+
     }
 }

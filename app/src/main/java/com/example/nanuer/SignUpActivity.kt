@@ -19,7 +19,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     lateinit var binding: ActivitySignupBinding
     var timerTask: Timer? = null
     var certificationCode = ""
-    var univs = arrayOf("대학 선택", "숭실대", "인하대", "한양대에리카")
+    var univs = arrayOf("대학 선택", "가천대","건국대","경성대","광운대","덕성여대","동국대","동덕여대","동아대","명지대","부경대","부산대","상명대","서울시립대","서울여대","성신여대","세종대","숙명여대","숭실대","아주대","인하대","중앙대","한국외대","한국항공대","한양대에리카","홍콩대", "직접 입력")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +113,11 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         spinner.adapter = adapter
         spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(binding.signupUnivSpinner.selectedItemPosition==univs.size-1){
+                    binding.signupCustimUnivEt.visibility = View.VISIBLE
+                }else{
+                    binding.signupCustimUnivEt.visibility = View.GONE
+                }
 //                Log.d("TEST", univs[position])
 //                Toast.makeText(applicationContext, univs.get(position), Toast.LENGTH_LONG).show()
             }
@@ -130,7 +135,12 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         val phoneNumber: String = binding.signupPhoneNumberEt.text.toString()
         val birth: String = binding.signupBirthEt.text.toString()
         val name : String = binding.signupNameEt.text.toString()
-        val university : String = binding.signupUnivSpinner.selectedItem.toString()
+        var university : String
+        if(binding.signupUnivSpinner.selectedItemPosition==univs.size-1){
+            university = binding.signupCustimUnivEt.text.toString()
+        }else{
+            university = binding.signupUnivSpinner.selectedItem.toString()
+        }
         return User(email,pw,name,nickname,phoneNumber,birth,university=university)
     }
 
@@ -222,6 +232,15 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             }
         }
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//        if(binding.signupUnivSpinner.selectedItemPosition==4){
+//            binding.signupCustimUnivEt.visibility = View.VISIBLE
+//        }else{
+//            binding.signupCustimUnivEt.visibility = View.GONE
+//        }
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

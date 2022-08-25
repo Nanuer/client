@@ -25,4 +25,7 @@ interface AuthRetrofitInterface {
     @PATCH("/updatePw")
     fun upDatePw(@Field("phone") phone:String,
                  @Field("password") password:String): Call<UpdatePwResponse>
+
+    @GET("/user/AuthTest")
+    fun jwtIsValidate(@Header("X-AUTH-TOKEN")token : String): Call<JwtIsValidateResponse>
 }

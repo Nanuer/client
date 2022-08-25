@@ -165,13 +165,30 @@
             android:layout_marginEnd="12dp"
             />
 
+        <EditText
+            android:id="@+id/signup_custim_univ_et"
+            style="@style/InputMid"
+            android:layout_width="330dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/textline_bottom_gray"
+            android:hint="대학교 입력"
+            android:inputType="text"
+            android:paddingHorizontal="20dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/main_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_spinner_iv"
+            android:visibility="gone"/>
+
         <RelativeLayout
             android:id="@+id/signup_phone_number_rl"
             android:layout_width="330dp"
             android:layout_height="37dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/signup_univ_spinner"
+            app:layout_constraintTop_toBottomOf="@id/signup_custim_univ_et"
             android:layout_marginTop="33dp"
             >
 

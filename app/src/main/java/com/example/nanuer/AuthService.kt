@@ -12,6 +12,7 @@ class AuthService {
     private lateinit var getUserIdView: GetUserIdView
     private lateinit var getUserInfoView: GetUserInfoView
     private lateinit var updatePwView: UpdatePwView
+    private lateinit var jwtIsValidateView: JwtIsValidateView
 
     fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
@@ -30,6 +31,9 @@ class AuthService {
     }
     fun setUpdatePview(updatePwView: UpdatePwView){
         this.updatePwView = updatePwView
+    }
+    fun setJwtIsValidateView(jwtIsValidateView: JwtIsValidateView){
+        this.jwtIsValidateView = jwtIsValidateView
     }
 
 
@@ -161,5 +165,28 @@ class AuthService {
         })
 
     }
+
+    fun jwtIsValidate(token:String) {
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.jwtIsValidate(token).enqueue(object : Callback<JwtIsValidateResponse> {
+            override fun onResponse(
+                call: Call<JwtIsValidateResponse>,
+                response: Response<JwtIsValidateResponse>
+            ) {
+                Log.d("JwtIsValidate/SUCCESS", response.toString())
+                val resp: JwtIsValidateResponse = response.body()!!
+                Log.d("JwtIsValidate/SUCCESS", resp.toString())
+                when (val code = resp.code) {
+                    1000 -> jwtIsValidateView.onJwtIsValidateSuccess(resp.result)
+                    else -> jwtIsValidateView.onJwtIsValidateFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<JwtIsValidateResponse>, t: Throwable) {
+                Log.d("JwtIsValidate/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+
 
 }
