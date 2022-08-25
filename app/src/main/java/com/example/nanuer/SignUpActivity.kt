@@ -52,6 +52,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     }
 
     private fun handleSendBtn(){
+        if(binding.signupPhoneNumberEt.text.toString()==""){
+            Toast.makeText(this,"휴대폰 번호를 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
         binding.signupSendNumberBtn.visibility = View.GONE
         binding.signupResendBtn.visibility = View.VISIBLE
         binding.signupCertificationCodeRl.visibility = View.VISIBLE

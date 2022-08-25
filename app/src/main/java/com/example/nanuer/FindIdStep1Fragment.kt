@@ -33,13 +33,7 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
 
 
         binding.findIdStep1SendNumberBtn.setOnClickListener {
-            binding.findIdStep1SendNumberBtn.visibility = View.GONE
-            binding.findIdStep1ResendBtn.visibility = View.VISIBLE
-            binding.findIdStep1CertificationCodeRl.visibility = View.VISIBLE
-            binding.findIdStep1ResendMessageTv.visibility = View.VISIBLE
-            binding.findIdStep1Timer.visibility = View.VISIBLE
-            startTimer(2, 59)
-            getCode(binding.findIdStep1PhoneNumberEt.text.toString())
+            handleSendBtn()
         }
 
         binding.findIdStep1ResendBtn.setOnClickListener {
@@ -72,6 +66,20 @@ class FindIdStep1Fragment : Fragment() ,FindIdView{
             handleCode()
         }
         return binding.root
+    }
+
+    private fun handleSendBtn(){
+        if(binding.findIdStep1PhoneNumberEt.text.toString()==""){
+            Toast.makeText(requireContext(),"휴대폰 번호를 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+        binding.findIdStep1SendNumberBtn.visibility = View.GONE
+        binding.findIdStep1ResendBtn.visibility = View.VISIBLE
+        binding.findIdStep1CertificationCodeRl.visibility = View.VISIBLE
+        binding.findIdStep1ResendMessageTv.visibility = View.VISIBLE
+        binding.findIdStep1Timer.visibility = View.VISIBLE
+        startTimer(2, 59)
+        getCode(binding.findIdStep1PhoneNumberEt.text.toString())
     }
 
 

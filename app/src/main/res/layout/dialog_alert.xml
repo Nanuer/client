@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="20dp">
+    <TextView
+        android:id="@+id/dialog_alert_title"
+        style="@style/TitleMid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Alert"
+        android:background="@drawable/textline_bottom_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_alert_tv"
+        style="@style/InputMid"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:includeFontPadding="false"
+        android:paddingVertical="14dp"
+        android:paddingHorizontal="10dp"
+        android:text="앱을 종료하시겠습니까?"
+        android:textColor="@color/main_black"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_alert_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/dialog_alert_ok_tv"
+        style="@style/BtnMid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:textColor="@color/blue_dark_1"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/dialog_alert_tv"
+        app:layout_constraintEnd_toStartOf="@id/dialog_alert_nok_tv"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        />
+    <TextView
+        android:id="@+id/dialog_alert_nok_tv"
+        style="@style/BtnMid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소"
+        android:textColor="@color/blue_dark_1"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/dialog_alert_tv"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_alert_tv"
+        android:layout_marginTop="20dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

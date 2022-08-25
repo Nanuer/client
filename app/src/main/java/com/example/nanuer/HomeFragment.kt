@@ -7,6 +7,7 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.*
 import android.os.Bundle
 import android.provider.Settings
@@ -17,15 +18,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.nanuer.databinding.FragmentHomeBinding
+import net.daum.mf.map.api.MapCircle
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
-import java.io.IOException
 import java.util.*
 
 
@@ -58,34 +58,34 @@ class HomeFragment : Fragment(){
         val university = arguments?.getString("university")
         binding.homeUniversityNameTv.text = university
 
-//        mapView = MapView(activity)
-//        binding.mapView.addView(mapView)
+        mapView = MapView(activity)
+        binding.mapView.addView(mapView)
 
-//        activityResultLauncher =
-//            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-//            {//Result 매개변수 콜백 메서드
-//                //ActivityResultLauncher<T>에서 T를 intent로 설정했으므로
-//                //intent자료형을 Result 매개변수(콜백)를 통해 받아온다
-//                //엑티비티에서 데이터를 갖고왔을 때만 실행
-//                if (it.resultCode == RESULT_OK) {
-//                    if (checkLocationServicesStatus()) {
-//                        if (checkLocationServicesStatus()) {
-//                            Log.d("@@@", "onActivityResult : GPS 활성화 되있음")
-//                            checkRunTimePermission()
-//                        }
-//                    }
-//                }
-//            }
-//
-//        if (!checkLocationServicesStatus()) {
-//            showDialogForLocationServiceSetting()
-//        } else {
-//            checkRunTimePermission()
-//        }
-//
-//        binding.homeCurrentLocIv.setOnClickListener{
-//            setMyCurrentLoc()
-//        }
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            {//Result 매개변수 콜백 메서드
+                //ActivityResultLauncher<T>에서 T를 intent로 설정했으므로
+                //intent자료형을 Result 매개변수(콜백)를 통해 받아온다
+                //엑티비티에서 데이터를 갖고왔을 때만 실행
+                if (it.resultCode == RESULT_OK) {
+                    if (checkLocationServicesStatus()) {
+                        if (checkLocationServicesStatus()) {
+                            Log.d("@@@", "onActivityResult : GPS 활성화 되있음")
+                            checkRunTimePermission()
+                        }
+                    }
+                }
+            }
+
+        if (!checkLocationServicesStatus()) {
+            showDialogForLocationServiceSetting()
+        } else {
+            checkRunTimePermission()
+        }
+
+        binding.homeCurrentLocIv.setOnClickListener{
+            setMyCurrentLoc()
+        }
         return binding.root
     }
 
@@ -96,9 +96,16 @@ class HomeFragment : Fragment(){
 
 //        val address = getCurrentAddress(latitude, longitude)
 //        binding.homeUniversityNameTv.setText(address)
-
+        val circle1 = MapCircle(
+            MapPoint.mapPointWithGeoCoord(latitude, longitude),  // center
+            500,  // radius
+            Color.argb(128, 255, 0, 0), // strokeColor
+            Color.argb(128, 255, 255, 0) // fillColor
+        )
+        circle1.tag = 1234
         val mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude)
         mapView.setMapCenterPoint(mapPoint, true)
+        mapView.addCircle(circle1)
         mapView.removeAllPOIItems()
         val marker = MapPOIItem()
         marker.itemName = "현위치"

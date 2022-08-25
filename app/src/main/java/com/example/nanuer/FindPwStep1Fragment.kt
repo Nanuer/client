@@ -41,13 +41,7 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
         }
 
         binding.findPwStep1SendNumberBtn.setOnClickListener {
-            binding.findPwStep1SendNumberBtn.visibility = View.GONE
-            binding.findPwStep1ResendBtn.visibility = View.VISIBLE
-            binding.findPwStep1CertificationCodeRl.visibility = View.VISIBLE
-            binding.findPwStep1ResendMessageTv.visibility = View.VISIBLE
-            binding.findPwStep1Timer.visibility = View.VISIBLE
-            startTimer(2, 59)
-            getCode(binding.findPwStep1PhoneNumberEt.text.toString())
+            handleSendBtn()
         }
 
         binding.findPwStep1ResendBtn.setOnClickListener {
@@ -76,6 +70,20 @@ class FindPwStep1Fragment : Fragment(), UpdatePwView {
         }
 
         return binding.root
+    }
+
+    private fun handleSendBtn(){
+        if(binding.findPwStep1PhoneNumberEt.text.toString()==""){
+            Toast.makeText(requireContext(),"휴대폰 번호를 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+        binding.findPwStep1SendNumberBtn.visibility = View.GONE
+        binding.findPwStep1ResendBtn.visibility = View.VISIBLE
+        binding.findPwStep1CertificationCodeRl.visibility = View.VISIBLE
+        binding.findPwStep1ResendMessageTv.visibility = View.VISIBLE
+        binding.findPwStep1Timer.visibility = View.VISIBLE
+        startTimer(2, 59)
+        getCode(binding.findPwStep1PhoneNumberEt.text.toString())
     }
 
     override fun onPause() {

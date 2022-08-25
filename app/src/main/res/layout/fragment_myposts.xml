@@ -22,18 +22,6 @@
             android:includeFontPadding="false"
             android:text="내가 쓴 글"
             android:textColor="@color/main_black" />
-
-        <TextView
-            android:id="@+id/myposts_header_num_tv"
-            style="@style/Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="22건"
-            android:textColor="@color/blue_dark_2"
-            android:layout_toEndOf="@+id/myposts_header_title_tv"
-            android:includeFontPadding="false"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="11dp"/>
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

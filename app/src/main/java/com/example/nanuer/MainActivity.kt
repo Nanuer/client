@@ -3,6 +3,12 @@ package com.example.nanuer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import com.example.nanuer.databinding.ActivityMainBinding
 import com.google.gson.Gson
 
@@ -16,9 +22,29 @@ class MainActivity : AppCompatActivity(),GetUserInfoView {
         getUserInfo()
     }
 
+    override fun onBackPressed() {
+        handleAlertDialog()
+    }
+
+    private fun handleAlertDialog(){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_alert, null)
+        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+
+        val okBtn = mDialogView.findViewById<TextView>(R.id.dialog_alert_ok_tv)
+        val notOkBtn = mDialogView.findViewById<TextView>(R.id.dialog_alert_nok_tv)
+
+        okBtn.setOnClickListener {
+            ActivityCompat.finishAffinity(this)
+            mAlertDialog.dismiss()
+        }
+        notOkBtn.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+    }
+
 
     private fun initBottomNavigation(university:String, nickname:String){
-
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_fl, ListFragment().apply{
                 arguments = Bundle().apply {

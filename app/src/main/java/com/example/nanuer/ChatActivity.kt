@@ -243,7 +243,7 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                     }
                 }
                 runOnUiThread {
-                    chatRVAdapter.addItem(Chat(userId=userId,type=type,msg=data,nickName=nickname,profileImg=profileImg))
+                    chatRVAdapter.addItem(Chat(userId=userId2,type=type,msg=data,nickName=nickname,profileImg=profileImg))
                 }
                 hideKeyboard()
                 Log.d("LIST", chatDataList.toString())

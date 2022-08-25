@@ -118,33 +118,18 @@
         android:layout_marginHorizontal="30dp"
         />
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/login_sing_up_btn"-->
-<!--        style="@style/BtnMid"-->
-<!--        android:layout_width="350dp"-->
+<!--    <TextView-->
+<!--        android:id="@+id/login_sign_up_massage_tv"-->
+<!--        style="@style/TipSmall"-->
+<!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:text="회원가입"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="@drawable/btn_round1_on"-->
+<!--        android:text="아직 회원이 아니신가요?"-->
+<!--        android:textColor="@color/gray_dark_1"-->
+<!--        android:includeFontPadding="false"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/login_sing_in_btn"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginTop="25dp"-->
-<!--        android:layout_marginHorizontal="30dp"-->
-<!--        />-->
-
-    <TextView
-        android:id="@+id/login_sign_up_massage_tv"
-        style="@style/TipSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아직 회원이 아니신가요?"
-        android:textColor="@color/gray_dark_1"
-        android:includeFontPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/login_sing_in_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp" />
+<!--        android:layout_marginTop="100dp" />-->
 
     <RelativeLayout
         android:id="@+id/login_sign_up_rl"
@@ -152,24 +137,39 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_sign_up_massage_tv">
+        app:layout_constraintTop_toBottomOf="@id/login_sing_in_btn"
+        app:layout_constraintBottom_toBottomOf="parent">
         <TextView
-            android:id="@+id/login_sign_up_tv"
+            android:id="@+id/login_sign_up_massage_tv"
             style="@style/TipSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID/회원가입 하기"
+            android:text="아직 회원이 아니신가요?"
             android:textColor="@color/gray_dark_1"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="4dp"/>
+            android:includeFontPadding="false"
+            android:layout_marginBottom="5dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_sign_up_massage_tv"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/login_sign_up_tv"
+                style="@style/TipSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원가입 하기"
+                android:includeFontPadding="false"
+                android:textColor="@color/gray_dark_1" />
+            <ImageView
+                android:id="@+id/login_sign_up_iv"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_toEndOf="@+id/login_sign_up_tv"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next" />
+        </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/login_sign_up_iv"
-            android:layout_width="17dp"
-            android:layout_height="17dp"
-            android:src="@drawable/next"
-            android:layout_toEndOf="@id/login_sign_up_tv"
-            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
 <!--    <androidx.appcompat.widget.AppCompatButton-->
