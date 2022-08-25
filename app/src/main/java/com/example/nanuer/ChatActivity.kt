@@ -219,7 +219,9 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                         }
                         if(userId==bossUserId){
                             finish()
+                            val postId = intent.getIntExtra("postId",0)
                             val intent = Intent(this,BossActivity::class.java)
+                            intent.putExtra("postId",postId)
                             startActivity(intent)
                         }else if(flag){
                             val costInfo = intent.getIntExtra("costInfo",0)
@@ -238,7 +240,7 @@ class ChatActivity: AppCompatActivity(), GetRoomAndUserIdView{
                         }
                     }else{
                         runOnUiThread{
-                            chatUserRVAdapter.removeItem(userId)
+                            chatUserRVAdapter.removeItem(userId2)
                         }
                     }
                 }

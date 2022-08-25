@@ -9,6 +9,8 @@ class PostService {
     private lateinit var makePostView: MakePostView
     private lateinit var getPostsView: GetPostsView
     private lateinit var deletePostView: DeletePostView
+    private lateinit var updateProgressView: UpdateProgressView
+    private lateinit var getProgressView: GetProgressView
 
     fun setPostView(makePostView: MakePostView){
         this.makePostView = makePostView
@@ -18,6 +20,12 @@ class PostService {
     }
     fun setDeletePostView(deletePostView: DeletePostView){
         this.deletePostView = deletePostView
+    }
+    fun setUpdateProgressView(updateProgressView: UpdateProgressView){
+        this.updateProgressView = updateProgressView
+    }
+    fun setGetProgressView(getProgressView: GetProgressView){
+        this.getProgressView = getProgressView
     }
 
     fun makePost(jwt:String, post:Post){
@@ -88,6 +96,42 @@ class PostService {
             }
             override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
                 Log.d("DELETEPOST/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+    fun updateProgress(jwt:String, post_id:Int){
+        val postService = getRetrofit().create(PostRetrofitInterface::class.java)
+        postService.updateProgress(jwt, post_id).enqueue(object: Callback<NormalResponse> {
+            override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
+                Log.d("UPDATEPROGRESS/SUCCESS", response.toString())
+                val resp: NormalResponse = response.body()!!
+                Log.d("UPDATEPROGRESS/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> updateProgressView.onUpdateProgressSuccess()
+                    else-> updateProgressView.onUpdateProgressFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
+                Log.d("UPDATEPROGRESS/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+    fun getProgress(jwt:String, post_id:Int){
+        val postService = getRetrofit().create(PostRetrofitInterface::class.java)
+        postService.getProgress(jwt, post_id).enqueue(object: Callback<NormalResponse> {
+            override fun onResponse(call: Call<NormalResponse>, response: Response<NormalResponse>) {
+                Log.d("GETPROGRESS/SUCCESS", response.toString())
+                val resp: NormalResponse = response.body()!!
+                Log.d("GETPROGRESS/SUCCESS", resp.toString())
+                when(val code = resp.code){
+                    1000-> getProgressView.onGetProgressSuccess(resp.result)
+                    else-> getProgressView.onGetProgressFailure(code, resp.message)
+                }
+            }
+            override fun onFailure(call: Call<NormalResponse>, t: Throwable) {
+                Log.d("GETPROGRESS/FAILURE", t.message.toString())
             }
         })
     }

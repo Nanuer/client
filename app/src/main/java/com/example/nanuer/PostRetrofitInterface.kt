@@ -15,4 +15,10 @@ interface PostRetrofitInterface {
 
     @PATCH("/post/{post_id}")
     fun deletePost(@Header("X-AUTH-TOKEN")token : String, @Path("post_id") post_id:Int): Call<NormalResponse>
+
+    @PATCH("/post/progress")
+    fun updateProgress(@Header("X-AUTH-TOKEN")token : String, @Query("post_id") post_id:Int): Call<NormalResponse>
+
+    @GET("/post/progress")
+    fun getProgress(@Header("X-AUTH-TOKEN")token : String, @Query("post_id") post_id: Int): Call<NormalResponse>
 }

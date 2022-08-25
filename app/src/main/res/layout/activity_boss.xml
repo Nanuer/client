@@ -29,7 +29,7 @@
         style="@style/TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="방 구성원들이 돈을 보내는 중입니다.\n 모두 확인이 되면 결게 확인 버튼을 눌러주세요."
+        android:text="방 구성원들이 돈을 보내는 중입니다.\n 모두 확인이 되면 결제 확인 버튼을 눌러주세요."
         android:gravity="center"
         android:textColor="@color/black"
         android:includeFontPadding="false"

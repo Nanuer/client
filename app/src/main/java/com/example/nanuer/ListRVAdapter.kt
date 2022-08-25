@@ -44,6 +44,13 @@ class ListRVAdapter(val context: Context, val postList: ArrayList<Post2>): Recyc
             binding.listPostTitleTv.text = post.title
             if(post.time!="시간설정"&&post.time!=null)binding.listPostTimeTv.text = post.time
 
+            if(post.progress=="Recruit"){
+                binding.listPostRecruitTv.visibility=View.VISIBLE
+                binding.listPostRecruitSuccessTv.visibility=View.GONE
+            }else{
+                binding.listPostRecruitTv.visibility=View.GONE
+                binding.listPostRecruitSuccessTv.visibility=View.VISIBLE
+            }
 
             val createdDate = post.created_date
             val date = createdDate?.substring(0,10)

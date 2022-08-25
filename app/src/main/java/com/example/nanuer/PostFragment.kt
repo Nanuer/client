@@ -16,7 +16,7 @@ import com.example.nanuer.databinding.FragmentPostBinding
 import com.google.gson.Gson
 
 
-class PostFragment : Fragment(), DeletePostView, GetUserIdView{
+class PostFragment : Fragment(), DeletePostView, GetUserIdView, GetProgressView{
     lateinit var binding: FragmentPostBinding
     private var gson:Gson = Gson()
     private var userId = -1
@@ -34,6 +34,12 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         val post = gson.fromJson(postJson, Post2::class.java)
         setInit(post)
         val university = arguments?.getString("university")
+
+        if(post.progress=="Recruit"){
+            binding.postRecruitTv.text = "모집중"
+        }else{
+            binding.postRecruitTv.text = "모집완료"
+        }
 
         binding.postHeaderBackIv.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
@@ -70,6 +76,11 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        getProgress()
+    }
+
     private fun handleUserPopUp(view: View, post:Post2){
         val popup = PopupMenu(requireContext(), view)
         popup.menuInflater.inflate(R.menu.post_popup_user, popup.menu)
@@ -99,6 +110,15 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
             }
         })
         popup.show()
+    }
+    private fun getProgress(){
+        val jwt = getJwt()
+        val postJson = arguments?.getString("post")
+        val post = gson.fromJson(postJson, Post2::class.java)
+        val postId = post.postId
+        val postService = PostService()
+        postService.setGetProgressView(this)
+        postService.getProgress(jwt!!,postId!!)
     }
 
     private fun getUserId(){
@@ -182,6 +202,18 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView{
     }
 
     override fun onGetUserIdFailure(code: Int, msg: String) {
+
+    }
+
+    override fun onGetProgressSuccess(progress: String) {
+        if(progress=="Recruit"){
+            binding.postRecruitTv.text = "모집중"
+        }else{
+            binding.postRecruitTv.text = "모집완료"
+        }
+    }
+
+    override fun onGetProgressFailure(code: Int, msg: String) {
 
     }
 }
