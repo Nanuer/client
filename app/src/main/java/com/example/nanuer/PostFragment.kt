@@ -37,8 +37,10 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView, GetProgressView{
 
         if(post.progress=="Recruit"){
             binding.postRecruitTv.text = "모집중"
+            binding.postFooterChattingBtn.visibility = View.VISIBLE
         }else{
             binding.postRecruitTv.text = "모집완료"
+            binding.postFooterChattingBtn.visibility = View.GONE
         }
 
         binding.postHeaderBackIv.setOnClickListener {
@@ -208,8 +210,10 @@ class PostFragment : Fragment(), DeletePostView, GetUserIdView, GetProgressView{
     override fun onGetProgressSuccess(progress: String) {
         if(progress=="Recruit"){
             binding.postRecruitTv.text = "모집중"
+            binding.postFooterChattingBtn.visibility = View.VISIBLE
         }else{
             binding.postRecruitTv.text = "모집완료"
+            binding.postFooterChattingBtn.visibility = View.GONE
         }
     }
 

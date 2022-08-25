@@ -44,24 +44,24 @@ class MyPostsFragment : Fragment(),GetMyPostsView{
         myPostsRVAdapter = MyPostsRVAdapter(requireContext(), postList)
         binding.mypostsRv.adapter = myPostsRVAdapter
         binding.mypostsRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-        myPostsRVAdapter.setMyItemClickListener(object: MyPostsRVAdapter.MyItemClickListener{
-            override fun onItemClick(post: Post2) {
-                changePostFragment(post)
-            }
-        })
+//        myPostsRVAdapter.setMyItemClickListener(object: MyPostsRVAdapter.MyItemClickListener{
+//            override fun onItemClick(post: Post2) {
+//                changePostFragment(post)
+//            }
+//        })
     }
 
-    private fun changePostFragment(post: Post2){
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.main_fl, PostFragment().apply {
-                arguments = Bundle().apply{
-                    val gson = Gson()
-                    val postJson = gson.toJson(post)
-                    putString("post", postJson)
-                }
-            })
-            .commitAllowingStateLoss()
-    }
+//    private fun changePostFragment(post: Post2){
+//        parentFragmentManager.beginTransaction()
+//            .replace(R.id.main_fl, PostFragment().apply {
+//                arguments = Bundle().apply{
+//                    val gson = Gson()
+//                    val postJson = gson.toJson(post)
+//                    putString("post", postJson)
+//                }
+//            })
+//            .commitAllowingStateLoss()
+//    }
 
     override fun onGetMyPostsSuccess(postList: PostResult) {
         initRecyclerView(postList)
