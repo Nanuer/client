@@ -29,6 +29,12 @@ class LoginActivity : AppCompatActivity(), LoginView{
         binding.loginSingInBtn.setOnClickListener {
             login()
         }
+        val spf = this.getSharedPreferences("auth", MODE_PRIVATE)
+        val jwt = spf!!.getString("jwt","0")
+        if(jwt!="0"){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
 //        binding.loginTestBtn.setOnClickListener {
 //            startActivity(Intent(this, MainActivity::class.java))
