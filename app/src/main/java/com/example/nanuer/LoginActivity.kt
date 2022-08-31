@@ -29,11 +29,11 @@ class LoginActivity : AppCompatActivity(), LoginView, JwtIsValidateView{
         binding.loginSingInBtn.setOnClickListener {
             login()
         }
-        val spf = this.getSharedPreferences("auth", MODE_PRIVATE)
-        val jwt = spf!!.getString("jwt","0")
-        if(jwt!="0"){
-            jwtIsValidate(jwt!!)
-        }
+//        val spf = this.getSharedPreferences("auth", MODE_PRIVATE)
+//        val jwt = spf!!.getString("jwt","0")
+//        if(jwt!="0"){
+//            jwtIsValidate(jwt!!)
+//        }
 
 //        binding.loginTestBtn.setOnClickListener {
 //            startActivity(Intent(this, MainActivity::class.java))
