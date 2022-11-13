@@ -23,23 +23,29 @@ UMC 2기에서 여름방학동안 진행한 프로젝트이다. 돈이 비교적
 
 ### Preview
 
-**로그인**  
-<img width="50%" src="https://user-images.githubusercontent.com/68095803/189258917-1c2cc035-1abe-4798-b14c-c980b0473766.jpg"/>
+**로그인**
 
-**게시물**  
-<img width="50%" src="https://user-images.githubusercontent.com/68095803/189259135-42ef5fb9-710d-4666-83de-a204920a591c.jpg"/>
+<img width="30%" src="https://user-images.githubusercontent.com/68095803/189258917-1c2cc035-1abe-4798-b14c-c980b0473766.jpg"/>
 
-**채팅**  
-<img width="50%" src="https://user-images.githubusercontent.com/68095803/189260645-d9ca1ddc-015b-4338-b758-e3fadae11bc8.jpg"/>
+**게시물**
 
-**계좌 등록**  
-<img width="50%" src="https://user-images.githubusercontent.com/68095803/189260738-bc538937-13a8-467f-96fb-2bd30c668984.jpg"/>
+<img width="30%" src="https://user-images.githubusercontent.com/68095803/189259135-42ef5fb9-710d-4666-83de-a204920a591c.jpg"/>
 
-**결제 - 게시물작성자**  
-<img width="50%" src="https://user-images.githubusercontent.com/68095803/189260833-8ad3f356-3cb6-417e-a88b-68c296b1c061.jpg"/>
+**채팅**
 
-**결제 - 거래신청자**  
-<img width="50%" src="https://user-images.githubusercontent.com/68095803/189260806-10d71645-8652-4206-ae47-fa7a24567be5.jpg"/>
+<img width="30%" src="https://user-images.githubusercontent.com/68095803/189260645-d9ca1ddc-015b-4338-b758-e3fadae11bc8.jpg"/>
+
+**계좌 등록**
+
+<img width="30%" src="https://user-images.githubusercontent.com/68095803/189260738-bc538937-13a8-467f-96fb-2bd30c668984.jpg"/>
+
+**결제 - 게시물작성자**
+
+<img width="30%" src="https://user-images.githubusercontent.com/68095803/189260833-8ad3f356-3cb6-417e-a88b-68c296b1c061.jpg"/>
+
+**결제 - 거래신청자**
+
+<img width="30%" src="https://user-images.githubusercontent.com/68095803/189260806-10d71645-8652-4206-ae47-fa7a24567be5.jpg"/>
 
 ### 배운 점
 
