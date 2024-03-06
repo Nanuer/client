@@ -1,6 +1,6 @@
 # 나누어 (Nanuer)
 
-<p align='center'><img width="70%" src="https://github.com/Nanuer/client/assets/68095803/67bac81f-a533-4251-b4a9-1c088ad8a998"/></p>
+<img width="90%" src="https://github.com/Nanuer/client/assets/68095803/67bac81f-a533-4251-b4a9-1c088ad8a998"/>
 
 ## About the Project
 
